@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2009 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2006-2010 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -33,6 +33,7 @@ varying vec4		var_Color;
 
 void	main()
 {
+#if defined(USE_PORTAL_CLIPPING)
 	if(bool(u_PortalClipping))
 	{
 		float dist = dot(var_Position.xyz, u_PortalPlane.xyz) - u_PortalPlane.w;
@@ -42,8 +43,10 @@ void	main()
 			return;
 		}
 	}
+#endif
 
 	vec4 color = texture2D(u_ColorMap, var_Tex);
+#if defined(USE_ALPHA_TESTING)
 	if(u_AlphaTest == ATEST_GT_0 && color.a <= 0.0)
 	{
 		discard;
@@ -59,7 +62,12 @@ void	main()
 		discard;
 		return;
 	}
+#endif
 	
 	color *= var_Color;
 	gl_FragColor = color;
+	
+#if 0 //defined(USE_TCGEN_ENVIRONMENT)
+	gl_FragColor = vec4(vec3(1.0, 0.0, 0.0), color.a);
+#endif
 }

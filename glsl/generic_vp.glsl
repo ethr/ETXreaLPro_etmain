@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2009 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2006-2010 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -26,12 +26,18 @@ attribute vec4		attr_Position;
 attribute vec4		attr_TexCoord0;
 attribute vec3		attr_Normal;
 attribute vec4		attr_Color;
+
+attribute vec4		attr_Position2;
+attribute vec3		attr_Normal2;
+
 #if defined(r_VertexSkinning)
 attribute vec4		attr_BoneIndexes;
 attribute vec4		attr_BoneWeights;
 uniform int			u_VertexSkinning;
 uniform mat4		u_BoneMatrix[MAX_GLSL_BONES];
 #endif
+
+uniform float		u_VertexInterpolation;
 
 uniform mat4		u_ColorTextureMatrix;
 uniform vec3		u_ViewOrigin;
@@ -54,95 +60,14 @@ varying vec4		var_Color;
 
 
 
-float triangle(float x)
-{
-	return max(1.0 - abs(x), 0);
-}
-
-float sawtooth(float x)
-{
-	return x - floor(x);
-}
-
-vec4 DeformPosition(const vec4 pos, const vec3 normal, const vec2 st)
-{
-	vec4 deformed = pos;
-	
-	/*
-		define	WAVEVALUE( table, base, amplitude, phase, freq ) \
-			((base) + table[ Q_ftol( ( ( (phase) + backEnd.refdef.floatTime * (freq) ) * FUNCTABLE_SIZE ) ) & FUNCTABLE_MASK ] * (amplitude))
-	*/
-
-	if(u_DeformGen == DGEN_WAVE_SIN)
-	{
-		float off = (pos.x + pos.y + pos.z) * u_DeformSpread;
-		float scale = u_DeformWave.x  + sin(off + u_DeformWave.z + (u_Time * u_DeformWave.w)) * u_DeformWave.y;
-		vec3 offset = normal * scale;
-
-		deformed.xyz += offset;
-	}
-	
-	if(u_DeformGen == DGEN_WAVE_SQUARE)
-	{
-		float off = (pos.x + pos.y + pos.z) * u_DeformSpread;
-		float scale = u_DeformWave.x  + sign(sin(off + u_DeformWave.z + (u_Time * u_DeformWave.w))) * u_DeformWave.y;
-		vec3 offset = normal * scale;
-
-		deformed.xyz += offset;
-	}
-	
-	if(u_DeformGen == DGEN_WAVE_TRIANGLE)
-	{
-		float off = (pos.x + pos.y + pos.z) * u_DeformSpread;
-		float scale = u_DeformWave.x  + triangle(off + u_DeformWave.z + (u_Time * u_DeformWave.w)) * u_DeformWave.y;
-		vec3 offset = normal * scale;
-
-		deformed.xyz += offset;
-	}
-	
-	if(u_DeformGen == DGEN_WAVE_SAWTOOTH)
-	{
-		float off = (pos.x + pos.y + pos.z) * u_DeformSpread;
-		float scale = u_DeformWave.x  + sawtooth(off + u_DeformWave.z + (u_Time * u_DeformWave.w)) * u_DeformWave.y;
-		vec3 offset = normal * scale;
-
-		deformed.xyz += offset;
-	}
-	
-	if(u_DeformGen == DGEN_WAVE_INVERSE_SAWTOOTH)
-	{
-		float off = (pos.x + pos.y + pos.z) * u_DeformSpread;
-		float scale = u_DeformWave.x + (1.0 - sawtooth(off + u_DeformWave.z + (u_Time * u_DeformWave.w))) * u_DeformWave.y;
-		vec3 offset = normal * scale;
-
-		deformed.xyz += offset;
-	}
-	
-	if(u_DeformGen == DGEN_BULGE)
-	{
-		float bulgeWidth = u_DeformBulge.x;
-		float bulgeHeight = u_DeformBulge.y;
-		float bulgeSpeed = u_DeformBulge.z;
-	
-		float now = u_Time * bulgeSpeed;
-
-		float off = (M_PI * 0.25) * st.x * bulgeWidth + now; 
-		float scale = sin(off) * bulgeHeight;
-		vec3 offset = normal * scale;
-
-		deformed.xyz += offset;
-	}
-
-	return deformed;
-}
 
 
 void	main()
 {
 	vec4 position = vec4(0.0);
+	vec3 normal = vec3(0.0);
 
-#if defined(r_VertexSkinning)
-	if(bool(u_VertexSkinning))
+#if defined(USE_VERTEX_SKINNING)
 	{
 		for(int i = 0; i < 4; i++)
 		{
@@ -151,30 +76,51 @@ void	main()
 			mat4  boneMatrix = u_BoneMatrix[boneIndex];
 			
 			position += (boneMatrix * attr_Position) * boneWeight;
+			normal += (boneMatrix * vec4(attr_Normal, 0.0)).xyz * boneWeight;
 		}
-		
-		position = DeformPosition(position, attr_Normal, attr_TexCoord0.st);
-
-		// transform vertex position into homogenous clip-space
-		gl_Position = u_ModelViewProjectionMatrix * position;
-		
-		// transform position into world space
-		var_Position = (u_ModelMatrix * position).xyz;
 	}
-	else
-#endif
+#elif defined(USE_VERTEX_ANIMATION)
 	{
-		position = DeformPosition(attr_Position, attr_Normal, attr_TexCoord0.st);
-	
-		// transform vertex position into homogenous clip-space
-		gl_Position = u_ModelViewProjectionMatrix * position;
-		
-		// transform position into world space
-		var_Position = (u_ModelMatrix * position).xyz;
+		if(u_VertexInterpolation > 0.0)
+		{
+			VertexAnimation_P_N(attr_Position, attr_Position2,
+								attr_Normal, attr_Normal2,
+								u_VertexInterpolation,
+								position, normal);
+		}
+		else
+		{
+			position = attr_Position;
+			normal = attr_Normal;
+		}
 	}
+#else
+	{
+		position = attr_Position;
+		normal = attr_Normal;
+	}
+#endif
+	
+#if defined(USE_DEFORM_VERTEXES)
+	position = DeformPosition(	u_DeformGen,
+								u_DeformWave,	// [base amplitude phase freq]
+								u_DeformBulge,	// [width height speed]
+								u_DeformSpread,
+								u_Time,
+								position,
+								normal,
+								attr_TexCoord0.st);
+#endif
+
+	// transform vertex position into homogenous clip-space
+	gl_Position = u_ModelViewProjectionMatrix * position;
+	
+	// transform position into world space
+	var_Position = (u_ModelMatrix * position).xyz;
 	
 	// transform texcoords
-	if(bool(u_TCGen_Environment))
+	vec4 texCoord;
+#if defined(USE_TCGEN_ENVIRONMENT)
 	{
 		vec3 viewer = normalize(u_ViewOrigin - position.xyz);
 
@@ -182,13 +128,16 @@ void	main()
 
 		vec3 reflected = attr_Normal * 2.0 * d - viewer;
 		
-		var_Tex.s = 0.5 + reflected.y * 0.5;
-		var_Tex.t = 0.5 - reflected.z * 0.5;
+		texCoord.s = 0.5 + reflected.y * 0.5;
+		texCoord.t = 0.5 - reflected.z * 0.5;
+		texCoord.q = 0;
+		texCoord.w = 1;
 	}
-	else
-	{
-		var_Tex = (u_ColorTextureMatrix * attr_TexCoord0).st;
-	}
+#else
+	texCoord = attr_TexCoord0;
+#endif
+	
+	var_Tex = (u_ColorTextureMatrix * texCoord).st;
 	
 	// assign color
 	if(u_ColorGen == CGEN_VERTEX)
