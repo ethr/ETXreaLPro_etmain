@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2010 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2006-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -47,8 +47,7 @@ uniform vec4		u_DeformWave;	// [base amplitude phase freq]
 uniform vec3		u_DeformBulge;	// [width height speed]
 uniform float		u_DeformSpread;
 uniform float		u_Time;
-uniform int			u_ColorGen;
-uniform int			u_AlphaGen;
+uniform vec4		u_ColorModulate;
 uniform vec4		u_Color;
 uniform mat4		u_ModelMatrix;
 //uniform mat4		u_ProjectionMatrix;
@@ -139,34 +138,5 @@ void	main()
 	
 	var_Tex = (u_ColorTextureMatrix * texCoord).st;
 	
-	// assign color
-	if(u_ColorGen == CGEN_VERTEX)
-	{
-		var_Color.r = attr_Color.r;
-		var_Color.g = attr_Color.g;
-		var_Color.b = attr_Color.b;
-	}
-	else if(u_ColorGen == CGEN_ONE_MINUS_VERTEX)
-	{
-		var_Color.r = 1.0 - attr_Color.r;
-		var_Color.g = 1.0 - attr_Color.g;
-		var_Color.b = 1.0 - attr_Color.b;
-	}
-	else
-	{
-		var_Color.rgb = u_Color.rgb;
-	}
-	
-	if(u_AlphaGen == AGEN_VERTEX)
-	{
-		var_Color.a = attr_Color.a;
-	}
-	else if(u_AlphaGen == AGEN_ONE_MINUS_VERTEX)
-	{
-		var_Color.a = 1.0 - attr_Color.a;
-	}
-	else
-	{
-		var_Color.a = u_Color.a;
-	}
+	var_Color = attr_Color * u_ColorModulate + u_Color;
 }
