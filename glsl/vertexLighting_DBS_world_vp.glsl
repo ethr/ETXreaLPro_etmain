@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2008-2009 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2008-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -35,7 +35,6 @@ attribute vec3		attr_LightDirection;
 uniform mat4		u_DiffuseTextureMatrix;
 uniform mat4		u_NormalTextureMatrix;
 uniform mat4		u_SpecularTextureMatrix;
-uniform int			u_InverseVertexColor;
 uniform mat4		u_ModelViewProjectionMatrix;
 
 uniform int			u_DeformGen;
@@ -44,8 +43,7 @@ uniform vec3		u_DeformBulge;	// [width height speed]
 uniform float		u_DeformSpread;
 uniform float		u_Time;
 
-uniform int			u_ColorGen;
-uniform int			u_AlphaGen;
+uniform vec4		u_ColorModulate;
 uniform vec4		u_Color;
 
 varying vec3		var_Position;
