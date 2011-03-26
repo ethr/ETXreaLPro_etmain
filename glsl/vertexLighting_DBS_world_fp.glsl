@@ -174,8 +174,12 @@ void	main()
 
 #elif defined(COMPAT_Q3A)
 
-	gl_FragColor = vec4(diffuse.rgb * var_LightColor.rgb, diffuse.a);
+	//gl_FragColor = vec4(diffuse.rgb * var_LightColor.rgb, diffuse.a);
+	gl_FragColor = diffuse * var_LightColor;
 	//gl_FragColor = vec4(vec3(1.0, 0.0, 0.0), diffuse.a);
+	//gl_FragColor = vec4(vec3(diffuse.a, diffuse.a, diffuse.a), 1.0);
+	//gl_FragColor = vec4(vec3(var_LightColor.a, var_LightColor.a, var_LightColor.a), 1.0);
+	//gl_FragColor = var_LightColor;
 
 #else
 	vec3 N;

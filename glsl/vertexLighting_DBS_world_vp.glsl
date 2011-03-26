@@ -97,7 +97,7 @@ void	main()
 #endif
 	
 	// assign color
-	var_LightColor = attr_Color * u_ColorModulate + u_Color;
+	var_LightColor = attr_Color;// * u_ColorModulate;// + u_Color;
 	
 #if defined(r_NormalMapping)
 	var_Tangent = attr_Tangent;
