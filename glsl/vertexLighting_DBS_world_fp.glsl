@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2008-2009 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2008-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -44,59 +44,7 @@ varying vec3		var_Tangent;
 varying vec3		var_Binormal;
 varying vec3		var_Normal;
 
-#if defined(r_ParallaxMapping)
-float RayIntersectDisplaceMap(vec2 dp, vec2 ds)
-{
-	const int linearSearchSteps = 16;
-	const int binarySearchSteps = 6;
 
-	float depthStep = 1.0 / float(linearSearchSteps);
-
-	// current size of search window
-	float size = depthStep;
-
-	// current depth position
-	float depth = 0.0;
-
-	// best match found (starts with last position 1.0)
-	float bestDepth = 1.0;
-
-	// search front to back for first point inside object
-	for(int i = 0; i < linearSearchSteps - 1; ++i)
-	{
-		depth += size;
-		
-		vec4 t = texture2D(u_NormalMap, dp + ds * depth);
-
-		if(bestDepth > 0.996)		// if no depth found yet
-			if(depth >= t.w)
-				bestDepth = depth;	// store best depth
-	}
-
-	depth = bestDepth;
-	
-	// recurse around first point (depth) for closest match
-	for(int i = 0; i < binarySearchSteps; ++i)
-	{
-		size *= 0.5;
-
-		vec4 t = texture2D(u_NormalMap, dp + ds * depth);
-		
-		if(depth >= t.w)
-		#ifdef RM_DOUBLEDEPTH
-			if(depth <= t.z)
-		#endif
-			{
-				bestDepth = depth;
-				depth -= 2.0 * size;
-			}
-
-		depth += size;
-	}
-
-	return bestDepth;
-}
-#endif
 
 void	main()
 {
@@ -110,7 +58,7 @@ void	main()
 		}
 	}
 
-#if defined(r_NormalMapping)
+#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
 	// construct object-space-to-tangent-space 3x3 matrix
 	mat3 objectToTangentMatrix;
 	if(gl_FrontFacing)
@@ -132,41 +80,41 @@ void	main()
 	
 	vec2 texDiffuse = var_TexDiffuseNormal.st;
 
-#if defined(r_NormalMapping)
+#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
 	vec2 texNormal = var_TexDiffuseNormal.pq;
 	vec2 texSpecular = var_TexSpecular.st;
 #endif
 
-#if defined(r_ParallaxMapping)
-	if(bool(u_ParallaxMapping))
-	{
-		// ray intersect in view direction
+#if defined(USE_PARALLAX_MAPPING)
+	
+	// ray intersect in view direction
+	
+	// size and start position of search in texture space
+	vec2 S = V.xy * -u_DepthScale / V.z;
 		
-		// size and start position of search in texture space
-		vec2 S = V.xy * -u_DepthScale / V.z;
-			
-#if 1
-		vec2 texOffset = vec2(0.0);
-		for(int i = 0; i < 4; i++) {
-			vec4 Normal = texture2D(u_NormalMap, texNormal.st + texOffset);
-			float height = Normal.a * 0.2 - 0.0125;
-			texOffset += height * Normal.z * S;
-		}
-#else
-		float depth = RayIntersectDisplaceMap(texNormal, S);
-		
-		// compute texcoords offset
-		vec2 texOffset = S * depth;
-#endif
-		
-		texDiffuse.st += texOffset;
-		texNormal.st += texOffset;
-		texSpecular.st += texOffset;
+#if 0
+	vec2 texOffset = vec2(0.0);
+	for(int i = 0; i < 4; i++) {
+		vec4 Normal = texture2D(u_NormalMap, texNormal.st + texOffset);
+		float height = Normal.a * 0.2 - 0.0125;
+		texOffset += height * Normal.z * S;
 	}
+#else
+	float depth = RayIntersectDisplaceMap(texNormal, S, u_NormalMap);
+	
+	// compute texcoords offset
+	vec2 texOffset = S * depth;
+#endif
+	
+	texDiffuse.st += texOffset;
+	texNormal.st += texOffset;
+	texSpecular.st += texOffset;
 #endif
 
 	// compute the diffuse term
 	vec4 diffuse = texture2D(u_DiffuseMap, texDiffuse);
+	
+#if defined(USE_ALPHA_TESTING)
 	if(u_AlphaTest == ATEST_GT_0 && diffuse.a <= 0.0)
 	{
 		discard;
@@ -182,9 +130,9 @@ void	main()
 		discard;
 		return;
 	}
+#endif
 
-#if defined(r_NormalMapping)
-
+#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
 	// compute normal in tangent space from normalmap
 	vec3 N = 2.0 * (texture2D(u_NormalMap, texNormal).xyz - 0.5);
 	#if defined(r_NormalScale)
@@ -227,6 +175,7 @@ void	main()
 #elif defined(COMPAT_Q3A)
 
 	gl_FragColor = vec4(diffuse.rgb * var_LightColor.rgb, diffuse.a);
+	//gl_FragColor = vec4(vec3(1.0, 0.0, 0.0), diffuse.a);
 
 #else
 	vec3 N;
@@ -238,5 +187,6 @@ void	main()
 	vec3 L = normalize(var_LightDirection);
 	
 	gl_FragColor = vec4(diffuse.rgb * var_LightColor.rgb * clamp(dot(N, L), 0.0, 1.0), diffuse.a);
+	//gl_FragColor = vec4(vec3(1.0, 0.0, 0.0), diffuse.a);
 #endif
 }

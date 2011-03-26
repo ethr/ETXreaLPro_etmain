@@ -108,7 +108,7 @@ void	main()
 		texOffset += height * Normal.z * S;
 	}
 #else
-	float depth = RayIntersectDisplaceMap(texNormal, S);
+	float depth = RayIntersectDisplaceMap(texNormal, S, u_NormalMap);
 	
 	// compute texcoords offset
 	vec2 texOffset = S * depth;

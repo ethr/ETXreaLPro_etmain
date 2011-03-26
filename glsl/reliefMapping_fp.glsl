@@ -57,7 +57,7 @@ float RayIntersectDisplaceMap(vec2 dp, vec2 ds, sampler2D normalMap)
 	{
 		size *= 0.5;
 
-		vec4 t = texture2D(u_NormalMap, dp + ds * depth);
+		vec4 t = texture2D(normalMap, dp + ds * depth);
 		
 		if(depth >= t.w)
 		#ifdef RM_DOUBLEDEPTH
