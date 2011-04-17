@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2009 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -20,34 +20,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 
-/* depthFill_fp.glsl */
+/* fogGlobal_vp.glsl */
 
-uniform sampler2D	u_ColorMap;
-uniform int			u_AlphaTest;
+attribute vec4		attr_Position;
 
-varying vec2		var_Tex;
-varying vec4		var_Color;
+uniform mat4		u_ModelViewProjectionMatrix;
 
 void	main()
 {
-	vec4 color = texture2D(u_ColorMap, var_Tex);
-	
-	if(u_AlphaTest == ATEST_GT_0 && color.a <= 0.0)
-	{
-		discard;
-		return;
-	}
-	else if(u_AlphaTest == ATEST_LT_128 && color.a >= 0.5)
-	{
-		discard;
-		return;
-	}
-	else if(u_AlphaTest == ATEST_GE_128 && color.a < 0.5)
-	{
-		discard;
-		return;
-	}
-
-	color *= var_Color;
-	gl_FragColor = color;
+	// transform vertex position into homogenous clip-space
+	gl_Position = u_ModelViewProjectionMatrix * attr_Position;
 }

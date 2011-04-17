@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 
-/* shadowFill_vp.glsl */
+/* fogQuake3_vp.glsl */
 
 attribute vec4		attr_Position;
-attribute vec3		attr_Normal;
 attribute vec4		attr_TexCoord0;
+attribute vec3		attr_Normal;
 attribute vec4		attr_Color;
 
 attribute vec4		attr_Position2;
@@ -39,17 +39,24 @@ uniform mat4		u_BoneMatrix[MAX_GLSL_BONES];
 
 uniform float		u_VertexInterpolation;
 
-uniform vec4		u_Color;
+uniform vec3		u_ViewOrigin;
 
-uniform mat4		u_ColorTextureMatrix;
+uniform float		u_Time;
+
+uniform vec4		u_ColorModulate;
+uniform vec4		u_Color;
 uniform mat4		u_ModelMatrix;
 uniform mat4		u_ModelViewProjectionMatrix;
 
-uniform float		u_Time;
+uniform vec4		u_FogDistanceVector;
+uniform vec4		u_FogDepthVector;
+uniform float		u_FogEyeT;
 
 varying vec3		var_Position;
 varying vec2		var_Tex;
 varying vec4		var_Color;
+
+
 
 
 
@@ -101,17 +108,36 @@ void	main()
 
 	// transform vertex position into homogenous clip-space
 	gl_Position = u_ModelViewProjectionMatrix * position;
+	
 	// transform position into world space
-#if defined(LIGHT_DIRECTIONAL)
-	var_Position = gl_Position.xyz / gl_Position.w;
+	var_Position = (u_ModelMatrix * position).xyz;
+	
+	// calculate the length in fog
+	float s = dot(position.xyz, u_FogDistanceVector.xyz) + u_FogDistanceVector.w;
+	float t = dot(position.xyz, u_FogDepthVector.xyz) + u_FogDepthVector.w;
+		
+	// partially clipped fogs use the T axis
+#if defined(EYE_OUTSIDE)
+	if(t < 1.0)
+	{
+		t = 1.0 / 32;	// point is outside, so no fogging
+	}
+	else
+	{
+		t = 1.0 / 32 + 30.0 / 32 * t / (t - u_FogEyeT);	// cut the distance at the fog plane
+	}
 #else
-		// transform position into world space
-		var_Position = (u_ModelMatrix * position).xyz;
+	if(t < 0)
+	{
+		t = 1.0 / 32;	// point is outside, so no fogging
+	}
+	else
+	{
+		t = 31.0 / 32;
+	}
 #endif
+
+	var_Tex = vec2(s, t);
 	
-	// transform texcoords
-	var_Tex = (u_ColorTextureMatrix * attr_TexCoord0).st;
-	
-	// assign color
-	var_Color = u_Color;
+	var_Color = /* attr_Color * u_ColorModulate + */ u_Color;
 }

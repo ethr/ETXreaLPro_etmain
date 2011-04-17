@@ -48,15 +48,11 @@ uniform mat4		u_SpecularTextureMatrix;
 uniform mat4		u_ModelMatrix;
 uniform mat4		u_ModelViewProjectionMatrix;
 
-uniform int			u_DeformGen;
-uniform vec4		u_DeformWave;	// [base amplitude phase freq]
-uniform vec3		u_DeformBulge;	// [width height speed]
-uniform float		u_DeformSpread;
 uniform float		u_Time;
 
 varying vec3		var_Position;
 varying vec2		var_TexDiffuse;
-#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
+#if defined(USE_NORMAL_MAPPING)
 varying vec2		var_TexNormal;
 varying vec2		var_TexSpecular;
 varying vec3		var_Tangent;
@@ -86,7 +82,7 @@ void	main()
 			
 			position += (boneMatrix * attr_Position) * boneWeight;
 			
-			#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
+			#if defined(USE_NORMAL_MAPPING)
 			tangent += (boneMatrix * vec4(attr_Tangent, 0.0)).xyz * boneWeight;
 			binormal += (boneMatrix * vec4(attr_Binormal, 0.0)).xyz * boneWeight;
 			#endif
@@ -98,7 +94,7 @@ void	main()
 	{
 		if(u_VertexInterpolation > 0.0)
 		{
-			#if defined(r_NormalMapping)
+			#if defined(USE_NORMAL_MAPPING)
 			VertexAnimation_P_TBN(	attr_Position, attr_Position2,
 									attr_Tangent, attr_Tangent2,
 									attr_Binormal, attr_Binormal2,
@@ -116,7 +112,7 @@ void	main()
 		{
 			position = attr_Position;
 			
-			#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
+			#if defined(USE_NORMAL_MAPPING)
 			tangent = attr_Tangent;
 			binormal = attr_Binormal;
 			#endif
@@ -128,7 +124,7 @@ void	main()
 	{
 		position = attr_Position;
 		
-		#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
+		#if defined(USE_NORMAL_MAPPING)
 		tangent = attr_Tangent;
 		binormal = attr_Binormal;
 		#endif
@@ -138,14 +134,10 @@ void	main()
 #endif
 
 #if defined(USE_DEFORM_VERTEXES)
-	position = DeformPosition(	u_DeformGen,
-								u_DeformWave,	// [base amplitude phase freq]
-								u_DeformBulge,	// [width height speed]
-								u_DeformSpread,
-								u_Time,
-								position,
+	position = DeformPosition2(	position,
 								normal,
-								attr_TexCoord0.st);
+								attr_TexCoord0.st,
+								u_Time);
 #endif
 
 	// transform vertex position into homogenous clip-space
@@ -154,7 +146,7 @@ void	main()
 	// transform position into world space
 	var_Position = (u_ModelMatrix * position).xyz;
 
-	#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
+	#if defined(USE_NORMAL_MAPPING)
 	var_Tangent.xyz = (u_ModelMatrix * vec4(tangent, 0.0)).xyz;
 	var_Binormal.xyz = (u_ModelMatrix * vec4(binormal, 0.0)).xyz;
 	#endif
@@ -164,7 +156,7 @@ void	main()
 	// transform diffusemap texcoords
 	var_TexDiffuse = (u_DiffuseTextureMatrix * attr_TexCoord0).st;
 	
-#if defined(r_NormalMapping) || defined(USE_PARALLAX_MAPPING)
+#if defined(USE_NORMAL_MAPPING)
 	// transform normalmap texcoords
 	var_TexNormal = (u_NormalTextureMatrix * attr_TexCoord0).st;
 	

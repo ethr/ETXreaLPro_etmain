@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2008 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -20,22 +20,34 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 
-/* depthTest_fp.glsl */
+/* fogQuake3_fp.glsl */
 
 uniform sampler2D	u_ColorMap;
-uniform sampler2D	u_CurrentMap;
+uniform vec4		u_PortalPlane;
 
+varying vec3		var_Position;
 varying vec2		var_Tex;
+varying vec4		var_Color;
 
 void	main()
 {
+#if defined(USE_PORTAL_CLIPPING)
+	{
+		float dist = dot(var_Position.xyz, u_PortalPlane.xyz) - u_PortalPlane.w;
+		if(dist < 0.0)
+		{
+			discard;
+			return;
+		}
+	}
+#endif
+
 	vec4 color = texture2D(u_ColorMap, var_Tex);
-
-	// calculate the screen texcoord in the 0.0 to 1.0 range
-	vec2 st = gl_FragCoord.st * r_FBufScale;
 	
-	// scale by the screen non-power-of-two-adjust
-	st *= r_NPOTScale;
-
-	gl_FragColor = vec4(1.0, 0.0, 0.0, color.a);
+	color *= var_Color;
+	gl_FragColor = color;
+	
+#if 0
+	gl_FragColor = vec4(vec3(1.0, 0.0, 0.0), color.a);
+#endif
 }

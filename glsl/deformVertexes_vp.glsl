@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2009-2010 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2009-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -31,6 +31,7 @@ float sawtooth(float x)
 	return x - floor(x);
 }
 
+
 vec4 DeformPosition(const int deformGen,
 					const vec4 wave,	// [base amplitude phase freq]
 					const vec3 bulge,	// [width height speed]
@@ -41,11 +42,6 @@ vec4 DeformPosition(const int deformGen,
 					const vec2 st)
 {
 	vec4 deformed = pos;
-	
-	/*
-		define	WAVEVALUE( table, base, amplitude, phase, freq ) \
-			((base) + table[ Q_ftol( ( ( (phase) + backEnd.refdef.floatTime * (freq) ) * FUNCTABLE_SIZE ) ) & FUNCTABLE_MASK ] * (amplitude))
-	*/
 
 	if(deformGen == DGEN_WAVE_SIN)
 	{
@@ -107,6 +103,105 @@ vec4 DeformPosition(const int deformGen,
 		deformed.xyz += offset;
 	}
 
+	return deformed;
+}
+
+
+/*
+	define	WAVEVALUE( table, base, amplitude, phase, freq ) \
+		((base) + table[ Q_ftol( ( ( (phase) + backEnd.refdef.floatTime * (freq) ) * FUNCTABLE_SIZE ) ) & FUNCTABLE_MASK ] * (amplitude))
+*/
+
+float WaveValue(float func, float base, float amplitude, float phase, float freq, float time)
+{
+	if(func == GF_SIN)
+		return base  + sin(phase + (time * freq)) * amplitude;
+	
+	if(func == GF_SQUARE)
+		return base  + sign(sin(phase + (time * freq))) * amplitude;
+	
+	if(func == GF_TRIANGLE)
+		return base  + triangle(phase + (time * freq)) * amplitude;
+	
+	if(func == GF_SAWTOOTH)
+		return base  + sawtooth(phase + (time * freq)) * amplitude;
+	
+	if(func == GF_INVERSE_SAWTOOTH)
+		return base + (1.0 - sawtooth(phase + (time * freq))) * amplitude;
+	
+	// if(func == GF_NOISE)
+		// TODO
+		
+	return 0.0; // GF_NONE
+}
+
+
+uniform float		u_DeformParms[MAX_SHADER_DEFORM_PARMS];
+
+vec4 DeformPosition2(	const vec4 pos,
+						const vec3 normal,
+						const vec2 st,
+						float time)
+{
+	
+	int i, deformOfs = 0;
+	int numDeforms = int(u_DeformParms[deformOfs++]);
+	
+	vec4 deformed = pos;
+	
+	for(i = 0; i < numDeforms; i++)
+	{
+		int deformGen = int(u_DeformParms[deformOfs++]);
+
+			
+		if(deformGen == DEFORM_WAVE)
+		{
+			float func = u_DeformParms[deformOfs++];
+			float base = u_DeformParms[deformOfs++];
+			float amplitude = u_DeformParms[deformOfs++];
+			float phase = u_DeformParms[deformOfs++];
+			float freq = u_DeformParms[deformOfs++];
+			
+			float spread = u_DeformParms[deformOfs++];
+		
+			float off = (pos.x + pos.y + pos.z) * spread;
+			float scale = WaveValue(func, base, amplitude, phase + off, freq, time);
+			vec3 offset = normal * scale;
+
+			deformed.xyz += offset;
+		}
+		
+		if(deformGen == DEFORM_BULGE)
+		{
+			float bulgeWidth = u_DeformParms[deformOfs++];
+			float bulgeHeight = u_DeformParms[deformOfs++];
+			float bulgeSpeed = u_DeformParms[deformOfs++];
+		
+			float now = time * bulgeSpeed;
+
+			float off = (M_PI * 0.25) * st.x * bulgeWidth + now; 
+			float scale = sin(off) * bulgeHeight;
+			vec3 offset = normal * scale;
+
+			deformed.xyz += offset;
+		}
+		
+		if(deformGen == DEFORM_MOVE)
+		{
+			float func = u_DeformParms[deformOfs++];
+			float base = u_DeformParms[deformOfs++];
+			float amplitude = u_DeformParms[deformOfs++];
+			float phase = u_DeformParms[deformOfs++];
+			float freq = u_DeformParms[deformOfs++];
+			
+			vec3 move = vec3(u_DeformParms[deformOfs++], u_DeformParms[deformOfs++], u_DeformParms[deformOfs++]);
+			float scale = WaveValue(func, base, amplitude, phase, freq, time);
+			vec3 offset = move * scale;
+
+			deformed.xyz += offset;
+		}
+	}
+	
 	return deformed;
 }
 
