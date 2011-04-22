@@ -138,6 +138,8 @@ float WaveValue(float func, float base, float amplitude, float phase, float freq
 
 uniform float		u_DeformParms[MAX_SHADER_DEFORM_PARMS];
 
+#if !defined(GLDRV_MESA)
+
 vec4 DeformPosition2(	const vec4 pos,
 						const vec3 normal,
 						const vec2 st,
@@ -205,3 +207,5 @@ vec4 DeformPosition2(	const vec4 pos,
 	return deformed;
 }
 
+
+#endif !defined(GLDRV_MESA)
