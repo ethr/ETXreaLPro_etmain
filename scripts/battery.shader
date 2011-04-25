@@ -208,6 +208,8 @@ textures/battery/terrain_0
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	
+// XreaL BEGIN
+	/*
 	{
 
 		map textures/temperate_sd/sand_disturb_bright.tga
@@ -217,6 +219,15 @@ textures/battery/terrain_0
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_disturb_bright.tga
+		vertexColor
+	}
+// XreaL END
+
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -230,6 +241,9 @@ textures/battery/terrain_1
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_wave_bright.tga
 		rgbgen identity
@@ -238,6 +252,15 @@ textures/battery/terrain_1
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_wave_bright.tga
+		vertexColor
+	}
+// XreaL END
+	
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -251,6 +274,8 @@ textures/battery/terrain_2
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rocky_sand.tga
 		rgbgen identity
@@ -259,6 +284,15 @@ textures/battery/terrain_2
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rocky_sand.tga
+		vertexColor
+	}
+// XreaL END
+	
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -270,6 +304,8 @@ textures/battery/terrain_2
 textures/battery/terrain_3
 {
 	q3map_baseshader textures/battery/terrain_base
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rock_graynoise.tga
 		rgbgen identity
@@ -278,6 +314,15 @@ textures/battery/terrain_3
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_graynoise.tga
+		vertexColor
+	}
+// XreaL END
+	
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -289,6 +334,8 @@ textures/battery/terrain_3
 textures/battery/terrain_4
 {
 	q3map_baseshader textures/battery/terrain_base
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rock_grayvar.tga
 		rgbgen identity
@@ -297,6 +344,15 @@ textures/battery/terrain_4
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_grayvar.tga
+		vertexColor
+	}
+// XreaL END
+
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -310,6 +366,8 @@ textures/battery/terrain_5
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_patchnoise.tga
 		rgbgen identity
@@ -318,6 +376,15 @@ textures/battery/terrain_5
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_patchnoise.tga
+		vertexColor
+	}
+// XreaL END
+
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -332,6 +399,9 @@ textures/battery/terrain_0to1
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_disturb_bright.tga
 		rgbgen identity
@@ -344,11 +414,31 @@ textures/battery/terrain_0to1
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 	}
-	
 	{
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_disturb_bright.tga
+		// rgbgen identity
+		// color 1, 0, 0, 1	// only for debugging GLSL shaders
+		//alphaGen vertex
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_wave_bright.tga
+		// rgbgen identity
+		//color 0, 1, 0, 1	// only for debugging GLSL shaders
+		vertexColor
+		//alphaGen oneMinusVertex
+		//inverseVertexColor
+		//blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+		blend blend
+	}
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -362,6 +452,9 @@ textures/battery/terrain_0to2
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_disturb_bright.tga
 		rgbgen identity
@@ -378,6 +471,21 @@ textures/battery/terrain_0to2
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_disturb_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rocky_sand.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+	
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -389,6 +497,9 @@ textures/battery/terrain_0to2
 textures/battery/terrain_0to3
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_disturb_bright.tga
 		rgbgen identity
@@ -401,23 +512,39 @@ textures/battery/terrain_0to3
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 	}
-
 	{
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_disturb_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_graynoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_0to4
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_disturb_bright.tga
 		rgbgen identity
@@ -430,18 +557,32 @@ textures/battery/terrain_0to4
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 	}
-
 	{
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_disturb_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_grayvar.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_0to5
@@ -449,6 +590,9 @@ textures/battery/terrain_0to5
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_disturb_bright.tga
 		rgbgen identity
@@ -464,13 +608,27 @@ textures/battery/terrain_0to5
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_disturb_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_patchnoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 
@@ -479,6 +637,9 @@ textures/battery/terrain_1to2
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_wave_bright.tga
 		rgbgen identity
@@ -495,18 +656,35 @@ textures/battery/terrain_1to2
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_wave_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rocky_sand.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_1to3
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_wave_bright.tga
 		rgbgen identity
@@ -522,18 +700,35 @@ textures/battery/terrain_1to3
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_wave_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_graynoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_1to4
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_wave_bright.tga
 		rgbgen identity
@@ -549,13 +744,27 @@ textures/battery/terrain_1to4
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_wave_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_grayvar.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_1to5
@@ -563,6 +772,9 @@ textures/battery/terrain_1to5
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/sand_wave_bright.tga
 		rgbgen identity
@@ -578,13 +790,27 @@ textures/battery/terrain_1to5
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_wave_bright.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_patchnoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 
@@ -592,6 +818,9 @@ textures/battery/terrain_1to5
 textures/battery/terrain_2to3
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rocky_sand.tga
 		rgbgen identity
@@ -607,18 +836,35 @@ textures/battery/terrain_2to3
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rocky_sand.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_graynoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_2to4
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rocky_sand.tga
 		rgbgen identity
@@ -634,13 +880,27 @@ textures/battery/terrain_2to4
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rocky_sand.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_grayvar.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_2to5
@@ -648,6 +908,9 @@ textures/battery/terrain_2to5
 	q3map_baseshader textures/battery/terrain_base
 	surfaceparm landmine
 	surfaceparm gravelsteps
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rocky_sand.tga
 		rgbgen identity
@@ -663,18 +926,35 @@ textures/battery/terrain_2to5
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rocky_sand.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_patchnoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_3to4
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rock_graynoise.tga
 		rgbgen identity
@@ -690,18 +970,35 @@ textures/battery/terrain_3to4
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_graynoise.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_grayvar.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_3to5
 {
 	q3map_baseshader textures/battery/terrain_base
+	
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rock_graynoise.tga
 		rgbgen identity
@@ -717,18 +1014,34 @@ textures/battery/terrain_3to5
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_graynoise.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_patchnoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/terrain_4to5
 {
 	q3map_baseshader textures/battery/terrain_base
+// XreaL BEGIN
+	/*
 	{
 		map textures/temperate_sd/rock_grayvar.tga
 		rgbgen identity
@@ -744,13 +1057,27 @@ textures/battery/terrain_4to5
 		map $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_grayvar.tga
+		vertexColor
+	}
+	{
+		stage diffusemap
+		map textures/temperate_sd/sand_patchnoise.tga
+		vertexColor
+		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+	}
+
+// XreaL END
 	{
 		map textures/detail_sd/sanddetail.tga
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
 	}
-
 }
 
 textures/battery/water_nodraw
