@@ -1,6 +1,6 @@
 /*
 ===========================================================================
-Copyright (C) 2006-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2007-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
 
 This file is part of XreaL source code.
 
@@ -20,7 +20,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 
-/* vertexLighting_DBS_entity_fp.glsl */
+/* geometricFill_fp.glsl */
+
+#extension GL_ARB_draw_buffers : enable
 
 uniform sampler2D	u_DiffuseMap;
 uniform sampler2D	u_NormalMap;
@@ -32,18 +34,18 @@ uniform float		u_EnvironmentInterpolation;
 
 uniform int			u_AlphaTest;
 uniform vec3		u_ViewOrigin;
-uniform vec3		u_AmbientColor;
-uniform vec3		u_LightDir;
-uniform vec3		u_LightColor;
-uniform float		u_SpecularExponent;
+uniform vec3        u_AmbientColor;
 uniform float		u_DepthScale;
+uniform mat4		u_ModelMatrix;
 uniform vec4		u_PortalPlane;
 
-varying vec3		var_Position;
+varying vec4		var_Position;
 varying vec2		var_TexDiffuse;
 #if defined(USE_NORMAL_MAPPING)
 varying vec2		var_TexNormal;
+#if !defined(r_DeferredLighting)
 varying vec2		var_TexSpecular;
+#endif
 varying vec3		var_Tangent;
 varying vec3		var_Binormal;
 #endif
@@ -51,8 +53,10 @@ varying vec3		var_Normal;
 
 
 
+
 void	main()
 {
+
 #if defined(USE_PORTAL_CLIPPING)
 	{
 		float dist = dot(var_Position.xyz, u_PortalPlane.xyz) - u_PortalPlane.w;
@@ -64,12 +68,9 @@ void	main()
 	}
 #endif
 
-	// compute light direction in world space
-	vec3 L = u_LightDir;
-	
 	// compute view direction in world space
-	vec3 V = normalize(u_ViewOrigin - var_Position);
-	
+	vec3 V = normalize(u_ViewOrigin - var_Position.xyz);
+
 	vec2 texDiffuse = var_TexDiffuse.st;
 
 #if defined(USE_NORMAL_MAPPING)
@@ -88,7 +89,9 @@ void	main()
 	}
 	
 	vec2 texNormal = var_TexNormal.st;
+#if !defined(r_DeferredLighting)
 	vec2 texSpecular = var_TexSpecular.st;
+#endif
 
 #if defined(USE_PARALLAX_MAPPING)
 	
@@ -124,16 +127,19 @@ void	main()
 	vec2 texOffset = S * depth;
 #endif
 	
-	texDiffuse.st += texOffset;
 	texNormal.st += texOffset;
+	
+#if !defined(r_DeferredLighting)
+	texDiffuse.st += texOffset;
 	texSpecular.st += texOffset;
+#endif
+	
 #endif // USE_PARALLAX_MAPPING
 
 	// compute normal in world space from normalmap
 	vec3 N = tangentToWorldMatrix * (2.0 * (texture2D(u_NormalMap, texNormal).xyz - 0.5));
 	
-	// compute half angle in world space
-	vec3 H = normalize(L + V);
+#if !defined(r_DeferredLighting)
 	
 	// compute the specular term
 #if defined(USE_REFLECTIVE_SPECULAR)
@@ -145,24 +151,17 @@ void	main()
 	
 	specular *= mix(envColor0, envColor1, u_EnvironmentInterpolation).rgb;
 	
-	// Blinn-Phong
-	float NH = clamp(dot(N, H), 0, 1);
-	specular *= u_LightColor * pow(NH, r_SpecularExponent2) * r_SpecularScale;
-	
 #if 0
-	gl_FragColor = vec4(specular, 1.0);
-	// gl_FragColor = vec4(u_EnvironmentInterpolation, u_EnvironmentInterpolation, u_EnvironmentInterpolation, 1.0);
-	// gl_FragColor = envColor0;
-	return;
+	// specular = vec4(u_EnvironmentInterpolation, u_EnvironmentInterpolation, u_EnvironmentInterpolation, 1.0);
+	specular = envColor0;
 #endif
 
 #else
 
-	// simple Blinn-Phong
-	float NH = clamp(dot(N, H), 0, 1);
-	vec3 specular = texture2D(u_SpecularMap, texSpecular).rgb * u_LightColor * pow(NH, r_SpecularExponent) * r_SpecularScale;
-	
+	vec3 specular = texture2D(u_SpecularMap, texSpecular).rgb;
 #endif // USE_REFLECTIVE_SPECULAR
+
+#endif // #if !defined(r_DeferredLighting)
 
 
 #else // USE_NORMAL_MAPPING
@@ -207,49 +206,21 @@ void	main()
 		return;
 	}
 #endif
-
-
-// add Rim Lighting to highlight the edges
-#if defined(r_RimLighting)
-	float rim = 1.0 - clamp(dot(N, V), 0, 1); 
-    vec3 emission = r_RimColor.rgb * pow(rim, r_RimExponent);
 	
-	// gl_FragColor = vec4(emission, 1.0);
-	// return;
-
-#endif
+//	vec4 depthColor = diffuse;
+//	depthColor.rgb *= u_AmbientColor;
 	
-	// compute the light term
-#if defined(r_HalfLambertLighting)
-	// http://developer.valvesoftware.com/wiki/Half_Lambert
-	float NL = dot(N, L) * 0.5 + 0.5;
-	NL *= NL;
-#elif defined(r_WrapAroundLighting)
-	float NL = clamp(dot(N, L) + r_WrapAroundLighting, 0.0, 1.0) / clamp(1.0 + r_WrapAroundLighting, 0.0, 1.0);
+	// convert normal back to [0,1] color space
+	N = N * 0.5 + 0.5;
+
+#if defined(r_DeferredLighting)
+	gl_FragColor = vec4(N, 0.0);
 #else
-	float NL = clamp(dot(N, L), 0.0, 1.0);
-#endif
-	
-	vec3 light = u_AmbientColor + u_LightColor * NL;
-	clamp(light, 0.0, 1.0);
-	
-	// compute final color
-	vec4 color = diffuse;
-	color.rgb *= light;
-	color.rgb += specular;
-#if defined(r_RimLighting)
-	color.rgb += emission;
-#endif
-	
-#if 0
-	gl_FragColor = color;
-#else
-	gl_FragData[0] = color;
-	gl_FragData[1] = vec4(diffuse.rgb, 0.0);
-	gl_FragData[2] = vec4(N, 0.0);
-	gl_FragData[3] = vec4(specular, 0.0);
-#endif
-	// gl_FragColor = vec4(vec3(NL, NL, NL), diffuse.a);
+	gl_FragData[0] = vec4(diffuse.rgb, 0.0);
+	gl_FragData[1] = vec4(N, 0.0);
+	gl_FragData[2] = vec4(specular, 0.0);
+
+#endif // r_DeferredLighting
 }
 
 
