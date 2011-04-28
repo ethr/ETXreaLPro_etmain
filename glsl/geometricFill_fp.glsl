@@ -50,6 +50,7 @@ varying vec3		var_Tangent;
 varying vec3		var_Binormal;
 #endif
 varying vec3		var_Normal;
+varying vec4		var_Color;
 
 
 
@@ -216,9 +217,10 @@ void	main()
 #if defined(r_DeferredLighting)
 	gl_FragColor = vec4(N, 0.0);
 #else
-	gl_FragData[0] = vec4(diffuse.rgb, 0.0);
-	gl_FragData[1] = vec4(N, 0.0);
-	gl_FragData[2] = vec4(specular, 0.0);
+	gl_FragData[0] = vec4(0.0, 0.0, 0.0, 1.0);
+	gl_FragData[1] = vec4(diffuse.rgb, var_Color.a);
+	gl_FragData[2] = vec4(N, var_Color.a);
+	gl_FragData[3] = vec4(specular, var_Color.a);
 
 #endif // r_DeferredLighting
 }

@@ -157,14 +157,13 @@ void	main()
 	// compute light color from world space lightmap
 	vec3 lightColor = texture2D(u_LightMap, var_TexLight).rgb;
 	
-	diffuse.rgb *= lightColor.rgb * clamp(dot(N, L), 0.0, 1.0);
-	
 	// compute the specular term
-	vec3 specular = texture2D(u_SpecularMap, texSpecular).rgb * lightColor * pow(clamp(dot(N, H), 0.0, 1.0), r_SpecularExponent) * r_SpecularScale;
+	vec3 specular = texture2D(u_SpecularMap, texSpecular).rgb;
 	
 	// compute final color
 	vec4 color = diffuse;
-	color.rgb += specular;
+	color.rgb *= lightColor.rgb * clamp(dot(N, L), 0.0, 1.0);
+	color.rgb += specular * lightColor * pow(clamp(dot(N, H), 0.0, 1.0), r_SpecularExponent) * r_SpecularScale;
 	color.a = var_Color.a;	// for terrain blending
 
 
@@ -213,6 +212,9 @@ void	main()
 	color.rgb *= lightColor;
 	color.a = var_Color.a;	// for terrain blending
 #endif
+
+	// convert normal to [0,1] color space
+	N = N * 0.5 + 0.5;
 
 #if defined(r_DeferredShading)
 	gl_FragData[0] = color; 							// var_Color;
