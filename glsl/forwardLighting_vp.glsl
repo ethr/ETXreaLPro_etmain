@@ -135,7 +135,7 @@ void	main()
 	var_TexAttenuation = u_LightAttenuationMatrix * position;
 		
 	// transform diffusemap texcoords
-	var_TexDiffuse.xy = (mat2x4(u_DiffuseTextureMatrix) * attr_TexCoord0.st).st;
+	var_TexDiffuse.xy = (u_DiffuseTextureMatrix * attr_TexCoord0).st;
 	
 #if defined(USE_NORMAL_MAPPING)
 	// transform normalmap texcoords
