@@ -113,3 +113,8 @@ qx_hod
 tr3b_parallax
 tr3b_lava
 # XreaL END
+
+# MAWI BEGIN
+asset
+mawi
+# MAWI END
