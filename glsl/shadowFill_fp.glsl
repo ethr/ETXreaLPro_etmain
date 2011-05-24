@@ -32,6 +32,27 @@ varying vec3		var_Position;
 varying vec2		var_Tex;
 varying vec4		var_Color;
 
+
+#if defined(EVSM)
+
+vec2 WarpDepth(float depth)
+{
+    // rescale depth into [-1, 1]
+    depth = 2.0 * depth - 1.0;
+    float pos =  exp( r_EVSMExponents.x * depth);
+    float neg = -exp(-r_EVSMExponents.y * depth);
+	
+    return vec2(pos, neg);
+}
+
+vec4 ShadowDepthToEVSM(float depth)
+{
+	vec2 warpedDepth = WarpDepth(depth);
+	return vec4(warpedDepth.xy, warpedDepth.xy * warpedDepth.xy);
+}
+
+#endif // #if defined(EVSM)
+
 void	main()
 {
 #if defined(USE_PORTAL_CLIPPING)
@@ -87,7 +108,7 @@ void	main()
 	gl_FragColor = vec4(distance, 0.0, 0.0, distanceSquared);
 #endif
 
-#elif defined(ESM)
+#elif defined(EVSM) || defined(ESM)
 	
 	float distance;
 #if defined(LIGHT_DIRECTIONAL)
@@ -99,11 +120,20 @@ void	main()
 	}
 #else
 	{
-		distance = (length(var_Position - u_LightOrigin) / u_LightRadius) * r_ShadowMapDepthScale;
+		distance = (length(var_Position - u_LightOrigin) / u_LightRadius); // * r_ShadowMapDepthScale;
 	}
 #endif
 	
+#if defined(EVSM)
+#if !defined(r_EVSMPostProcess)
+	gl_FragColor = ShadowDepthToEVSM(distance);
+#else
 	gl_FragColor = vec4(0.0, 0.0, 0.0, distance);
+#endif
+#else
+	gl_FragColor = vec4(0.0, 0.0, 0.0, distance);
+#endif // defined(EVSM)
+	
 #else
 	gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
 #endif
