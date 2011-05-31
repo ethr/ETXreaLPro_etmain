@@ -1280,7 +1280,7 @@ debugportals
 	surfaceparm nonsolid
 	surfaceparm trans
 	{
-		map $whiteimage
+		map _white
 		blendFunc GL_SRC_ALPHA GL_ONE
 		rgbGen vertex
 	}
@@ -1294,7 +1294,7 @@ debugsurfaces
 	surfaceparm nonsolid
 	surfaceparm trans
 	{
-		map *default
+		map _default
 		rgbGen vertex
 	}
 }
