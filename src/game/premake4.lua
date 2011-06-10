@@ -65,5 +65,12 @@ project "etmain_game"
 			"_CRT_SECURE_NO_WARNINGS",
 		}
 	
-	--configuration "linux"
-		-- TODO
+	configuration { "linux", "x32" }
+		targetname  "qagame.mp.x86"
+		targetprefix ""
+	
+	configuration { "linux", "x64" }
+		targetname  "qagame.mp.x86_64"
+		targetprefix ""
+
+	

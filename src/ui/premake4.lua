@@ -74,5 +74,11 @@ project "etmain_ui"
 			"_CRT_SECURE_NO_WARNINGS",
 		}
 	
-	--configuration "linux"
-		-- TODO
+	configuration { "linux", "x32" }
+		targetname  "ui.mp.x86"
+		targetprefix ""
+	
+	configuration { "linux", "x64" }
+		targetname  "ui.mp.x86_64"
+		targetprefix ""
+	

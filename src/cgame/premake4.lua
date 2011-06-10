@@ -73,5 +73,12 @@ project "etmain_cgame"
 			"_CRT_SECURE_NO_WARNINGS",
 		}
 	
-	--configuration "linux"
-		-- TODO
+	configuration { "linux", "x32" }
+		targetname  "cgame.mp.x86"
+		targetprefix ""
+	
+	configuration { "linux", "x64" }
+		targetname  "cgame.mp.x86_64"
+		targetprefix ""
+	
+	
