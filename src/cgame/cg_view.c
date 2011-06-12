@@ -69,6 +69,9 @@ console doesn't pause the game.
 
 =============================================================================
 */
+// Omni-bot BEGIN
+void            OmnibotRenderDebugLines();
+// Omni-bot END
 
 /*
 =================
@@ -2214,6 +2217,13 @@ void CG_DrawActiveFrame(int serverTime, stereoFrame_t stereoView, qboolean demoP
 			DEBUGTIME       CG_AddSmokeSprites();
 
 			DEBUGTIME       CG_AddAtmosphericEffects();
+
+			// Omni-bot BEGIN
+			if(cgs.localServer)
+			{
+				//OmnibotRenderDebugLines();
+			}
+			// Omni-bot END
 		}
 
 		// Rafael mg42

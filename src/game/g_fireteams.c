@@ -28,6 +28,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 // Gordon
 // What we need....
 // invite <clientname|number>
@@ -322,6 +326,11 @@ void G_RegisterFireteam( /*const char* name, */ int entityNum)
 		ft->priv = qfalse;
 	}
 
+// Omni-bot BEGIN
+	Bot_Event_FireTeamCreated(entityNum, ft->ident);
+	Bot_Event_JoinedFireTeam(leader - g_entities, leader);
+// Omni-bot END
+
 //  Q_strncpyz(ft->name, name, 32);
 
 	G_UpdateFireteamConfigString(ft);
@@ -371,6 +380,10 @@ void G_AddClientToFireteam(int entityNum, int leaderNum)
 		{
 			// found a free position
 			ft->joinOrder[i] = entityNum;
+
+			// Omni-bot BEGIN
+			Bot_Event_JoinedFireTeam(entityNum, &g_entities[leaderNum]);
+			// Omni-bot END
 
 			G_UpdateFireteamConfigString(ft);
 
@@ -423,6 +436,10 @@ void G_RemoveClientFromFireteams(int entityNum, qboolean update, qboolean print)
 		return;
 	}
 
+// Omni-bot BEGIN
+	Bot_Event_LeftFireTeam(entityNum);
+
+	/*
 	if(ft->joinOrder[0] != -1)
 	{
 		if(g_entities[(int)ft->joinOrder[0]].r.svFlags & SVF_BOT)
@@ -430,6 +447,8 @@ void G_RemoveClientFromFireteams(int entityNum, qboolean update, qboolean print)
 			G_RemoveClientFromFireteams(ft->joinOrder[0], qfalse, qfalse);
 		}
 	}
+	*/
+// Omni-bot END
 
 	if(print)
 	{
@@ -481,18 +500,26 @@ void G_InviteToFireTeam(int entityNum, int otherEntityNum)
 		G_ClientPrintAndReturn(entityNum, "The other player is already on a fireteam");
 	}
 
+// Omni-bot BEGIN
+	/*
 	if(g_entities[otherEntityNum].r.svFlags & SVF_BOT)
 	{
 		// Gordon: bots auto join
 		G_AddClientToFireteam(otherEntityNum, entityNum);
 	}
 	else
+	*/
+// Omni-bot END
 	{
 		trap_SendServerCommand(entityNum, va("invitation -1"));
 		trap_SendServerCommand(otherEntityNum, va("invitation %i", entityNum));
 		g_entities[otherEntityNum].client->pers.invitationClient = entityNum;
 		g_entities[otherEntityNum].client->pers.invitationEndTime = level.time + 20500;
 	}
+
+// Omni-bot BEGIN
+	Bot_Event_InviteFireTeam(entityNum, otherEntityNum);
+// Omni-bot END
 }
 
 void G_DestroyFireteam(int entityNum)
@@ -513,6 +540,10 @@ void G_DestroyFireteam(int entityNum)
 	{
 		if(ft->joinOrder[0] != entityNum)
 		{
+			// Omni-bot BEGIN
+			Bot_Event_FireTeamDestroyed(ft->joinOrder[0]);
+			// Omni-bot END
+
 			trap_SendServerCommand(ft->joinOrder[0], "cpm \"The Fireteam you are on has been disbanded\"\n");
 		}
 
@@ -552,6 +583,10 @@ void G_WarnFireTeamPlayer(int entityNum, int otherEntityNum)
 	}
 
 	trap_SendServerCommand(otherEntityNum, "cpm \"You have been warned by your Fireteam Commander\n\"");
+
+// Omni-bot BEGIN
+	Bot_Event_FireTeam_Warn(entityNum, otherEntityNum);
+// Omni-bot END
 }
 
 void G_KickFireTeamPlayer(int entityNum, int otherEntityNum)
@@ -583,6 +618,9 @@ void G_KickFireTeamPlayer(int entityNum, int otherEntityNum)
 		G_ClientPrintAndReturn(entityNum, "You are not on the same Fireteam as the other player");
 	}
 
+// Omni-bot BEGIN
+	Bot_Event_LeftFireTeam(otherEntityNum);
+// Omni-bot END
 
 	G_RemoveClientFromFireteams(otherEntityNum, qtrue, qfalse);
 
@@ -679,6 +717,10 @@ void G_ProposeFireTeamPlayer(int entityNum, int otherEntityNum)
 	leader->client->pers.propositionClient = otherEntityNum;
 	leader->client->pers.propositionClient2 = entityNum;
 	leader->client->pers.propositionEndTime = level.time + 20000;
+
+// Omni-bot BEGIN
+	Bot_Event_FireTeam_Proposal(leader - g_entities, otherEntityNum);
+// Omni-bot END
 }
 
 

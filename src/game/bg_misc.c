@@ -4151,6 +4151,10 @@ char           *eventnames[] = {
 	"EV_ARTYMESSAGE",
 	"EV_AIRSTRIKEMESSAGE",
 	"EV_MEDIC_CALL",
+// Omni-bot BEGIN
+	"EV_BOT_DEBUG_LINE",
+	"EV_BOT_DEBUG_RADIUS",
+// Omni-bot END
 	"EV_MAX_EVENTS",
 };
 

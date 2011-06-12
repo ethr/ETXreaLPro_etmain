@@ -440,6 +440,9 @@ typedef enum
 	LE_MOVE_SCALE_FADE,
 	LE_FALL_SCALE_FADE,
 	LE_FADE_RGB,
+// Omni-bot BEGIN
+	LE_CONST_RGB,
+// Omni-bot END
 	LE_SCALE_FADE,
 	LE_SPARK,
 	LE_DEBRIS,
@@ -2298,6 +2301,11 @@ extern vmCvar_t cl_waverecording;
 extern vmCvar_t cl_wavefilename;
 extern vmCvar_t cl_waveoffset;
 extern vmCvar_t cg_recording_statusline;
+
+// Omni-bot BEGIN
+// cs: waypoint tool only, not for mods
+extern vmCvar_t cg_generictext;
+// Omni-bot END
 
 //
 // cg_main.c

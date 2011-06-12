@@ -37,6 +37,10 @@ If you have questions concerning this license or the applicable additional terms
 #include "../game/g_local.h"
 #include "../../../src/shared/q_shared.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 /*
 Scripting that allows the designers to control the behaviour of entities
 according to each different scenario.
@@ -279,6 +283,10 @@ g_script_event_define_t gScriptEvents[] = {
 	{"defused", NULL},
 	{"mg42", G_Script_EventMatch_StringEqual},
 	{"message", G_Script_EventMatch_StringEqual},	// contains a sequence of VO in a message
+
+// Omni-bot BEGIN
+	{"exploded", NULL},
+// Omni-bot END
 
 	{NULL, NULL}
 };
@@ -932,6 +940,33 @@ void G_Script_ScriptEvent(gentity_t * ent, char *eventStr, char *params)
 	{
 		G_Script_ScriptChange(ent, i);
 	}
+
+// Omni-bot BEGIN
+	// skip these
+	if(!Q_stricmp(eventStr, "trigger") ||
+	   !Q_stricmp(eventStr, "activate") ||
+	   !Q_stricmp(eventStr, "spawn") ||
+	   !Q_stricmp(eventStr, "death") || !Q_stricmp(eventStr, "pain") || !Q_stricmp(eventStr, "playerstart"))
+		return;
+
+	if(!Q_stricmp(eventStr, "defused"))
+	{
+		Bot_Util_SendTrigger(ent, NULL, va("Defused at %s.", ent->parent ? ent->parent->track : ent->track), eventStr);
+	}
+	else if(!Q_stricmp(eventStr, "dynamited"))
+	{
+		Bot_Util_SendTrigger(ent, NULL, va("Planted at %s.", ent->parent ? ent->parent->track : ent->track), eventStr);
+	}
+	else if(!Q_stricmp(eventStr, "destroyed"))
+	{
+		Bot_Util_SendTrigger(ent, NULL, va("%s Destroyed.", ent->parent ? ent->parent->track : ent->track), eventStr);
+	}
+	else if(!Q_stricmp(eventStr, "exploded"))
+	{
+		Bot_Util_SendTrigger(ent, NULL, va("Explode_%s Exploded.", _GetEntityName(ent)), eventStr);
+	}
+
+// Omni-bot END
 }
 
 /*

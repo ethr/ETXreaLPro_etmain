@@ -1144,6 +1144,10 @@ void SP_gas(gentity_t * self)
 #define RED_FLAG 1
 #define BLUE_FLAG 2
 
+// Omni-bot BEGIN
+void            Bot_Util_SendTrigger(gentity_t * _ent, gentity_t * _activator, const char *_tagname, const char *_action);
+// Omni-bot END
+
 void Touch_flagonly(gentity_t * ent, gentity_t * other, trace_t * trace)
 {
 	gentity_t      *tmp;
@@ -1173,6 +1177,10 @@ void Touch_flagonly(gentity_t * ent, gentity_t * other, trace_t * trace)
 
 		G_Script_ScriptEvent(&g_entities[other->client->flagParent], "trigger", "captured");
 
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, va("Allies captured %s", ent->scriptName), "");
+		// Omni-bot END
+
 		ent->parent = tmp;
 
 		// Removes itself
@@ -1199,6 +1207,10 @@ void Touch_flagonly(gentity_t * ent, gentity_t * other, trace_t * trace)
 		G_Script_ScriptEvent(ent, "death", "");
 
 		G_Script_ScriptEvent(&g_entities[other->client->flagParent], "trigger", "captured");
+
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, va("Axis captured %s", ent->scriptName), "");
+		// Omni-bot END
 
 		ent->parent = tmp;
 
@@ -1237,6 +1249,10 @@ void Touch_flagonly_multiple(gentity_t * ent, gentity_t * other, trace_t * trace
 
 		G_Script_ScriptEvent(&g_entities[other->client->flagParent], "trigger", "captured");
 
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, va("Allies captured %s", ent->scriptName), "");
+		// Omni-bot END
+
 		ent->parent = tmp;
 	}
 	else if(ent->spawnflags & BLUE_FLAG && other->client->ps.powerups[PW_BLUEFLAG])
@@ -1255,6 +1271,10 @@ void Touch_flagonly_multiple(gentity_t * ent, gentity_t * other, trace_t * trace
 		G_Script_ScriptEvent(ent, "death", "");
 
 		G_Script_ScriptEvent(&g_entities[other->client->flagParent], "trigger", "captured");
+
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, va("Axis captured %s", ent->scriptName), "");
+		// Omni-bot END
 
 		ent->parent = tmp;
 	}

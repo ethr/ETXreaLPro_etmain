@@ -28,6 +28,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 level_locals_t  level;
 
 typedef struct
@@ -49,6 +53,17 @@ g_campaignInfo_t g_campaigns[MAX_CAMPAIGNS];
 int             saveGamePending;	// 0 = no, 1 = check, 2 = loading
 
 mapEntityData_Team_t mapEntityData[2];
+
+// Omni-bot BEGIN
+vmCvar_t        g_OmniBotPath;
+vmCvar_t        g_OmniBotEnable;
+vmCvar_t        g_OmniBotFlags;
+vmCvar_t        g_OmniBotPlaying;
+
+//CS: Waypointing Tool only, not for other mods
+vmCvar_t        g_stopMovers;
+vmCvar_t        g_fixedPhysics;
+// Omni-bot END
 
 vmCvar_t        g_gametype;
 vmCvar_t        g_fraglimit;
@@ -219,6 +234,9 @@ vmCvar_t        g_lms_followTeamOnly;
 vmCvar_t        g_reloading;
 #endif							// SAVEGAME_SUPPORT
 
+// Omni-bot BEGIN
+vmCvar_t        mod_version;
+// Omni-bot END
 vmCvar_t        mod_url;
 vmCvar_t        url;
 
@@ -435,7 +453,7 @@ cvarTable_t     gameCvarTable[] = {
 #endif							// SAVEGAME_SUPPORT
 
 	// points to the URL for mod information, should not be modified by server admin
-	{&mod_url, "mod_url", "", CVAR_SERVERINFO | CVAR_ROM, 0, qfalse},
+	{&mod_url, "mod_url", "http://xreal.sourceforge.net", CVAR_SERVERINFO | CVAR_ROM, 0, qfalse},
 	// configured by the server admin, points to the web pages for the server
 	{&url, "URL", "", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qfalse},
 
@@ -451,6 +469,18 @@ cvarTable_t     gameCvarTable[] = {
 	{&g_nextcampaign, "nextcampaign", "", CVAR_TEMP},
 
 	{&g_disableComplaints, "g_disableComplaints", "0", CVAR_ARCHIVE},
+
+// Omni-bot BEGIN
+	// Omni-bot user defined path to load bot library from.
+	{&g_OmniBotPath, "omnibot_path", "", CVAR_ARCHIVE | CVAR_NORESTART, 0, qfalse},
+	{&g_OmniBotEnable, "omnibot_enable", "1", CVAR_ARCHIVE | CVAR_SERVERINFO_NOUPDATE | CVAR_NORESTART, 0, qfalse},
+	{&g_OmniBotPlaying, "omnibot_playing", "0", CVAR_SERVERINFO_NOUPDATE | CVAR_ROM, 0, qfalse},
+	{&g_OmniBotFlags, "omnibot_flags", "0", CVAR_ARCHIVE | CVAR_NORESTART, 0, qfalse},
+
+	//CS: Waypointing Tool only, not for other mods
+	{&g_stopMovers, "g_stopMovers", "0", CVAR_CHEAT, 0, qfalse},
+	{&g_fixedPhysics, "g_fixedPhysics", "0", CVAR_SERVERINFO, qfalse},
+// Omni-bot END
 };
 
 // bk001129 - made static to avoid aliasing
@@ -461,6 +491,10 @@ void            G_InitGame(int levelTime, int randomSeed, int restart);
 void            G_RunFrame(int levelTime);
 void            G_ShutdownGame(int restart);
 void            CheckExitRules(void);
+
+// Omni-bot BEGIN
+void            G_HandleMessage(int _clientfrom, const char *_buffer, int _messagesize, int _commandtime);
+// Omni-bot END
 
 qboolean G_SnapshotCallback(int entityNum, int clientNum)
 {
@@ -496,9 +530,23 @@ intptr_t vmMain(int command, int arg0, int arg1, int arg2, int arg3, int arg4, i
 	switch (command)
 	{
 		case GAME_INIT:
+			// Omni-bot BEGIN
+			Bot_Interface_InitHandles();
+			// Omni-bot END
+
 			G_InitGame(arg0, arg1, arg2);
+
+			// Omni-bot BEGIN
+			if(!Bot_Interface_Init())
+				G_Printf(S_COLOR_RED "Unable to Initialize Omni-Bot.\n");
+			// Omni-bot END
 			return 0;
 		case GAME_SHUTDOWN:
+			// Omni-bot BEGIN
+			if(!Bot_Interface_Shutdown())
+				G_Printf(S_COLOR_RED "Error shutting down Omni-Bot.\n");
+			// Omni-bot END
+
 			G_ShutdownGame(arg0);
 			return 0;
 		case GAME_CLIENT_CONNECT:
@@ -520,6 +568,10 @@ intptr_t vmMain(int command, int arg0, int arg1, int arg2, int arg3, int arg4, i
 			return 0;
 		case GAME_RUN_FRAME:
 			G_RunFrame(arg0);
+
+			// Omni-bot BEGIN
+			Bot_Interface_Update();
+			// Omni-bot END
 			return 0;
 		case GAME_CONSOLE_COMMAND:
 			return ConsoleCommand();
@@ -544,7 +596,17 @@ intptr_t vmMain(int command, int arg0, int arg1, int arg2, int arg3, int arg4, i
 		case GAME_SNAPSHOT_CALLBACK:
 			return G_SnapshotCallback(arg0, arg1);
 		case GAME_MESSAGERECEIVED:
+		{
+			// Omni-bot BEGIN
+			int             iClientFrom = arg0;
+			const char     *pBuffer = (const char *)arg1;
+			int             iBufferLength = arg2;
+			int             iCommandTime = arg3;
+
+			G_HandleMessage(iClientFrom, pBuffer, iBufferLength, iCommandTime);
+			// Omni-bot END
 			return -1;
+		}
 	}
 
 	return -1;
@@ -3171,6 +3233,10 @@ Append information about this game to the log file
 		bani_storemapxp();
 	}
 
+// Omni-bot BEGIN
+	Bot_Util_SendTrigger(NULL, NULL, "Round End.", "roundend");
+// Omni-bot END
+
 	G_BuildEndgameStats();
 }
 
@@ -4506,3 +4572,9 @@ qboolean G_IsSinglePlayerGame()
 
 	return qfalse;
 }
+
+// Omni-bot BEGIN
+void G_HandleMessage(int _clientfrom, const char *_buffer, int _messagesize, int _commandtime)
+{
+}
+// Omni-bot END

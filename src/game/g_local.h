@@ -26,6 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
+#ifndef __G_LOCAL_H__
+#define __G_LOCAL_H__
 
 
 // g_local.h -- local definitions for game module
@@ -522,6 +524,11 @@ struct gentity_s
 
 	//bani
 	int             etpro_misc_1;
+
+// Omni-bot BEGIN
+	// increment dyno count
+	int             numPlanted;
+// Omni-bot END
 };
 
 // Ridah
@@ -633,6 +640,11 @@ typedef struct
 	int             suicides;
 	int             team_damage;
 	int             team_kills;
+
+	// Omni-bot BEGIN
+	qboolean        botSuicide;	// /kill before next spawn
+	qboolean        botPush;	// allow for disabling of bot pushing via script
+	// Omni-bot END
 
 	weapon_stat_t   aWeaponStats[WS_MAX + 1];	// Weapon stats.  +1 to avoid invalid weapon check
 	// OSP
@@ -1144,6 +1156,13 @@ typedef struct
 	int             commanderLastSoundTime[2];
 
 	qboolean        tempTraceIgnoreEnts[MAX_GENTITIES];
+
+// Omni-bot BEGIN
+	// time triggers
+	qboolean        twoMinute;
+	qboolean        thirtySecond;
+// Omni-bot END
+
 } level_locals_t;
 
 typedef struct
@@ -1676,6 +1695,18 @@ extern g_campaignInfo_t g_campaigns[];
 extern int      saveGamePending;
 
 #define FOFS( x ) ( (size_t)&( ( (gentity_t *)0 )->x ) )
+
+// Omni-bot BEGIN
+extern vmCvar_t g_OmniBotPath;
+extern vmCvar_t g_OmniBotEnable;
+extern vmCvar_t g_OmniBotFlags;
+extern vmCvar_t g_OmniBotPlaying;
+
+//CS: Waypointing Tool only, not for other mods
+extern vmCvar_t g_stopMovers;
+extern vmCvar_t g_fixedPhysics;
+
+// Omni-bot END
 
 extern vmCvar_t g_gametype;
 
@@ -2487,130 +2518,138 @@ void            G_refWarmup_cmd(gentity_t * ent);
 void            G_refWarning_cmd(gentity_t * ent);
 void            G_refMute_cmd(gentity_t * ent, qboolean mute);
 int             G_refClientnumForName(gentity_t * ent, const char *name);
+// *INDENT-OFF*
 void G_refPrintf(gentity_t * ent, const char *fmt, ...) _attribute((format(printf, 2, 3)));
-	 void G_PlayerBan(void);
-	 void G_MakeReferee(void);
-	 void G_RemoveReferee(void);
-	 void G_MuteClient(void);
-	 void G_UnMuteClient(void);
+// *INDENT-ON*
+void            G_PlayerBan(void);
+void            G_MakeReferee(void);
+void            G_RemoveReferee(void);
+void            G_MuteClient(void);
+void            G_UnMuteClient(void);
 
 
 
 ///////////////////////
 // g_team.c
 //
-	 extern char    *aTeams[TEAM_NUM_TEAMS];
-	 extern team_info teamInfo[TEAM_NUM_TEAMS];
+extern char    *aTeams[TEAM_NUM_TEAMS];
+extern team_info teamInfo[TEAM_NUM_TEAMS];
 
-	 qboolean G_allowFollow(gentity_t * ent, int nTeam);
-	 int G_blockoutTeam(gentity_t * ent, int nTeam);
-	 qboolean G_checkReady(void);
-	 qboolean G_readyMatchState(void);
-	 void G_removeSpecInvite(int team);
-	 void G_shuffleTeams(void);
-	 void G_swapTeamLocks(void);
-	 void G_swapTeams(void);
-	 qboolean G_teamJoinCheck(int team_num, gentity_t * ent);
-	 int G_teamID(gentity_t * ent);
-	 void G_teamReset(int team_num, qboolean fClearSpecLock);
-	 void G_verifyMatchState(int team_id);
-	 void G_updateSpecLock(int nTeam, qboolean fLock);
+qboolean        G_allowFollow(gentity_t * ent, int nTeam);
+int             G_blockoutTeam(gentity_t * ent, int nTeam);
+qboolean        G_checkReady(void);
+qboolean        G_readyMatchState(void);
+void            G_removeSpecInvite(int team);
+void            G_shuffleTeams(void);
+void            G_swapTeamLocks(void);
+void            G_swapTeams(void);
+qboolean        G_teamJoinCheck(int team_num, gentity_t * ent);
+int             G_teamID(gentity_t * ent);
+void            G_teamReset(int team_num, qboolean fClearSpecLock);
+void            G_verifyMatchState(int team_id);
+void            G_updateSpecLock(int nTeam, qboolean fLock);
 
 
 
 ///////////////////////
 // g_vote.c
 //
-	 int G_voteCmdCheck(gentity_t * ent, char *arg, char *arg2, qboolean fRefereeCmd);
-	 void G_voteFlags(void);
-	 void G_voteHelp(gentity_t * ent, qboolean fShowVote);
-	 void G_playersMessage(gentity_t * ent);
+int             G_voteCmdCheck(gentity_t * ent, char *arg, char *arg2, qboolean fRefereeCmd);
+void            G_voteFlags(void);
+void            G_voteHelp(gentity_t * ent, qboolean fShowVote);
+void            G_playersMessage(gentity_t * ent);
 
 // Actual voting commands
-	 int G_Comp_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Gametype_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Kick_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Mute_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_UnMute_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Map_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Campaign_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_MapRestart_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_MatchReset_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Mutespecs_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Nextmap_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Pub_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Referee_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_ShuffleTeams_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_StartMatch_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_SwapTeams_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_FriendlyFire_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Timelimit_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Warmupfire_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_Unreferee_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_AntiLag_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
-	 int G_BalancedTeams_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Comp_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Gametype_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Kick_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Mute_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_UnMute_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Map_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Campaign_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_MapRestart_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_MatchReset_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Mutespecs_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Nextmap_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Pub_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Referee_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_ShuffleTeams_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_StartMatch_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_SwapTeams_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_FriendlyFire_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Timelimit_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Warmupfire_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_Unreferee_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_AntiLag_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
+int             G_BalancedTeams_v(gentity_t * ent, unsigned int dwVoteIndex, char *arg, char *arg2, qboolean fRefereeCmd);
 
-	 void G_LinkDebris(void);
-	 void G_LinkDamageParents(void);
-	 int EntsThatRadiusCanDamage(vec3_t origin, float radius, int *damagedList);
+void            G_LinkDebris(void);
+void            G_LinkDamageParents(void);
+int             EntsThatRadiusCanDamage(vec3_t origin, float radius, int *damagedList);
 
-	 qboolean G_LandmineTriggered(gentity_t * ent);
-	 qboolean G_LandmineArmed(gentity_t * ent);
-	 qboolean G_LandmineUnarmed(gentity_t * ent);
-	 team_t G_LandmineTeam(gentity_t * ent);
-	 qboolean G_LandmineSpotted(gentity_t * ent);
-	 gentity_t      *G_FindSmokeBomb(gentity_t * start);
-	 gentity_t      *G_FindLandmine(gentity_t * start);
-	 gentity_t      *G_FindDynamite(gentity_t * start);
-	 gentity_t      *G_FindSatchels(gentity_t * start);
-	 void G_SetTargetName(gentity_t * ent, char *targetname);
-	 void G_KillEnts(const char *target, gentity_t * ignore, gentity_t * killer, meansOfDeath_t mod);
-	 void trap_EngineerTrace(trace_t * results, const vec3_t start, const vec3_t mins, const vec3_t maxs, const vec3_t end,
-							 int passEntityNum, int contentmask);
+qboolean        G_LandmineTriggered(gentity_t * ent);
+qboolean        G_LandmineArmed(gentity_t * ent);
+qboolean        G_LandmineUnarmed(gentity_t * ent);
+team_t          G_LandmineTeam(gentity_t * ent);
+qboolean        G_LandmineSpotted(gentity_t * ent);
+gentity_t      *G_FindSmokeBomb(gentity_t * start);
+gentity_t      *G_FindLandmine(gentity_t * start);
+gentity_t      *G_FindDynamite(gentity_t * start);
+gentity_t      *G_FindSatchels(gentity_t * start);
+void            G_SetTargetName(gentity_t * ent, char *targetname);
+void            G_KillEnts(const char *target, gentity_t * ignore, gentity_t * killer, meansOfDeath_t mod);
+void            trap_EngineerTrace(trace_t * results, const vec3_t start, const vec3_t mins, const vec3_t maxs, const vec3_t end,
+								   int passEntityNum, int contentmask);
 
-	 qboolean G_ConstructionIsPartlyBuilt(gentity_t * ent);
+qboolean        G_ConstructionIsPartlyBuilt(gentity_t * ent);
 
-	 int G_CountTeamMedics(team_t team, qboolean alivecheck);
-	 qboolean G_TankIsOccupied(gentity_t * ent);
-	 qboolean G_TankIsMountable(gentity_t * ent, gentity_t * other);
+int             G_CountTeamMedics(team_t team, qboolean alivecheck);
+qboolean        G_TankIsOccupied(gentity_t * ent);
+qboolean        G_TankIsMountable(gentity_t * ent, gentity_t * other);
 
-	 qboolean G_ConstructionBegun(gentity_t * ent);
-	 qboolean G_ConstructionIsFullyBuilt(gentity_t * ent);
-	 qboolean G_ConstructionIsPartlyBuilt(gentity_t * ent);
-	 gentity_t      *G_ConstructionForTeam(gentity_t * toi, team_t team);
-	 gentity_t      *G_IsConstructible(team_t team, gentity_t * toi);
-	 qboolean G_EmplacedGunIsRepairable(gentity_t * ent, gentity_t * other);
-	 qboolean G_EmplacedGunIsMountable(gentity_t * ent, gentity_t * other);
-	 void G_CheckForCursorHints(gentity_t * ent);
-	 void G_CalcClientAccuracies(void);
-	 void G_BuildEndgameStats(void);
-	 int G_TeamCount(gentity_t * ent, weapon_t weap);
+// Omni-bot BEGIN
+qboolean        G_ConstructionIsDestroyable(gentity_t * ent);
 
-	 qboolean G_IsFireteamLeader(int entityNum, fireteamData_t ** teamNum);
-	 fireteamData_t *G_FindFreePublicFireteam(team_t team);
-	 void G_RegisterFireteam( /*const char* name, */ int entityNum);
+// Omni-bot END
+qboolean        G_ConstructionBegun(gentity_t * ent);
+qboolean        G_ConstructionIsFullyBuilt(gentity_t * ent);
+qboolean        G_ConstructionIsPartlyBuilt(gentity_t * ent);
+gentity_t      *G_ConstructionForTeam(gentity_t * toi, team_t team);
+gentity_t      *G_IsConstructible(team_t team, gentity_t * toi);
+qboolean        G_EmplacedGunIsRepairable(gentity_t * ent, gentity_t * other);
+qboolean        G_EmplacedGunIsMountable(gentity_t * ent, gentity_t * other);
+void            G_CheckForCursorHints(gentity_t * ent);
+void            G_CalcClientAccuracies(void);
+void            G_BuildEndgameStats(void);
+int             G_TeamCount(gentity_t * ent, weapon_t weap);
 
-	 void weapon_callAirStrike(gentity_t * ent);
-	 void weapon_checkAirStrikeThink2(gentity_t * ent);
-	 void weapon_checkAirStrikeThink1(gentity_t * ent);
-	 void weapon_callSecondPlane(gentity_t * ent);
-	 qboolean weapon_checkAirStrike(gentity_t * ent);
+qboolean        G_IsFireteamLeader(int entityNum, fireteamData_t ** teamNum);
+fireteamData_t *G_FindFreePublicFireteam(team_t team);
+void            G_RegisterFireteam( /*const char* name, */ int entityNum);
+
+void            weapon_callAirStrike(gentity_t * ent);
+void            weapon_checkAirStrikeThink2(gentity_t * ent);
+void            weapon_checkAirStrikeThink1(gentity_t * ent);
+void            weapon_callSecondPlane(gentity_t * ent);
+qboolean        weapon_checkAirStrike(gentity_t * ent);
 
 
-	 void G_MakeReady(gentity_t * ent);
-	 void G_MakeUnready(gentity_t * ent);
+void            G_MakeReady(gentity_t * ent);
+void            G_MakeUnready(gentity_t * ent);
 
-	 void SetPlayerSpawn(gentity_t * ent, int spawn, qboolean update);
-	 void G_UpdateSpawnCounts(void);
+void            SetPlayerSpawn(gentity_t * ent, int spawn, qboolean update);
+void            G_UpdateSpawnCounts(void);
 
-	 void G_SetConfigStringValue(int num, const char *key, const char *value);
-	 void G_GlobalClientEvent(int event, int param, int client);
+void            G_SetConfigStringValue(int num, const char *key, const char *value);
+void            G_GlobalClientEvent(int event, int param, int client);
 
-	 void G_InitTempTraceIgnoreEnts(void);
-	 void G_ResetTempTraceIgnoreEnts(void);
-	 void G_TempTraceIgnoreEntity(gentity_t * ent);
-	 void G_TempTraceIgnorePlayersAndBodies(void);
+void            G_InitTempTraceIgnoreEnts(void);
+void            G_ResetTempTraceIgnoreEnts(void);
+void            G_TempTraceIgnoreEntity(gentity_t * ent);
+void            G_TempTraceIgnorePlayersAndBodies(void);
 
-	 qboolean G_CanPickupWeapon(weapon_t weapon, gentity_t * ent);
+qboolean        G_CanPickupWeapon(weapon_t weapon, gentity_t * ent);
 
-	 qboolean G_LandmineSnapshotCallback(int entityNum, int clientNum);
+qboolean        G_LandmineSnapshotCallback(int entityNum, int clientNum);
+
+#endif

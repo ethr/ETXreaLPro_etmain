@@ -28,6 +28,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 void            BotDebug(int clientNum);
 void            GetBotAutonomies(int clientNum, int *weapAutonomy, int *moveAutonomy);
 qboolean        G_IsOnFireteam(int entityNum, fireteamData_t ** teamNum);
@@ -809,11 +813,25 @@ Cmd_Kill_f
 */
 void Cmd_Kill_f(gentity_t * ent)
 {
+// Omni-bot BEGIN
 	if(ent->client->sess.sessionTeam == TEAM_SPECTATOR ||
-	   (ent->client->ps.pm_flags & PMF_LIMBO) || ent->health <= 0 || level.match_pause != PAUSE_NONE)
+	   (ent->client->ps.pm_flags & PMF_LIMBO) || level.match_pause != PAUSE_NONE)
 	{
 		return;
 	}
+
+	// bots always need to go to limbo or it causes problems
+	// since we use latchedPlayerClass in GetEntityClass
+	if(ent->health <= 0)
+	{
+		if(ent->r.svFlags & SVF_BOT)
+		{
+			limbo(ent, qtrue);
+		}
+
+		return;
+	}
+// Omni-bot END
 
 #ifdef SAVEGAME_SUPPORT
 	if(g_gametype.integer == GT_SINGLE_PLAYER && g_reloading.integer)
@@ -827,6 +845,19 @@ void Cmd_Kill_f(gentity_t * ent)
 	ent->client->ps.persistant[PERS_HWEAPON_USE] = 0;	// TTimo - if using /kill while at MG42
 	player_die(ent, ent, ent, (g_gamestate.integer == GS_PLAYING) ? 100000 : 135, MOD_SUICIDE);
 }
+
+// Omni-bot BEGIN
+void Cmd_Injure_f(gentity_t * ent)
+{
+	if(ent->client->sess.sessionTeam == TEAM_SPECTATOR ||
+	   (ent->client->ps.pm_flags & PMF_LIMBO) || ent->health <= 0 || level.match_pause != PAUSE_NONE)
+	{
+		return;
+	}
+
+	G_Damage(ent, NULL, NULL, NULL, NULL, ent->health + 1, 0, MOD_CRUSH);
+}
+// Omni-bot END
 
 void            BotRecordTeamChange(int client);
 
@@ -1097,7 +1128,11 @@ qboolean SetTeam(gentity_t * ent, char *s, qboolean force, weapon_t w1, weapon_t
 	}
 
 	G_verifyMatchState(oldTeam);
-	BotRecordTeamChange(clientNum);
+
+// Omni-bot BEGIN
+	//removed
+	//BotRecordTeamChange(clientNum);
+// Omni-bot END
 
 	// Reset stats when changing teams
 	if(team != oldTeam)
@@ -1304,7 +1339,10 @@ qboolean G_IsWeaponDisabled(gentity_t * ent, weapon_t weapon)
 {
 	int             count, wcount;
 
-	if(ent->client->sess.sessionTeam == TEAM_SPECTATOR)
+// Omni-bot BEGIN
+	// redeye - allow selecting weapons as spectator for bots (to avoid endless loops in pfnChangeTeam())
+	if(ent->client->sess.sessionTeam == TEAM_SPECTATOR && !(ent->r.svFlags & SVF_BOT))
+// Omni-bot END
 	{
 		return qtrue;
 	}
@@ -1785,6 +1823,11 @@ void G_SayTo(gentity_t * ent, gentity_t * other, int mode, int color, const char
 							   va("%s \"%s%c%c%s\" %i %i", mode == SAY_TEAM ||
 								  mode == SAY_BUDDY ? "tchat" : "chat", name, Q_COLOR_ESCAPE, color, message, ent - g_entities,
 								  localize));
+
+// Omni-bot BEGIN
+		// tell the bot about the chat message
+		Bot_Event_ChatMessage(other - g_entities, ent, mode, message);
+// Omni-bot END
 	}
 }
 
@@ -1944,7 +1987,19 @@ void G_VoiceTo(gentity_t * ent, gentity_t * other, int mode, const char *id, qbo
 
 	// RF, record this chat so bots can parse them
 	// bots respond with voiceonly, so we check for this so they dont keep responding to responses
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	BotRecordVoiceChat(ent->s.number, other->s.number, id, mode, voiceonly == 2);
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
+
+// Omni-bot BEGIN
+	// send this voice macro to the bot as an event
+	Bot_Event_VoiceMacro(other - g_entities, ent, mode, id);
+// Omni-bot END
+
 
 	if(voiceonly == 2)
 	{
@@ -4278,6 +4333,12 @@ void ClientCommand(int clientNum)
 	{
 		Cmd_Kill_f(ent);
 	}
+// Omni-bot BEGIN
+	else if(Q_stricmp(cmd, "injure") == 0)
+	{
+		Cmd_Injure_f(ent);
+	}
+// Omni-bot END
 	else if(Q_stricmp(cmd, "follownext") == 0)
 	{
 		Cmd_FollowCycle_f(ent, 1);

@@ -16,14 +16,19 @@ project "etmain_game"
 		"**.c", "**.cpp", "**.h",
 		
 		"../botai/**.c", "../botai/**.h",
+		
+		"../omnibot/Common/BotLoadLibrary.cpp",
 	}
 	includedirs
 	{
 		"../../../src/shared",
+		"../omnibot/Common",
+		"../omnibot/ET",
 	}
 	defines
 	{ 
 		"GAMEDLL",
+		"NO_BOT_SUPPORT"
 	}
 	
 	--

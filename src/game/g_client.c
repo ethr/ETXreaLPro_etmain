@@ -29,6 +29,10 @@ If you have questions concerning this license or the applicable additional terms
 #include "g_local.h"
 #include "../../ui/menudef.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 // g_client.c -- client functions that don't happen every frame
 
 // Ridah, new bounding box
@@ -663,6 +667,10 @@ void reinforce(gentity_t * ent)
 	int             p, team;	// numDeployable=0, finished=0; // TTimo unused
 	char           *classname;
 	gclient_t      *rclient;
+
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	char            userinfo[MAX_INFO_STRING], *respawnStr;
 
 	if(ent->r.svFlags & SVF_BOT)
@@ -674,6 +682,9 @@ void reinforce(gentity_t * ent)
 			return;				// no respawns
 		}
 	}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 
 	if(!(ent->client->ps.pm_flags & PMF_LIMBO))
 	{
@@ -930,6 +941,10 @@ qboolean AddWeaponToPlayer(gclient_t * client, weapon_t weapon, int ammo, int am
 	// skill handling
 	AddExtraSpawnAmmo(client, weapon);
 
+// Omni-bot BEGIN
+	Bot_Event_AddWeapon(client->ps.clientNum, Bot_WeaponGameToBot(weapon));
+// Omni-bot END
+
 	return qtrue;
 }
 
@@ -951,6 +966,13 @@ void SetWolfSpawnWeapons(gclient_t * client)
 		return;
 	}
 
+// Omni-bot BEGIN
+	if(isBot)
+	{
+		Bot_Event_ResetWeapons(client->ps.clientNum);
+	}
+// Omni-bot END
+
 	// Reset special weapon time
 	client->ps.classWeaponTime = -999999;
 
@@ -968,6 +990,9 @@ void SetWolfSpawnWeapons(gclient_t * client)
 	client->ps.weapons[1] = 0;
 
 	// Gordon: set up pow status
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	if(isBot)
 	{
 		if(isPOW)
@@ -980,6 +1005,9 @@ void SetWolfSpawnWeapons(gclient_t * client)
 			BotSetPOW(client->ps.clientNum, qfalse);
 		}
 	}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 
 	AddWeaponToPlayer(client, WP_KNIFE, 1, 0, qtrue);
 
@@ -1711,6 +1739,10 @@ void ClientUserinfoChanged(int clientNum)
 
 	// send over a subset of the userinfo keys so other clients can
 	// print scoreboards, display models, and play custom sounds
+
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	if(ent->r.svFlags & SVF_BOT)
 	{
 		// n: netname
@@ -1742,6 +1774,9 @@ void ClientUserinfoChanged(int clientNum)
 	}
 	else
 	{
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 		s = va("n\\%s\\t\\%i\\c\\%i\\r\\%i\\m\\%s\\s\\%s\\dn\\%s\\dr\\%i\\w\\%i\\lw\\%i\\sw\\%i\\mu\\%i\\ref\\%i",
 			   client->pers.netname,
 			   client->sess.sessionTeam,
@@ -1753,7 +1788,13 @@ void ClientUserinfoChanged(int clientNum)
 			   client->disguiseRank,
 			   client->sess.playerWeapon,
 			   client->sess.latchPlayerWeapon, client->sess.latchPlayerWeapon2, client->sess.muted ? 1 : 0, client->sess.referee);
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 
 	trap_GetConfigstring(CS_PLAYERS + clientNum, oldname, sizeof(oldname));
 
@@ -1921,6 +1962,10 @@ char           *ClientConnect(int clientNum, qboolean firstTime, qboolean isBot)
 
 	if(isBot)
 	{
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
+
 		// Set up the name for the bot client before initing the bot
 		value = Info_ValueForKey(userinfo, "scriptName");
 		if(value && value[0])
@@ -1929,10 +1974,19 @@ char           *ClientConnect(int clientNum, qboolean firstTime, qboolean isBot)
 			ent->scriptName = client->pers.botScriptName;
 		}
 		ent->aiName = ent->scriptName;
+
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 		ent->s.number = clientNum;
 
 		ent->r.svFlags |= SVF_BOT;
 		ent->inuse = qtrue;
+
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
+
 		// if this bot is reconnecting, and they aren't supposed to respawn, then dont let it in
 		if(!firstTime)
 		{
@@ -1947,6 +2001,9 @@ char           *ClientConnect(int clientNum, qboolean firstTime, qboolean isBot)
 		{
 			return "BotConnectfailed";
 		}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 	}
 	else if(g_gametype.integer == GT_COOP || g_gametype.integer == GT_SINGLE_PLAYER)
 	{
@@ -1973,13 +2030,23 @@ char           *ClientConnect(int clientNum, qboolean firstTime, qboolean isBot)
 	// get and distribute relevent paramters
 	G_LogPrintf("ClientConnect: %i\n", clientNum);
 	G_UpdateCharacter(client);
+
+// Omni-bot BEGIN
+	Bot_Event_ClientConnected(clientNum, isBot);
+// Omni-bot END
+
 	ClientUserinfoChanged(clientNum);
 
 	if(g_gametype.integer == GT_SINGLE_PLAYER)
 	{
-
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 		if(!isBot)
 		{
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 			ent->scriptName = "player";
 
 // START    Mad Doctor I changes, 8/14/2002
@@ -1990,8 +2057,14 @@ char           *ClientConnect(int clientNum, qboolean firstTime, qboolean isBot)
 
 			G_Script_ScriptParse(ent);
 			G_Script_ScriptEvent(ent, "spawn", "");
-		}
 
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
+		}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 	}
 
 
@@ -2085,6 +2158,15 @@ void ClientBegin(int clientNum)
 
 	client->pers.complaintClient = -1;
 	client->pers.complaintEndTime = -1;
+
+// Omni-bot BEGIN
+	client->sess.botSuicide = qfalse;	// make sure this is not set
+
+	if(ent->r.svFlags & SVF_BOT)
+		client->sess.botPush = qtrue;	// make sure this is set for bots
+	else
+		client->sess.botPush = qfalse;
+// Omni-bot END
 
 	// locate ent at a spawn point
 	ClientSpawn(ent, qfalse);
@@ -2428,11 +2510,18 @@ void ClientSpawn(gentity_t * ent, qboolean revived)
 	ent->client = &level.clients[index];
 	ent->takedamage = qtrue;
 	ent->inuse = qtrue;
+
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	if(ent->r.svFlags & SVF_BOT)
 	{
 		ent->classname = "bot";
 	}
 	else
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 	{
 		ent->classname = "player";
 	}
@@ -2598,6 +2687,9 @@ void ClientSpawn(gentity_t * ent, qboolean revived)
 		SetClientViewAngle(ent, newangle);
 	}
 
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	if(ent->r.svFlags & SVF_BOT)
 	{
 		// xkan, 10/11/2002 - the ideal view angle is defaulted to 0,0,0, but the
@@ -2607,6 +2699,9 @@ void ClientSpawn(gentity_t * ent, qboolean revived)
 		// TAT 1/14/2003 - now that we have our position in the world, init our autonomy positions
 		BotInitMovementAutonomyPos(ent);
 	}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 
 	if(ent->client->sess.sessionTeam != TEAM_SPECTATOR)
 	{
@@ -2681,13 +2776,16 @@ void ClientSpawn(gentity_t * ent, qboolean revived)
 		// RF, call entity scripting event
 		G_Script_ScriptEvent(ent, "playerstart", "");
 	}
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	else if(revived && ent->r.svFlags & SVF_BOT)
 	{
 		Bot_ScriptEvent(ent->s.number, "revived", "");
 	}
-
-
-
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 }
 
 
@@ -2716,6 +2814,10 @@ void ClientDisconnect(int clientNum)
 	{
 		return;
 	}
+
+// Omni-bot BEGIN
+	Bot_Event_ClientDisConnected(clientNum);
+// Omni-bot END
 
 #ifdef USEXPSTORAGE
 	G_AddXPBackup(ent);
@@ -2853,10 +2955,15 @@ void ClientDisconnect(int clientNum)
 
 	CalculateRanks();
 
+// Omni-bot BEGIN
+	/*
+	not needed with omni bot
 	if(ent->r.svFlags & SVF_BOT)
 	{
 		BotAIShutdownClient(clientNum);
 	}
+	*/
+// Omni-bot END
 
 	// OSP
 	G_verifyMatchState(i);

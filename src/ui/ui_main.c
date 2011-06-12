@@ -9680,6 +9680,17 @@ void _UI_SetActiveMenu(uiMenuCommand_t menu)
 				Menus_OpenByName("ingame_messagemode");
 				return;
 
+			// Omni-bot BEGIN
+				// cs: omnibot waypoint menu
+			case UIMENU_INGAME_OMNIBOTMENU:
+				uiInfo.uiDC.cursorx = 639;
+				uiInfo.uiDC.cursory = 479;
+				trap_Key_SetCatcher(KEYCATCH_UI);
+				Menus_CloseAll();
+				Menus_OpenByName("omnibot");
+				return;
+			// Omni-bot END
+
 			default:
 				return;			// TTimo: a lot of not handled
 		}

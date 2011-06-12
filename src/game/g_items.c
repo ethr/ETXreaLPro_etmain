@@ -40,6 +40,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 
 
 #define RESPAWN_SP          -1
@@ -616,6 +620,10 @@ void G_DropWeapon(gentity_t * ent, weapon_t weapon)
 
 //  ent2->item->quantity = client->ps.ammoclip[BG_FindClipForWeapon(weapon)]; // Gordon: um, modifying an item is not a good idea
 	client->ps.ammoclip[BG_FindClipForWeapon(weapon)] = 0;
+
+// Omni-bot BEGIN
+	Bot_Event_RemoveWeapon(client->ps.clientNum, Bot_WeaponGameToBot(weapon));
+// Omni-bot END
 }
 
 // TAT 1/6/2003 - Bot picks up a new weapon
@@ -689,6 +697,12 @@ int Pickup_Weapon(gentity_t * ent, gentity_t * other)
 				ent->parent->client->PCSpecialPickedUpCount++;
 				G_AddSkillPoints(ent->parent, SK_SIGNALS, 1.f);
 				G_DebugAddSkillPoints(ent->parent, SK_SIGNALS, 1.f, "ammo pack picked up");
+
+				// Omni-bot BEGIN
+				//omni-bot event
+				if(ent->parent)
+					Bot_Event_RecievedAmmo(other - g_entities, ent->parent);
+				// Omni-bot END
 
 				// extracted code originally here into AddMagicAmmo -xkan, 9/18/2002
 				// add 1 clip of magic ammo for any two-handed weapon
@@ -809,10 +823,16 @@ int Pickup_Weapon(gentity_t * ent, gentity_t * other)
 	}
 
 	// TAT 1/6/2003 - If we are a bot, call the pickup function
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
 	if(other->r.svFlags & SVF_BOT)
 	{
 		BotPickupWeapon(other->s.number, ent->item->giTag, alreadyHave);
 	}
+#endif
+
+	Bot_Event_AddWeapon(other->client->ps.clientNum, Bot_WeaponGameToBot(ent->item->giTag));
+// Omni-bot END
 
 	return -1;
 }
@@ -854,6 +874,12 @@ int Pickup_Health(gentity_t * ent, gentity_t * other)
 		other->health = max;
 	}
 	other->client->ps.stats[STAT_HEALTH] = other->health;
+
+// Omni-bot BEGIN
+	//omni-bot event
+	if(ent->parent)
+		Bot_Event_Healed(other - g_entities, ent->parent);
+// Omni-bot END
 
 	return -1;
 }
@@ -932,7 +958,8 @@ void Touch_Item_Auto(gentity_t * ent, gentity_t * other, trace_t * trace)
 	Touch_Item(ent, other, trace);
 
 	if(other->client->pers.autoActivate == PICKUP_FORCE)
-	{							// autoactivate probably forced by the "Cmd_Activate_f()" function
+	{							
+		// autoactivate probably forced by the "Cmd_Activate_f()" function
 		other->client->pers.autoActivate = PICKUP_ACTIVATE;	// so reset it.
 	}
 }

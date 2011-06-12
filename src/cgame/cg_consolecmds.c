@@ -1151,6 +1151,175 @@ static void CG_CPM_f(void)
 	CG_AddPMItem(PM_MESSAGE, CG_Argv(1), cgs.media.voiceChatShader);
 }
 
+
+// Omni-bot BEGIN
+
+// cs: omnibot waypoint menu popup. waypoint tool only, not for mods
+static void CG_OmnibotMenu_f(void)
+{
+
+	//if( cgs.eventHandling != CGAME_EVENT_NONE ) {
+	//  return;
+	//}
+
+	CG_EventHandling(CGAME_EVENT_NONE, qfalse);
+
+	// clear the generic text
+	trap_Cvar_Set("cg_genericText", "");
+
+	// open the menu
+	trap_UI_Popup(UIMENU_INGAME_OMNIBOTMENU);
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetGoalName_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty tagname\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+
+// cs: waypoint tool only, not for mods.. version that doesnt goal_finish
+static void CG_SetGoalNameNF_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty tagname\"%s\"\n", genericText));
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetWaypointName_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot waypoint_setname\"%s\"\n", genericText));
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetGroupName_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty group\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetMinCampTime_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty mincamptime\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetMaxCampTime_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty maxcamptime\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetVehicleName_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty vehicle\"%s\"\n", genericText));
+	//trap_SendConsoleCommand( "bot goal_finish" );
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetTargetGoal_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty targetgoal\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetGoalStance_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty stance\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+
+// cs: waypoint tool only, not for mods
+static void CG_SetPrimeGrenade_f(void)
+{
+	char            genericText[256];
+
+	// get values
+	trap_Cvar_VariableStringBuffer("cg_genericText", genericText, 256);
+
+	// reset values
+	trap_Cvar_Set("cg_genericText", "");
+
+	trap_SendConsoleCommand(va("bot goal_setproperty prime\"%s\"\n", genericText));
+	trap_SendConsoleCommand("bot goal_finish");
+}
+// Omni-bot END
+
 typedef struct
 {
 	char           *cmd;
@@ -1252,6 +1421,21 @@ static consoleCommand_t commands[] = {
 	{"undoSpeaker", CG_UndoSpeaker_f},
 	{"cpm", CG_CPM_f},
 	{"forcetapout", CG_ForceTapOut_f},
+
+// Omni-bot BEGIN
+	//cs: waypoint tools only. not for mods
+	{"omnibotMenu", CG_OmnibotMenu_f},
+	{"setGoalName", CG_SetGoalName_f},
+	{"setGoalNameNF", CG_SetGoalNameNF_f},
+	{"setWaypointName", CG_SetWaypointName_f},
+	{"setGroupName", CG_SetGroupName_f},
+	{"setPrimeGrenade", CG_SetPrimeGrenade_f},
+	{"setGoalStance", CG_SetGoalStance_f},
+	{"setTargetGoalName", CG_SetTargetGoal_f},
+	{"setVehicleName", CG_SetVehicleName_f},
+	{"setMinCampTime", CG_SetMinCampTime_f},
+	{"setMaxCampTime", CG_SetMaxCampTime_f},
+// Omni-bot END
 };
 
 

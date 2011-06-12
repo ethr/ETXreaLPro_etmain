@@ -286,60 +286,6 @@ typedef struct aas_export_s
 	// be_aas_routetable.c
 	//--------------------------------------------
 	void            (*AAS_RT_ShowRoute) (vec3_t srcpos, int srcnum, int destnum);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	     
 		 
 		 

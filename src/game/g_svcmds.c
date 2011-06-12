@@ -33,6 +33,9 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
 
 /*
 ==============================================================================
@@ -691,6 +694,11 @@ void Svcmd_EntityList_f(void)
 			case ET_ALARMBOX:
 				G_Printf("ET_ALARMBOX          ");
 				break;
+			// Omni-bot BEGIN
+			case ET_OID_TRIGGER:
+				G_Printf("ET_OID_TRIGGER          ");
+				break;
+			// Omni-bot END
 			default:
 				G_Printf("%3i                 ", check->s.eType);
 				break;
@@ -703,6 +711,43 @@ void Svcmd_EntityList_f(void)
 		G_Printf("\n");
 	}
 }
+
+// Omni-bot BEGIN
+/*
+===================
+Svcmd_OIDList_f
+===================
+*/
+// omnibot: waypoint tool only, not for mods
+void Svcmd_OIDList_f(void)
+{
+	int             e;
+	gentity_t      *check;
+
+	check = g_entities + 1;
+	for(e = 1; e < level.num_entities; e++, check++)
+	{
+		if(!check->inuse || check->s.eType != ET_OID_TRIGGER)
+		{
+			continue;
+		}
+		G_Printf("%3i:", e);
+		G_Printf("ET_OID_TRIGGER          ");
+
+		if(check->classname)
+		{
+			G_Printf("%s      ", check->classname);
+		}
+
+		if(check->track)
+		{
+			G_Printf("%s      ", check->track);
+		}
+
+		G_Printf("\n");
+	}
+}
+// Omni-bot END
 
 // fretn, note: if a player is called '3' and there are only 2 players
 // on the server (clientnum 0 and 1)
@@ -1197,6 +1242,9 @@ static void Svcmd_Kick_f(void)
 				}
 			}
 		}
+		// Omni-bot BEGIN
+		#ifndef NO_BOT_SUPPORT
+		// Omni-bot END
 		else if(!Q_stricmp(name, "allbots"))
 		{
 			for(i = 0, cl = level.clients; i < level.numConnectedClients; i++, cl++)
@@ -1209,6 +1257,9 @@ static void Svcmd_Kick_f(void)
 				trap_DropClient(cl->ps.clientNum, "player kicked", 0);
 			}
 		}
+		// Omni-bot BEGIN
+		#endif
+		// Omni-bot END
 		return;
 	}
 	else
@@ -1413,6 +1464,15 @@ qboolean ConsoleCommand(void)
 		return qtrue;
 	}
 
+// Omni-bot BEGIN
+	// omnibot: waypoint tool only, not for mods
+	if(Q_stricmp(cmd, "oidlist") == 0)
+	{
+		Svcmd_OIDList_f();
+		return qtrue;
+	}
+// Omni-bot END
+
 	if(Q_stricmp(cmd, "forceteam") == 0)
 	{
 		Svcmd_ForceTeam_f();
@@ -1524,12 +1584,15 @@ qboolean ConsoleCommand(void)
 		return qtrue;
 	}
 
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
 	if(Q_stricmp(cmd, "spawnbot") == 0)
 	{
 		Svcmd_SpawnBot();
 		return qtrue;
 	}
-
+#endif
+// Omni-bot END
 
 // START - Mad Doc - TDF
 	if(Q_stricmp(cmd, "revive") == 0)
@@ -1539,6 +1602,14 @@ qboolean ConsoleCommand(void)
 		return qtrue;
 	}
 // END - Mad Doc - TDF
+
+// Omni-bot BEGIN
+	if(Q_stricmp(cmd, "bot") == 0)
+	{
+		Bot_Interface_ConsoleCommand();
+		return qtrue;
+	}
+// Omni-bot END
 
 	// fretn - moved from engine
 	if(!Q_stricmp(cmd, "kick"))

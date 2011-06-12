@@ -35,6 +35,11 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+void            Bot_Queue_EntityCreated(gentity_t * pEnt);
+void            Bot_Event_EntityDeleted(gentity_t * pEnt);
+// Omni-bot END
+
 typedef struct
 {
 	char            oldShader[MAX_QPATH];
@@ -593,6 +598,11 @@ void G_InitGentity(gentity_t * e)
 	e->spawnCount++;
 	// mark the time
 	e->spawnTime = level.time;
+
+	// Omni-bot BEGIN
+	// Notify omni-bot
+	Bot_Queue_EntityCreated(e);
+	// Omni-bot END
 }
 
 /*
@@ -697,6 +707,10 @@ Marks the entity as free
 void G_FreeEntity(gentity_t * ed)
 {
 	int             spawnCount;
+
+	// Omni-bot BEGIN
+	Bot_Event_EntityDeleted(ed);
+	// Omni-bot END
 
 	if(ed->free)
 	{
