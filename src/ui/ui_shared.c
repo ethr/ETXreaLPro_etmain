@@ -4175,6 +4175,11 @@ void Menus_Activate(menuDef_t * menu)
 
 	menu->window.flags |= (WINDOW_HASFOCUS | WINDOW_VISIBLE);
 
+// Omni-bot BEGIN
+	// reset this so a newly opened menu can timeout ...
+	menu->timedOut = qfalse;
+// Omni-bot END
+
 	if(menu->onOpen)
 	{
 		itemDef_t       item;
@@ -6782,13 +6787,16 @@ void Menu_Paint(menuDef_t * menu, qboolean forcePaint)
 	{
 		menu->openTime = DC->realTime;
 	}
-	else if(menu->window.flags & WINDOW_VISIBLE &&
+	else if(!menu->timedOut && menu->window.flags & WINDOW_VISIBLE &&
 			menu->timeout > 0 && menu->onTimeout != NULL && menu->openTime + menu->timeout <= DC->realTime)
 	{
 		itemDef_t       it;
 
 		it.parent = menu;
 		Item_RunScript(&it, NULL, menu->onTimeout);
+// Omni-bot BEGIN
+		menu->timedOut = qtrue;
+// Omni-bot END
 	}
 
 	if(debugMode)

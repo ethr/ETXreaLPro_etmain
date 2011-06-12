@@ -2051,6 +2051,11 @@ void mg42_use(gentity_t * ent, gentity_t * other, gentity_t * activator)
 	trap_LinkEntity(ent);
 }
 
+// Omni-bot BEGIN
+void            AddDeferredGoal(gentity_t * ent);
+void            UpdateGoalEntity(gentity_t * oldent, gentity_t * newent);
+// Omni-bot END
+
 void mg42_spawn(gentity_t * ent)
 {
 	gentity_t      *base, *gun;
@@ -2176,6 +2181,11 @@ void mg42_spawn(gentity_t * ent)
 		}
 
 		trap_LinkEntity(gun);
+
+		// Omni-bot BEGIN
+		UpdateGoalEntity(ent, gun);
+		//AddDeferredGoal(gun);
+		// Omni-bot END
 	}
 
 	G_FreeEntity(ent);

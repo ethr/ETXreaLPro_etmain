@@ -404,6 +404,11 @@ void Team_CheckHurtCarrier(gentity_t * targ, gentity_t * attacker)
 	return rent;
 }*/
 
+// Omni-bot BEGIN
+const char     *_GetEntityName(gentity_t * _ent);
+void            Bot_Util_SendTrigger(gentity_t * _ent, gentity_t * _activator, const char *_tagname, const char *_action);
+// Omni-bot END
+
 void Team_ResetFlag(gentity_t * ent)
 {
 	if(ent->flags & FL_DROPPED_ITEM)
@@ -420,6 +425,10 @@ void Team_ResetFlag(gentity_t * ent)
 		{
 			RespawnItem(ent);
 		}
+
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, va("Flag returned %s!", _GetEntityName(ent)), "returned");
+		// Omni-bot END
 	}
 }
 
@@ -583,6 +592,14 @@ int Team_TouchOurFlag(gentity_t * ent, gentity_t * other, int team)
 				G_Script_ScriptEvent(level.gameManager, "trigger", "axis_object_returned");
 			}
 			G_Script_ScriptEvent(&g_entities[ent->s.otherEntityNum], "trigger", "returned");
+
+			// Omni-bot BEGIN
+			{
+				const char     *pName = ent->message ? ent->message : _GetEntityName(ent);
+
+				Bot_Util_SendTrigger(ent, NULL, va("Axis have returned %s!", pName ? pName : ""), "returned");
+			}
+			// Omni-bot END
 		}
 		else
 		{
@@ -595,6 +612,14 @@ int Team_TouchOurFlag(gentity_t * ent, gentity_t * other, int team)
 				G_Script_ScriptEvent(level.gameManager, "trigger", "allied_object_returned");
 			}
 			G_Script_ScriptEvent(&g_entities[ent->s.otherEntityNum], "trigger", "returned");
+
+			// Omni-bot BEGIN
+			{
+				const char     *pName = ent->message ? ent->message : _GetEntityName(ent);
+
+				Bot_Util_SendTrigger(ent, NULL, va("Allies have returned %s!", pName ? pName : ""), "returned");
+			}
+			// Omni-bot END
 		}
 		// dhm
 // jpw 800 672 2420
@@ -648,6 +673,10 @@ int Team_TouchEnemyFlag(gentity_t * ent, gentity_t * other, int team)
 		}
 		G_Script_ScriptEvent(ent, "trigger", "stolen");
 		Bot_TeamScriptEvent(TEAM_ALLIES, "objective", "stolen");
+
+		// Omni-bot BEGIN		
+		Bot_Util_SendTrigger(ent, NULL, va("Axis have stolen %s!", ent->message), "stolen");
+		// Omni-bot END
 	}
 	else
 	{
@@ -667,6 +696,10 @@ int Team_TouchEnemyFlag(gentity_t * ent, gentity_t * other, int team)
 		}
 		G_Script_ScriptEvent(ent, "trigger", "stolen");
 		Bot_TeamScriptEvent(TEAM_AXIS, "objective", "stolen");
+		
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, va("Allies have stolen %s!", ent->message), "stolen");
+		// Omni-bot END
 	}
 	// dhm
 // jpw
@@ -1613,6 +1646,9 @@ void checkpoint_spawntouch(gentity_t * self, gentity_t * other, trace_t * trace)
 	gentity_t      *ent = NULL;
 	qboolean        playsound = qtrue;
 	qboolean        firsttime = qfalse;
+// Omni-bot BEGIN
+	char           *flagAction = "touch";
+// Omni-bot END
 
 	if(self->count == other->client->sess.sessionTeam)
 	{
@@ -1646,6 +1682,9 @@ void checkpoint_spawntouch(gentity_t * self, gentity_t * other, trace_t * trace)
 		if(self->s.frame == WCP_ANIM_NOFLAG && !(self->spawnflags & ALLIED_ONLY))
 		{
 			self->s.frame = WCP_ANIM_RAISE_AXIS;
+			// Omni-bot BEGIN
+			flagAction = "capture";
+			// Omni-bot END
 		}
 		else if(self->s.frame == WCP_ANIM_NOFLAG)
 		{
@@ -1655,10 +1694,16 @@ void checkpoint_spawntouch(gentity_t * self, gentity_t * other, trace_t * trace)
 		else if(self->s.frame == WCP_ANIM_AMERICAN_RAISED && !(self->spawnflags & ALLIED_ONLY))
 		{
 			self->s.frame = WCP_ANIM_AMERICAN_TO_AXIS;
+			// Omni-bot BEGIN
+			flagAction = "reclaims";
+			// Omni-bot END
 		}
 		else if(self->s.frame == WCP_ANIM_AMERICAN_RAISED)
 		{
 			self->s.frame = WCP_ANIM_AMERICAN_FALLING;
+			// Omni-bot BEGIN
+			flagAction = "neutralized";
+			// Omni-bot END
 		}
 		else
 		{
@@ -1670,6 +1715,9 @@ void checkpoint_spawntouch(gentity_t * self, gentity_t * other, trace_t * trace)
 		if(self->s.frame == WCP_ANIM_NOFLAG && !(self->spawnflags & AXIS_ONLY))
 		{
 			self->s.frame = WCP_ANIM_RAISE_AMERICAN;
+			// Omni-bot BEGIN
+			flagAction = "capture";
+			// Omni-bot END
 		}
 		else if(self->s.frame == WCP_ANIM_NOFLAG)
 		{
@@ -1679,10 +1727,16 @@ void checkpoint_spawntouch(gentity_t * self, gentity_t * other, trace_t * trace)
 		else if(self->s.frame == WCP_ANIM_AXIS_RAISED && !(self->spawnflags & AXIS_ONLY))
 		{
 			self->s.frame = WCP_ANIM_AXIS_TO_AMERICAN;
+			// Omni-bot BEGIN
+			flagAction = "reclaims";
+			// Omni-bot END
 		}
 		else if(self->s.frame == WCP_ANIM_AXIS_RAISED)
 		{
 			self->s.frame = WCP_ANIM_AXIS_FALLING;
+			// Omni-bot BEGIN
+			flagAction = "neutralized";
+			// Omni-bot END
 		}
 		else
 		{
@@ -1711,10 +1765,18 @@ void checkpoint_spawntouch(gentity_t * self, gentity_t * other, trace_t * trace)
 	if(self->count == TEAM_AXIS)
 	{
 		G_Script_ScriptEvent(self, "trigger", "axis_capture");
+
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(self, NULL, va("axis_%s_%s", flagAction, _GetEntityName(self)), flagAction);
+		// Omni-bot END
 	}
 	else
 	{
 		G_Script_ScriptEvent(self, "trigger", "allied_capture");
+
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(self, NULL, va("allies_%s_%s", flagAction, _GetEntityName(self)), flagAction);
+		// Omni-bot END
 	}
 
 	// Don't allow touch again until animation is finished

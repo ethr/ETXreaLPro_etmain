@@ -36,6 +36,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 vec3_t          forward, right, up;
 vec3_t          muzzleEffect;
 vec3_t          muzzleTrace;
@@ -303,6 +307,11 @@ void Weapon_Medic(gentity_t * ent)
 
 	ent2->parent = ent;			// JPW NERVE so we can score properly later
 	//ent2->count = 20;
+
+// Omni-bot BEGIN
+	// Send a fire event.
+	Bot_Event_FireWeapon(ent - g_entities, Bot_WeaponGameToBot(ent->s.weapon), ent2);
+// Omni-bot BEGIN
 }
 
 /*
@@ -486,6 +495,11 @@ void Weapon_MagicAmmo(gentity_t * ent)
 		ent2->count = 1;
 		ent2->s.density = 1;
 	}
+
+// Omni-bot BEGIN
+	// Send a fire event.
+	Bot_Event_FireWeapon(ent - g_entities, Bot_WeaponGameToBot(ent->s.weapon), ent2);
+// Omni-bot END
 }
 
 // jpw
@@ -533,6 +547,10 @@ qboolean ReviveEntity(gentity_t * ent, gentity_t * traceEnt)
 	memcpy(weapons, traceEnt->client->ps.weapons, sizeof(int) * (MAX_WEAPONS / (sizeof(int) * 8)));
 
 	ClientSpawn(traceEnt, qtrue);
+
+	// Omni-bot BEGIN
+	Bot_Event_Revived(traceEnt - g_entities, ent);
+	// Omni-bot END
 
 	traceEnt->client->ps.stats[STAT_PLAYER_CLASS] = traceEnt->client->sess.playerType;
 	memcpy(traceEnt->client->ps.ammo, ammo, sizeof(int) * MAX_WEAPONS);
@@ -2373,7 +2391,9 @@ void Weapon_Engineer(gentity_t * ent)
 						   (((hit->spawnflags & AXIS_OBJECTIVE) && (ent->client->sess.sessionTeam == TEAM_ALLIES)) ||
 							((hit->spawnflags & ALLIED_OBJECTIVE) && (ent->client->sess.sessionTeam == TEAM_AXIS))))
 						{
-
+							// Omni-bot BEGIN
+							const char     *Goalname = _GetEntityName(hit);
+							// Omni-bot END
 							gentity_t      *pm = G_PopupMessage(PM_DYNAMITE);
 
 							pm->s.effect2Time = 0;
@@ -2381,6 +2401,12 @@ void Weapon_Engineer(gentity_t * ent)
 							pm->s.teamNum = ent->client->sess.sessionTeam;
 
 							G_Script_ScriptEvent(hit, "dynamited", "");
+
+							// Omni-bot BEGIN
+							// notify omni-bot framework of planted dynamite
+							hit->numPlanted += 1;
+							Bot_AddDynamiteGoal(traceEnt, traceEnt->s.teamNum, va("%s_%i", Goalname, hit->numPlanted));
+							// Omni-bot END
 
 							if(!(hit->spawnflags & OBJECTIVE_DESTROYED))
 							{
@@ -2453,6 +2479,9 @@ void Weapon_Engineer(gentity_t * ent)
 
 						if(hit->parent)
 						{
+							// Omni-bot BEGIN
+							const char     *Goalname = _GetEntityName(hit->parent);
+							// Omni-bot END
 							gentity_t      *pm = G_PopupMessage(PM_DYNAMITE);
 
 							pm->s.effect2Time = 0;	// 0 = planted
@@ -2460,6 +2489,12 @@ void Weapon_Engineer(gentity_t * ent)
 							pm->s.teamNum = ent->client->sess.sessionTeam;
 
 							G_Script_ScriptEvent(hit, "dynamited", "");
+
+							// Omni-bot BEGIN
+							// notify omni-bot framework of planted dynamite
+							hit->numPlanted += 1;
+							Bot_AddDynamiteGoal(traceEnt, traceEnt->s.teamNum, va("%s_%i", Goalname, hit->numPlanted));
+							// Omni-bot END
 
 							if((!(hit->parent->spawnflags & OBJECTIVE_DESTROYED)) &&
 							   hit->s.teamNum && (hit->s.teamNum == ent->client->sess.sessionTeam))
@@ -3396,6 +3431,10 @@ void Weapon_Artillery(gentity_t * ent)
 #endif
 		ent->client->sess.aWeaponStats[WS_ARTILLERY].atts++;
 
+// Omni-bot BEGIN
+	// Send a fire event.
+	Bot_Event_FireWeapon(ent - g_entities, Bot_WeaponGameToBot(WP_ARTY), 0);
+// Omni-bot END
 }
 
 
@@ -4038,6 +4077,11 @@ gentity_t      *weapon_gpg40_fire(gentity_t * ent, int grenType)
 	//bani - to prevent nade-through-teamdoor sploit
 	vec3_t          orig_viewpos;
 
+// Omni-bot BEGIN
+	// clear persistent grenade flag
+	ent->client->pmext.silencedSideArm &= ~2;
+// Omni-bot END
+
 	AngleVectors(ent->client->ps.viewangles, forward, NULL, NULL);
 
 	VectorCopy(muzzleEffect, tosspos);
@@ -4301,16 +4345,15 @@ ROCKET
 
 ======================================================================
 */
-
-void Weapon_Panzerfaust_Fire(gentity_t * ent)
+// Omni-bot BEGIN
+gentity_t      *Weapon_Panzerfaust_Fire(gentity_t * ent)
 {
-	gentity_t      *m;
-
-	m = fire_rocket(ent, muzzleEffect, forward);
+	gentity_t      *m = fire_rocket(ent, muzzleEffect, forward);
 
 //  VectorAdd( m->s.pos.trDelta, ent->client->ps.velocity, m->s.pos.trDelta );  // "real" physics
+	return m;
 }
-
+// Omni-bot END
 
 /*
 ======================================================================
@@ -4367,7 +4410,9 @@ void G_BurnMeGood(gentity_t * self, gentity_t * body)
 static vec3_t   flameChunkMins = { -4, -4, -4 };
 static vec3_t   flameChunkMaxs = { 4, 4, 4 };
 
-void Weapon_FlamethrowerFire(gentity_t * ent)
+// Omni-bot BEGIN
+gentity_t      *Weapon_FlamethrowerFire(gentity_t * ent)
+// Omni-bot END
 {
 	gentity_t      *traceEnt;
 	vec3_t          start;
@@ -4404,6 +4449,9 @@ void Weapon_FlamethrowerFire(gentity_t * ent)
 	}
 
 	traceEnt = fire_flamechunk(ent, start, forward);
+// Omni-bot BEGIN
+	return traceEnt;
+// Omni-bot END
 }
 
 //======================================================================
@@ -4654,6 +4702,10 @@ void FireWeapon(gentity_t * ent)
 {
 	float           aimSpreadScale;
 	int             shots = 1;
+// Omni-bot BEGIN
+	gentity_t      *pFiredShot = 0;	// Omni-bot To tell bots about projectiles
+	qboolean        callEvent = qtrue;
+// Omni-bot END
 
 	// ydnar: dead guys don't fire guns
 	if(ent->client->ps.pm_type == PM_DEAD)
@@ -4733,6 +4785,9 @@ void FireWeapon(gentity_t * ent)
 			break;
 			// NERVE - SMF
 		case WP_MEDKIT:
+			// Omni-bot BEGIN
+			callEvent = qfalse;
+			// Omni-bot END
 			Weapon_Medic(ent);
 			break;
 		case WP_PLIERS:
@@ -4753,7 +4808,9 @@ void FireWeapon(gentity_t * ent)
 			{
 				ent->client->ps.classWeaponTime = level.time;
 			}
-			weapon_grenadelauncher_fire(ent, WP_SMOKE_MARKER);
+			// Omni-bot BEGIN
+			pFiredShot = weapon_grenadelauncher_fire(ent, WP_SMOKE_MARKER);
+			// Omni-bot END
 			break;
 			// -NERVE - SMF
 		case WP_MEDIC_SYRINGE:
@@ -4764,6 +4821,9 @@ void FireWeapon(gentity_t * ent)
 			Weapon_AdrenalineSyringe(ent);
 			break;
 		case WP_AMMO:
+			// Omni-bot BEGIN
+			callEvent = qfalse;
+			// Omni-bot END
 			Weapon_MagicAmmo(ent);
 			break;
 		case WP_LUGER:
@@ -4869,7 +4929,9 @@ void FireWeapon(gentity_t * ent)
 				ent->client->ps.classWeaponTime = level.time;
 			}
 
-			Weapon_Panzerfaust_Fire(ent);
+			// Omni-bot BEGIN
+			pFiredShot = Weapon_Panzerfaust_Fire(ent);
+			// Omni-bot END
 			if(ent->client)
 			{
 				vec3_t          forward;
@@ -4886,7 +4948,9 @@ void FireWeapon(gentity_t * ent)
 			}
 
 			ent->client->ps.classWeaponTime += .5f * level.engineerChargeTime[ent->client->sess.sessionTeam - 1];
-			weapon_gpg40_fire(ent, ent->s.weapon);
+			// Omni-bot BEGIN
+			pFiredShot = weapon_gpg40_fire(ent, ent->s.weapon);
+			// Omni-bot END
 			break;
 		case WP_MORTAR_SET:
 			if(level.time - ent->client->ps.classWeaponTime > level.soldierChargeTime[ent->client->sess.sessionTeam - 1])
@@ -4902,7 +4966,9 @@ void FireWeapon(gentity_t * ent)
 			{
 				ent->client->ps.classWeaponTime += .5f * level.soldierChargeTime[ent->client->sess.sessionTeam - 1];
 			}
-			weapon_mortar_fire(ent, ent->s.weapon);
+			// Omni-bot BEGIN
+			pFiredShot = weapon_mortar_fire(ent, ent->s.weapon);
+			// Omni-bot END
 			break;
 		case WP_GRENADE_LAUNCHER:
 		case WP_GRENADE_PINEAPPLE:
@@ -4962,18 +5028,28 @@ void FireWeapon(gentity_t * ent)
 					ent->client->ps.classWeaponTime = level.time;
 				}
 			}
-			weapon_grenadelauncher_fire(ent, ent->s.weapon);
+			// Omni-bot BEGIN
+			pFiredShot = weapon_grenadelauncher_fire(ent, ent->s.weapon);
+			// Omni-bot END
 			break;
 		case WP_FLAMETHROWER:
 			// RF, this is done client-side only now
 			// Gordon: um, no it isnt?
-			Weapon_FlamethrowerFire(ent);
+			// Omni-bot BEGIN
+			pFiredShot = Weapon_FlamethrowerFire(ent);
+			// Omni-bot END
 			break;
 		case WP_MAPMORTAR:
 			break;
 		default:
 			break;
 	}
+
+// Omni-bot BEGIN
+	// Send a fire event.
+	if(callEvent)
+		Bot_Event_FireWeapon(ent - g_entities, Bot_WeaponGameToBot(ent->s.weapon), pFiredShot);
+// Omni-bot END
 
 	// OSP
 #ifndef DEBUG_STATS

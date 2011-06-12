@@ -5810,6 +5810,9 @@ void CG_FireWeapon(centity_t * cent)
 	{
 		if(ent->clientNum == cg.snap->ps.clientNum)
 		{
+			// Omni-bot BEGIN
+			cg.pmext.silencedSideArm &= ~2;	// disable flag that we have grenade equipped
+			// Omni-bot END
 			cg.weaponSelect = WP_KAR98;
 		}
 	}
@@ -5817,6 +5820,9 @@ void CG_FireWeapon(centity_t * cent)
 	{
 		if(ent->clientNum == cg.snap->ps.clientNum)
 		{
+			// Omni-bot BEGIN
+			cg.pmext.silencedSideArm &= ~2;	// disable flag that we have grenade equipped
+			// Omni-bot END
 			cg.weaponSelect = WP_CARBINE;
 		}
 	}

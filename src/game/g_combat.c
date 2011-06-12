@@ -47,6 +47,9 @@ If you have questions concerning this license or the applicable additional terms
 #include "../botai/ai_team.h"
 #include "../botai/ai_dmq3.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
 
 extern void     BotRecordKill(int client, int enemy);
 extern void     BotRecordPain(int client, int enemy, int mod);
@@ -433,8 +436,11 @@ void player_die(gentity_t * self, gentity_t * inflictor, gentity_t * attacker, i
 	// RF, record this death in AAS system so that bots avoid areas which have high death rates
 	if(!OnSameTeam(self, attacker))
 	{
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
 		BotRecordTeamDeath(self->s.number);
-
+#endif
+// Omni-bot END
 		self->isProp = qfalse;	// were we teamkilled or not?
 	}
 	else
@@ -544,15 +550,29 @@ void player_die(gentity_t * self, gentity_t * inflictor, gentity_t * attacker, i
 			obit = modNames[meansOfDeath];
 		}
 
+		// Omni-bot BEGIN
+
+		// send the events
+		Bot_Event_Death(self - g_entities, &g_entities[attacker - g_entities], obit);
+		Bot_Event_KilledSomeone(attacker - g_entities, &g_entities[self - g_entities], obit);
+		
+		// Omni-bot END
+
 		G_LogPrintf("Kill: %i %i %i: %s killed %s by %s\n", killer, self->s.number, meansOfDeath, killerName,
 					self->client->pers.netname, obit);
 	}
 
 	// RF, record bot kills
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
 	if(attacker->r.svFlags & SVF_BOT)
 	{
 		BotRecordKill(attacker->s.number, self->s.number);
 	}
+#endif
+// Omni-bot END
+
+	
 
 	// broadcast the death event to everyone
 	ent = G_TempEntity(self->r.currentOrigin, EV_OBITUARY);
@@ -596,7 +616,13 @@ void player_die(gentity_t * self, gentity_t * inflictor, gentity_t * attacker, i
 			{
 				if(attacker->client->pers.localClient)
 				{
-					trap_SendServerCommand(self - g_entities, "complaint -4");
+					// Omni-bot BEGIN
+					if(attacker->r.svFlags & SVF_BOT)
+						trap_SendServerCommand(self - g_entities, "complaint -5");
+					else
+						trap_SendServerCommand(self - g_entities, "complaint -4");
+					// Omni-bot END
+
 				}
 				else
 				{
@@ -702,6 +728,14 @@ void player_die(gentity_t * self, gentity_t * inflictor, gentity_t * attacker, i
 		if(self->health > GIB_HEALTH && meansOfDeath != MOD_SUICIDE && meansOfDeath != MOD_SWITCHTEAM)
 		{
 			G_AddEvent(self, EV_MEDIC_CALL, 0);
+
+			// Omni-bot BEGIN
+			// ATM: only register the goal if the target isn't in water.
+			//if(self->waterlevel <= 1)
+			//{
+			Bot_AddFallenTeammateGoals(self, self->client->sess.sessionTeam);
+			//}
+			// Omni-bot END
 		}
 	}
 
@@ -1584,10 +1618,14 @@ void G_Damage(gentity_t * targ, gentity_t * inflictor, gentity_t * attacker, vec
 			{
 				// record "fake" pain - although the bot is not really hurt, his feeling has been hurt :-)
 				// well at least he wants to shout "watch your fire".
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
 				if(targ->s.number < level.maxclients && targ->r.svFlags & SVF_BOT)
 				{
 					BotRecordPain(targ->s.number, attacker->s.number, mod);
 				}
+#endif
+// Omni-bot END
 				return;
 			}
 		}
@@ -1913,11 +1951,16 @@ void G_Damage(gentity_t * targ, gentity_t * inflictor, gentity_t * attacker, vec
 				{				// might have revived itself in death function
 					if(targ->r.svFlags & SVF_BOT)
 					{
+						// Omni-bot BEGIN
+						#ifndef NO_BOT_SUPPORT
+						
 						// See if this is the first kill of this bot
 						if(wasAlive)
 						{
 							Bot_ScriptEvent(targ->s.number, "death", "");
 						}
+						#endif
+						// Omni-bot END
 					}
 					else if((targ->s.eType != ET_CONSTRUCTIBLE && targ->s.eType != ET_EXPLOSIVE) ||
 							(targ->s.eType == ET_CONSTRUCTIBLE && !targ->desstages))
@@ -1927,10 +1970,16 @@ void G_Damage(gentity_t * targ, gentity_t * inflictor, gentity_t * attacker, vec
 				}
 
 				// RF, record bot death
+				// Omni-bot BEGIN
+				#ifndef NO_BOT_SUPPORT
+				
 				if(targ->s.number < level.maxclients && targ->r.svFlags & SVF_BOT)
 				{
 					BotRecordDeath(targ->s.number, attacker->s.number);
 				}
+				
+				#endif
+				// Omni-bot END
 			}
 
 		}
@@ -1958,22 +2007,35 @@ void G_Damage(gentity_t * targ, gentity_t * inflictor, gentity_t * attacker, vec
 
 		// RF, entity scripting
 		G_Script_ScriptEvent(targ, "pain", va("%d %d", targ->health, targ->health + take));
+
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
 		if(targ->s.number < MAX_CLIENTS && (targ->r.svFlags & SVF_BOT))
 		{
 			Bot_ScriptEvent(targ->s.number, "pain", va("%d %d", targ->health, targ->health + take));
 		}
+#endif
+// Omni-bot END
 
-		// RF, record bot pain
-		if(targ->s.number < level.maxclients && targ->r.svFlags & SVF_BOT)
-		{
-			BotRecordPain(targ->s.number, attacker->s.number, mod);
-		}
+		
 
 		// Ridah, this needs to be done last, incase the health is altered in one of the event calls
 		if(targ->client)
 		{
 			targ->client->ps.stats[STAT_HEALTH] = targ->health;
 		}
+
+		// RF, record bot pain
+// Omni-bot BEGIN
+		if(targ->s.number < level.maxclients)// && targ->r.svFlags & SVF_BOT)
+		{
+#ifndef NO_BOT_SUPPORT
+			BotRecordPain(targ->s.number, attacker->s.number, mod);
+#endif
+			// notify omni-bot framework
+			Bot_Event_TakeDamage(targ - g_entities, attacker);
+		}
+// Omni-bot END
 	}
 }
 

@@ -342,6 +342,11 @@ typedef struct
 
 	int             timeout;	// ydnar: milliseconds until menu times out
 	int             openTime;	// ydnar: time menu opened
+
+// Omni-bot BEGIN
+	qboolean        timedOut;	// cs: some menus we only want to timeout once every time they are opened
+// Omni-bot END
+
 	const char     *onTimeout;	// ydnar: run when menu times out
 
 	const char     *onKey[255];	// NERVE - SMF - execs commands when a key is pressed

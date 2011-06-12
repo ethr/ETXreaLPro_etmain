@@ -606,6 +606,13 @@ typedef struct
 	void            (*trace) (trace_t * results, const vec3_t start, const vec3_t mins, const vec3_t maxs, const vec3_t end,
 							  int passEntityNum, int contentMask);
 	int             (*pointcontents) (const vec3_t point, int passEntityNum);
+
+// Omni-bot BEGIN
+	// CS: Waypointing tool only, not for mods
+	int             fixedphysics;
+	int             fixedphysicsfps;
+// Omni-bot END
+
 } pmove_t;
 
 // if a full pmove isn't done on the client, you can just update the angles
@@ -1122,6 +1129,12 @@ typedef enum
 	EV_ARTYMESSAGE,
 	EV_AIRSTRIKEMESSAGE,
 	EV_MEDIC_CALL,
+
+// Omni-bot BEGIN
+	EV_BOT_DEBUG_LINE,
+	EV_BOT_DEBUG_RADIUS,
+// Omni-bot END
+
 	EV_MAX_EVENTS				// just added as an 'endcap'
 } entity_event_t;
 
@@ -2319,6 +2332,12 @@ typedef enum
 
 	// ydnar: say, team say, etc
 	UIMENU_INGAME_MESSAGEMODE,
+
+// Omni-bot BEGIN
+	// cs: waypoint menu
+	UIMENU_INGAME_OMNIBOTMENU,
+// Omni-bot END
+
 } uiMenuCommand_t;
 
 void            BG_AdjustAAGunMuzzleForBarrel(vec_t * origin, vec_t * forward, vec_t * right, vec_t * up, int barrel);

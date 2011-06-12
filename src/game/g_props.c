@@ -1587,7 +1587,11 @@ void Props_Chair_Die(gentity_t * ent, gentity_t * inflictor, gentity_t * attacke
 	ent->think = Props_Chair_Animate;
 	ent->nextthink = level.time + FRAMETIME;
 
-	ent->health = ent->duration;
+// Omni-bot BEGIN
+//  ent->health = ent->duration;
+	ent->health = 0;
+// Omni-bot END
+
 	ent->delay = damage;
 	ent->takedamage = qfalse;
 //  ent->enemy = inflictor;

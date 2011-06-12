@@ -37,6 +37,10 @@ If you have questions concerning this license or the applicable additional terms
 #include "../game/g_local.h"
 #include "../../../src/shared/q_shared.h"
 
+// Omni-bot BEGIN
+#include "../game/g_etbot_interface.h"
+// Omni-bot END
+
 /*
 Contains the code to handle the various commands available with an event script.
 
@@ -1267,6 +1271,10 @@ G_ScriptAction_GotoMarker
   transitions
 ===============
 */
+// Omni-bot BEGIN
+const char     *_GetEntityName(gentity_t * _ent);
+// Omni-bot END
+
 qboolean G_ScriptAction_GotoMarker(gentity_t * ent, char *params)
 {
 	char           *pString, *token;
@@ -1420,11 +1428,24 @@ qboolean G_ScriptAction_GotoMarker(gentity_t * ent, char *params)
 
 			SetMoverState(ent, MOVER_1TO2, level.time);
 			if(trType != TR_LINEAR_STOP)
-			{					// allow for acceleration/decceleration
+			{					
+				// allow for acceleration/decceleration
 				ent->s.pos.trDuration = 1000.0 * dist / (speed / 2.0);
 				ent->s.pos.trType = trType;
 			}
 			ent->reached = NULL;
+
+			// Omni-bot BEGIN
+			// Send a trigger to omni-bot
+			{
+				const char     *pName = _GetEntityName(ent);
+
+				Bot_Util_SendTrigger(ent,
+									 NULL,
+									 va("%s_goto", pName ? pName : "<unknown>"),
+									 va("%.2f %.2f %.2f", ent->s.pos.trDelta[0], ent->s.pos.trDelta[1], ent->s.pos.trDelta[2]));
+			}
+			// Omni-bot END
 
 			if(turntotarget && !pPathCorner)
 			{
@@ -1657,7 +1678,11 @@ qboolean G_ScriptAction_Trigger(gentity_t * ent, char *params)
 			}
 			else
 			{
+				// Omni-bot BEGIN
+				#ifndef NO_BOT_SUPPORT
 				Bot_ScriptEvent(trent->s.number, "trigger", trigger);
+				#endif
+				// Omni-bot END
 			}
 		}
 		//
@@ -1684,11 +1709,16 @@ qboolean G_ScriptAction_Trigger(gentity_t * ent, char *params)
 	}
 	else if(!Q_stricmp(name, "activator"))
 	{
+		// Omni-bot BEGIN
+		#ifndef NO_BOT_SUPPORT
 		if(ent->activator && ent->activator->client && (ent->activator->r.svFlags & SVF_BOT) && ent->inuse &&
 		   ent->activator->client->ps.stats[STAT_HEALTH] > 0)
 		{
 			Bot_ScriptEvent(ent->activator - g_entities, "trigger", trigger);
 		}
+		#endif
+		// Omni-bot END
+
 		return qtrue;			// always true, as players aren't always there
 	}
 	else
@@ -1712,7 +1742,11 @@ qboolean G_ScriptAction_Trigger(gentity_t * ent, char *params)
 			}
 			else
 			{
+				// Omni-bot BEGIN
+				#ifndef NO_BOT_SUPPORT
 				Bot_ScriptEvent(trent->s.number, "trigger", trigger);
+				#endif
+				// Omni-bot END
 			}
 		}
 		//
@@ -2948,6 +2982,14 @@ qboolean G_ScriptAction_FaceAngles(gentity_t * ent, char *params)
 			ent->s.apos.trType = trType;
 		}
 
+		// Omni-bot BEGIN
+		{
+			const char     *pName = _GetEntityName(ent);
+
+			Bot_Util_SendTrigger(ent, NULL, va("%s_start", pName ? pName : "<unknown>"),
+								 va("%.2f %.2f %.2f", ent->s.apos.trDelta[0], ent->s.apos.trDelta[1], ent->s.apos.trDelta[2]));
+		}
+		// Omni-bot END
 	}
 	else if(ent->s.apos.trTime + ent->s.apos.trDuration <= level.time)
 	{
@@ -2960,6 +3002,15 @@ qboolean G_ScriptAction_FaceAngles(gentity_t * ent, char *params)
 		ent->s.apos.trDuration = 0;
 		ent->s.apos.trType = TR_STATIONARY;
 		VectorClear(ent->s.apos.trDelta);
+
+		// Omni-bot BEGIN
+		{
+			const char     *pName = _GetEntityName(ent);
+
+			Bot_Util_SendTrigger(ent, NULL, va("%s_stop", pName ? pName : "<unknown>"),
+								 va("%.2f %.2f %.2f", ent->s.apos.trDelta[0], ent->s.apos.trDelta[1], ent->s.apos.trDelta[2]));
+		}
+		// Omni-bot END
 
 		script_linkentity(ent);
 
@@ -3270,7 +3321,9 @@ G_ScriptAction_ObjectiveStatus
 */
 qboolean G_ScriptAction_ObjectiveStatus(gentity_t * ent, char *params)
 {
-	char           *pString, *token;
+// Omni-bot BEGIN
+	char           *pString, *token, *pConfigStr;
+// Omni-bot END
 	char            cs[MAX_STRING_CHARS];
 	char           *parm;
 
@@ -3308,8 +3361,29 @@ qboolean G_ScriptAction_ObjectiveStatus(gentity_t * ent, char *params)
 	}
 
 	trap_GetConfigstring(CS_MULTI_OBJECTIVE, cs, sizeof(cs));
-	Info_SetValueForKey(cs, va("%s%i", parm, num), token);
+
+// Omni-bot BEGIN
+	pConfigStr = va("%s%i", parm, num);
+	Info_SetValueForKey(cs, pConfigStr, token);
 	trap_SetConfigstring(CS_MULTI_OBJECTIVE, cs);
+
+	{
+		const char     *pTagName = _GetEntityName(ent);
+
+		switch (atoi(token))
+		{
+			case 0:
+				Bot_Util_SendTrigger(ent, NULL, pTagName, parm[0] == 'x' ? "axis_default" : "allied_default");
+				break;
+			case 1:
+				Bot_Util_SendTrigger(ent, NULL, pTagName, parm[0] == 'x' ? "axis_complete" : "allied_complete");
+				break;
+			case 2:
+				Bot_Util_SendTrigger(ent, NULL, pTagName, parm[0] == 'x' ? "axis_failed" : "allied_failed");
+				break;
+		}
+	}
+// Omni-bot END
 
 	return qtrue;
 }
@@ -3625,6 +3699,10 @@ qboolean G_ScriptAction_TeamVoiceAnnounce(gentity_t * ent, char *params)
 	tent->s.eventParm = G_SoundIndex(token);
 	tent->r.svFlags = SVF_BROADCAST;
 
+	// Omni-bot BEGIN
+	Bot_Util_SendTrigger(ent, NULL, token, "team_announce");
+	// Omni-bot END
+
 	return qtrue;
 }
 
@@ -3666,6 +3744,10 @@ qboolean G_ScriptAction_Announce_Icon(gentity_t * ent, char *params)
 
 	trap_SendServerCommand(-1, va("cpmi %i \"%s\"", iconnumber, token));
 
+	// Omni-bot BEGIN
+	Bot_Util_SendTrigger(ent, NULL, token, "announce_icon");
+	// Omni-bot END
+
 	return qtrue;
 }
 
@@ -3694,6 +3776,10 @@ qboolean G_ScriptAction_Announce(gentity_t * ent, char *params)
 
 	trap_SendServerCommand(-1, va("cpm \"%s\"", token));
 //  trap_SendServerCommand( -1, va("cp \"%s\" 2", token ));
+
+	// Omni-bot BEGIN
+	Bot_Util_SendTrigger(ent, NULL, token, "announce");
+	// Omni-bot END
 
 	return qtrue;
 }
@@ -4049,6 +4135,10 @@ qboolean G_ScriptAction_RepairMG42(gentity_t * ent, char *params)
 
 		target->takedamage = qtrue;
 		target->s.eFlags &= ~EF_SMOKING;
+
+		// Omni-bot BEGIN
+		Bot_Util_SendTrigger(ent, NULL, name, "repair_mg42");
+		// Omni-bot END
 	}
 
 	return qtrue;

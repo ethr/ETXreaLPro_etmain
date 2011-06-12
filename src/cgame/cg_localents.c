@@ -1162,6 +1162,20 @@ void CG_AddFadeRGB(localEntity_t * le)
 	trap_R_AddRefEntityToScene(re);
 }
 
+// Omni-bot BEGIN
+void CG_AddConstRGB(localEntity_t * le)
+{
+	refEntity_t    *re;
+
+	re = &le->refEntity;
+	re->shaderRGBA[0] = le->color[0] * 255;
+	re->shaderRGBA[1] = le->color[1] * 255;
+	re->shaderRGBA[2] = le->color[2] * 255;
+	re->shaderRGBA[3] = le->color[3] * 255;
+	trap_R_AddRefEntityToScene(re);
+}
+// Omni-bot END
+
 /*
 ==================
 CG_AddMoveScaleFade
@@ -1484,6 +1498,12 @@ void CG_AddLocalEntities(void)
 			case LE_FADE_RGB:	// teleporters, railtrails
 				CG_AddFadeRGB(le);
 				break;
+
+			// Omni-bot BEGIN
+			case LE_CONST_RGB:
+				CG_AddConstRGB(le);	// debug lines
+				break;
+			// Omni-bot END
 
 			case LE_FALL_SCALE_FADE:	// gib blood trails
 				CG_AddFallScaleFade(le);

@@ -40,6 +40,11 @@ displayContextDef_t cgDC;
 
 void            CG_Init(int serverMessageNum, int serverCommandSequence, int clientNum, qboolean demoPlayback);
 void            CG_Shutdown(void);
+
+// Omni-bot BEGIN
+void            CG_HandleMessage(const char *_buffer, int _messagesize, int _commandtime);
+// Omni-bot END
+
 qboolean        CG_CheckExecKey(int key);
 extern itemDef_t *g_bindItem;
 extern qboolean g_waitingForKey;
@@ -97,7 +102,17 @@ intptr_t vmMain(int command, int arg0, int arg1, int arg2, int arg3, int arg4, i
 		case CG_WANTSBINDKEYS:
 			return (g_waitingForKey && g_bindItem) ? qtrue : qfalse;
 		case CG_MESSAGERECEIVED:
+		{
+			// Omni-bot BEGIN
+			const char     *pBuffer = (const char *)arg0;
+			int             iBufferLength = arg1;
+			int             iCommandTime = arg2;
+
+			CG_HandleMessage(pBuffer, iBufferLength, iCommandTime);
+			// Omni-bot END
+
 			return -1;
+		}
 		default:
 			CG_Error("vmMain: unknown command %i", command);
 			break;
@@ -324,6 +339,11 @@ vmCvar_t        cl_wavefilename;
 vmCvar_t        cl_waveoffset;
 vmCvar_t        cg_recording_statusline;
 
+// Omni-bot BEGIN
+vmCvar_t        cg_omnibotdrawing;
+vmCvar_t        cg_generictext;	// cs: waypoint tool only. not for mods
+// Omni-bot END
+
 typedef struct
 {
 	vmCvar_t       *vmCvar;
@@ -547,6 +567,11 @@ cvarTable_t     cvarTable[] = {
 	{&cl_wavefilename, "cl_wavefilename", "", CVAR_ROM},
 	{&cl_waveoffset, "cl_waveoffset", "0", CVAR_ROM},
 	{&cg_recording_statusline, "cg_recording_statusline", "9", CVAR_ARCHIVE},
+
+// Omni-bot BEGIN
+	{&cg_omnibotdrawing, "cg_omnibotdrawing", "1", CVAR_ARCHIVE},
+	{&cg_generictext, "cg_genericText", "", CVAR_TEMP},	// cs: waypoint tool only. not for mods
+// Omni-bot END
 };
 
 int             cvarTableSize = sizeof(cvarTable) / sizeof(cvarTable[0]);
@@ -2047,6 +2072,9 @@ static void CG_RegisterGraphics(void)
 	trap_R_RegisterFont("ariblk", 27, &cgs.media.limboFont1);
 	trap_R_RegisterFont("ariblk", 16, &cgs.media.limboFont1_lo);
 	trap_R_RegisterFont("courbd", 30, &cgs.media.limboFont2);
+// Omni-bot BEGIN
+	//trap_R_RegisterFont("ariblk", 16, &cgDC.Assets.fonts[0]);
+// Omni-bot END
 
 	cgs.media.medal_back = trap_R_RegisterShaderNoMip("gfx/limbo/medal_back");
 
@@ -2907,6 +2935,10 @@ void            CG_ClearTrails(void);
 extern qboolean initparticles;
 void            CG_ClearParticles(void);
 
+// Omni-bot BEGIN
+void            CG_InitWorldText(void);
+// Omni-bot END
+
 /*
 =================
 CG_Init
@@ -2943,6 +2975,10 @@ void CG_Init(int serverMessageNum, int serverCommandSequence, int clientNum, qbo
 	}
 
 	CG_InitStatsDebug();
+
+// Omni-bot BEGIN
+	CG_InitWorldText();
+// Omni-bot END
 
 	cgs.ccZoomFactor = 1.f;
 
@@ -3171,3 +3207,9 @@ qboolean CG_CheckExecKey(int key)
 
 	return CG_FireteamCheckExecKey(key, qfalse);
 }
+
+// Omni-bot BEGIN
+void CG_HandleMessage(const char *_buffer, int _messagesize, int _commandtime)
+{
+}
+// Omni-bot END

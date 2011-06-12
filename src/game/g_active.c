@@ -29,6 +29,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 /*
 ===============
 G_DamageFeedback
@@ -249,7 +253,15 @@ void PushBot(gentity_t * ent, gentity_t * other)
 	vec3_t          dir, ang, f, r;
 	float           oldspeed;
 
-	//
+// Omni-bot BEGIN
+	// dont push when mounted in certain stationary weapons or scripted not to be pushed
+	if(other->client)
+	{
+		if(Bot_Util_AllowPush(other->client->ps.weapon) == qfalse || !other->client->sess.botPush)
+			return;
+	}
+// Omni-bot END
+
 	oldspeed = VectorLength(other->client->ps.velocity);
 	if(oldspeed < 200)
 	{
@@ -274,10 +286,16 @@ void PushBot(gentity_t * ent, gentity_t * other)
 	}
 	//
 	// also, if "ent" is a bot, tell "other" to move!
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 	if(rand() % 50 == 0 && (ent->r.svFlags & SVF_BOT) && oldspeed < 10)
 	{
 		BotVoiceChatAfterIdleTime(ent->s.number, "Move", SAY_TEAM, 1000, qfalse, 20000, qfalse);
 	}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 }
 
 /*
@@ -417,13 +435,22 @@ void ClientImpacts(gentity_t * ent, pmove_t * pm)
 		}
 		other = &g_entities[pm->touchents[i]];
 
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 		if((ent->r.svFlags & SVF_BOT) && (ent->touch))
 		{
 			ent->touch(ent, other, &trace);
 		}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 
 		// RF, bot should get pushed out the way
-		if((ent->client) /*&& !(ent->r.svFlags & SVF_BOT) */  && (other->r.svFlags & SVF_BOT))
+// Omni-bot BEGIN
+		if((ent->client) /*&& !(ent->r.svFlags & SVF_BOT) */  && (other->r.svFlags & SVF_BOT) &&
+		   !other->client->ps.powerups[PW_INVULNERABLE])
+// Omni-bot END
 		{
 /*			vec3_t dir;
 			// if we are not heading for them, ignore
@@ -437,15 +464,24 @@ void ClientImpacts(gentity_t * ent, pmove_t * pm)
 		}
 
 		// if we are standing on their head, then we should be pushed also
-		if((ent->r.svFlags & SVF_BOT) && ent->s.groundEntityNum == other->s.number && other->client)
+		if((ent->r.svFlags & SVF_BOT) && (ent->s.groundEntityNum == other->s.number && other->client) &&
+// Omni-bot BEGIN
+		   !other->client->ps.powerups[PW_INVULNERABLE]
+// Omni-bot END
+		)
 		{
 			PushBot(other, ent);
 		}
-
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 		if(ent->r.svFlags & SVF_BOT)
 		{
 			CheckBotImpacts(ent, other);
 		}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 
 		if(!other->touch)
 		{
@@ -552,10 +588,16 @@ void G_TouchTriggers(gentity_t * ent)
 			hit->touch(hit, ent, &trace);
 		}
 
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 		if((ent->r.svFlags & SVF_BOT) && (ent->touch))
 		{
 			ent->touch(ent, hit, &trace);
 		}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 	}
 }
 
@@ -668,6 +710,9 @@ void SpectatorThink(gentity_t * ent, usercmd_t * ucmd)
 		{
 			Cmd_FollowCycle_f(ent, 1);
 		}
+// Omni-bot BEGIN
+#ifndef NO_BOT_SUPPORT
+// Omni-bot END
 		// activate button swaps places with bot
 		else if(client->sess.sessionTeam != TEAM_SPECTATOR &&
 				((client->buttons & BUTTON_ACTIVATE) && !(client->oldbuttons & BUTTON_ACTIVATE)) &&
@@ -676,6 +721,9 @@ void SpectatorThink(gentity_t * ent, usercmd_t * ucmd)
 		{
 			Cmd_SwapPlacesWithBot_f(ent, ent->client->sess.spectatorClient);
 		}
+// Omni-bot BEGIN
+#endif
+// Omni-bot END
 		else if((client->sess.sessionTeam == TEAM_SPECTATOR) &&	// don't let dead team players do free fly
 				(client->sess.spectatorState == SPECTATOR_FOLLOW) &&
 				(((client->buttons & BUTTON_ACTIVATE) &&
@@ -1082,22 +1130,24 @@ If "g_synchronousClients 1" is set, this will be called exactly
 once for each server frame, which makes for smooth demo recording.
 ==============
 */
-// *INDENT-OFF*
-void ClientThink_real( gentity_t *ent ) {
-	int msec, oldEventSequence, monsterslick = 0;
-	pmove_t pm;
-	usercmd_t   *ucmd;
-	gclient_t   *client = ent->client;
+void ClientThink_real(gentity_t * ent)
+{
+	int             msec, oldEventSequence, monsterslick = 0;
+	pmove_t         pm;
+	usercmd_t      *ucmd;
+	gclient_t      *client = ent->client;
 
 
 	// don't think if the client is not yet connected (and thus not yet spawned in)
-	if ( client->pers.connected != CON_CONNECTED ) {
+	if(client->pers.connected != CON_CONNECTED)
+	{
 		return;
 	}
 
-	if ( ent->s.eFlags & EF_MOUNTEDTANK ) {
-		client->pmext.centerangles[YAW] = ent->tagParent->r.currentAngles[ YAW ];
-		client->pmext.centerangles[PITCH] = ent->tagParent->r.currentAngles[ PITCH ];
+	if(ent->s.eFlags & EF_MOUNTEDTANK)
+	{
+		client->pmext.centerangles[YAW] = ent->tagParent->r.currentAngles[YAW];
+		client->pmext.centerangles[PITCH] = ent->tagParent->r.currentAngles[PITCH];
 	}
 
 /*	if (client->cameraPortal) {
@@ -1109,76 +1159,90 @@ void ClientThink_real( gentity_t *ent ) {
 	// mark the time, so the connection sprite can be removed
 	ucmd = &ent->client->pers.cmd;
 
-	ent->client->ps.identifyClient = ucmd->identClient;     // NERVE - SMF
+	ent->client->ps.identifyClient = ucmd->identClient;	// NERVE - SMF
 
 	// sanity check the command time to prevent speedup cheating
-	if ( ucmd->serverTime > level.time + 200 ) {
+	if(ucmd->serverTime > level.time + 200)
+	{
 		ucmd->serverTime = level.time + 200;
-//		G_Printf("serverTime <<<<<\n" );
+//      G_Printf("serverTime <<<<<\n" );
 	}
-	if ( ucmd->serverTime < level.time - 1000 ) {
+	if(ucmd->serverTime < level.time - 1000)
+	{
 		ucmd->serverTime = level.time - 1000;
-//		G_Printf("serverTime >>>>>\n" );
+//      G_Printf("serverTime >>>>>\n" );
 	}
 
 	msec = ucmd->serverTime - client->ps.commandTime;
 	// following others may result in bad times, but we still want
 	// to check for follow toggles
-	if ( msec < 1 && client->sess.spectatorState != SPECTATOR_FOLLOW ) {
+	if(msec < 1 && client->sess.spectatorState != SPECTATOR_FOLLOW)
+	{
 		return;
 	}
-	if ( msec > 200 ) {
+	if(msec > 200)
+	{
 		msec = 200;
 	}
 
-	if ( pmove_fixed.integer || client->pers.pmoveFixed ) {
-		ucmd->serverTime = ( ( ucmd->serverTime + pmove_msec.integer - 1 ) / pmove_msec.integer ) * pmove_msec.integer;
+	if(pmove_fixed.integer || client->pers.pmoveFixed)
+	{
+		ucmd->serverTime = ((ucmd->serverTime + pmove_msec.integer - 1) / pmove_msec.integer) * pmove_msec.integer;
 	}
 
-	if ( client->wantsscore ) {
-		G_SendScore( ent );
+	if(client->wantsscore)
+	{
+		G_SendScore(ent);
 		client->wantsscore = qfalse;
 	}
 
 	//
 	// check for exiting intermission
 	//
-	if ( level.intermissiontime ) {
-		ClientIntermissionThink( client );
+	if(level.intermissiontime)
+	{
+		ClientIntermissionThink(client);
 		return;
 	}
 
 	// check for inactivity timer, but never drop the local client of a non-dedicated server
 	// OSP - moved here to allow for spec inactivity checks as well
-	if ( !ClientInactivityTimer( client ) ) {
+	if(!ClientInactivityTimer(client))
+	{
 		return;
 	}
 
-	if ( !( ent->r.svFlags & SVF_BOT ) && level.time - client->pers.lastCCPulseTime > 2000 ) {
-		G_SendMapEntityInfo( ent );
+	if(!(ent->r.svFlags & SVF_BOT) && level.time - client->pers.lastCCPulseTime > 2000)
+	{
+		G_SendMapEntityInfo(ent);
 		client->pers.lastCCPulseTime = level.time;
 	}
 
-	if ( !( ucmd->flags & 0x01 ) || ucmd->forwardmove || ucmd->rightmove || ucmd->upmove || ucmd->wbuttons || ucmd->doubleTap ) {
-		ent->r.svFlags &= ~( SVF_SELF_PORTAL_EXCLUSIVE | SVF_SELF_PORTAL );
+	if(!(ucmd->flags & 0x01) || ucmd->forwardmove || ucmd->rightmove || ucmd->upmove || ucmd->wbuttons || ucmd->doubleTap)
+	{
+		ent->r.svFlags &= ~(SVF_SELF_PORTAL_EXCLUSIVE | SVF_SELF_PORTAL);
 	}
 
 	// spectators don't do much
 	// DHM - Nerve :: In limbo use SpectatorThink
-	if ( client->sess.sessionTeam == TEAM_SPECTATOR || client->ps.pm_flags & PMF_LIMBO ) {
+	if(client->sess.sessionTeam == TEAM_SPECTATOR || client->ps.pm_flags & PMF_LIMBO)
+	{
 		/*if ( client->sess.spectatorState == SPECTATOR_SCOREBOARD ) {
-			return;
-		}*/
-		SpectatorThink( ent, ucmd );
+		   return;
+		   } */
+		SpectatorThink(ent, ucmd);
 		return;
 	}
 
-	if ( ( client->ps.eFlags & EF_VIEWING_CAMERA ) || level.match_pause != PAUSE_NONE
+	if((client->ps.eFlags & EF_VIEWING_CAMERA) || level.match_pause != PAUSE_NONE
 #ifdef SAVEGAME_SUPPORT
-		 || ( g_gametype.integer == GT_SINGLE_PLAYER && saveGamePending && g_reloading.integer && ( g_reloading.integer != RELOAD_FAILED ) ) ) {
+	   || (g_gametype.integer == GT_SINGLE_PLAYER && saveGamePending && g_reloading.integer &&
+		   (g_reloading.integer != RELOAD_FAILED)))
+	{
 #else
-		 ) {
-#endif // SAVEGAME_SUPPORT
+		)
+	{
+#endif							// SAVEGAME_SUPPORT
 		ucmd->buttons = 0;
 		ucmd->forwardmove = 0;
 		ucmd->rightmove = 0;
@@ -1187,22 +1251,31 @@ void ClientThink_real( gentity_t *ent ) {
 		ucmd->doubleTap = 0;
 
 		// freeze player (RELOAD_FAILED still allowed to move/look)
-		if ( level.match_pause != PAUSE_NONE ) {
+		if(level.match_pause != PAUSE_NONE)
+		{
 			client->ps.pm_type = PM_FREEZE;
-		} else if ( ( client->ps.eFlags & EF_VIEWING_CAMERA )
+		}
+		else if((client->ps.eFlags & EF_VIEWING_CAMERA)
 #ifdef SAVEGAME_SUPPORT
-					|| ( g_gametype.integer == GT_SINGLE_PLAYER && g_reloading.integer & ( RELOAD_NEXTMAP_WAITING | RELOAD_ENDGAME ) ) ) {
+				|| (g_gametype.integer == GT_SINGLE_PLAYER && g_reloading.integer & (RELOAD_NEXTMAP_WAITING | RELOAD_ENDGAME)))
+		{
 #else
 					) {
 #endif // SAVEGAME_SUPPORT
 			VectorClear( client->ps.velocity );
 			client->ps.pm_type = PM_FREEZE;
 		}
-	} else if ( client->noclip ) {
+	}
+	else if(client->noclip)
+	{
 		client->ps.pm_type = PM_NOCLIP;
-	} else if ( client->ps.stats[STAT_HEALTH] <= 0 ) {
+	}
+	else if(client->ps.stats[STAT_HEALTH] <= 0)
+	{
 		client->ps.pm_type = PM_DEAD;
-	} else {
+	}
+	else
+	{
 		client->ps.pm_type = PM_NORMAL;
 	}
 
@@ -1221,7 +1294,7 @@ void ClientThink_real( gentity_t *ent ) {
 
 	client->currentAimSpreadScale = (float)client->ps.aimSpreadScale / 255.0;
 
-	memset( &pm, 0, sizeof( pm ) );
+	memset(&pm, 0, sizeof(pm));
 
 	pm.ps = &client->ps;
 	pm.pmext = &client->pmext;
@@ -1230,15 +1303,20 @@ void ClientThink_real( gentity_t *ent ) {
 	pm.oldcmd = client->pers.oldcmd;
 	// MrE: always use capsule for AI and player
 	pm.trace = trap_TraceCapsule;
-	if ( pm.ps->pm_type == PM_DEAD ) {
+	if(pm.ps->pm_type == PM_DEAD)
+	{
 		pm.tracemask = MASK_PLAYERSOLID & ~CONTENTS_BODY;
 		// DHM-Nerve added:: EF_DEAD is checked for in Pmove functions, but wasn't being set
 		//              until after Pmove
 		pm.ps->eFlags |= EF_DEAD;
 		// dhm-Nerve end
-	} else if ( pm.ps->pm_type == PM_SPECTATOR ) {
+	}
+	else if(pm.ps->pm_type == PM_SPECTATOR)
+	{
 		pm.trace = trap_TraceCapsuleNoEnts;
-	} else {
+	}
+	else
+	{
 		pm.tracemask = MASK_PLAYERSOLID;
 	}
 	//DHM - Nerve :: We've gone back to using normal bbox traces
@@ -1250,9 +1328,21 @@ void ClientThink_real( gentity_t *ent ) {
 	pm.pmove_fixed = pmove_fixed.integer | client->pers.pmoveFixed;
 	pm.pmove_msec = pmove_msec.integer;
 
+// Omni-bot BEGIN
+	// CS: disable fixed physics for the bots in the mods. it causes havoc for navigation
+	if(!(ent->r.svFlags & SVF_BOT))
+	{
+		pm.fixedphysics = g_fixedPhysics.integer;
+		if(g_fixedPhysics.integer == 2)
+			pm.fixedphysicsfps = 333;
+		else if(g_fixedPhysics.integer == 1)
+			pm.fixedphysicsfps = 125;
+	}
+// Omni-bot END
+
 	pm.noWeapClips = qfalse;
 
-	VectorCopy( client->ps.origin, client->oldOrigin );
+	VectorCopy(client->ps.origin, client->oldOrigin);
 
 	// NERVE - SMF
 	pm.gametype = g_gametype.integer;
@@ -1268,140 +1358,165 @@ void ClientThink_real( gentity_t *ent ) {
 
 	pm.covertopsChargeTime = level.covertopsChargeTime[client->sess.sessionTeam - 1];
 
-	if ( client->ps.pm_type != PM_DEAD && level.timeCurrent - client->pers.lastBattleSenseBonusTime > 45000 ) {
+	if(client->ps.pm_type != PM_DEAD && level.timeCurrent - client->pers.lastBattleSenseBonusTime > 45000)
+	{
 		/*switch( client->combatState )
-		{
-		case COMBATSTATE_COLD:	G_AddSkillPoints( ent, SK_BATTLE_SENSE, 0.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 0.f, "combatstate cold" ); break;
-		case COMBATSTATE_WARM:	G_AddSkillPoints( ent, SK_BATTLE_SENSE, 2.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 2.f, "combatstate warm" ); break;
-		case COMBATSTATE_HOT:	G_AddSkillPoints( ent, SK_BATTLE_SENSE, 5.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 5.f, "combatstate hot" ); break;
-		case COMBATSTATE_SUPERHOT:	G_AddSkillPoints( ent, SK_BATTLE_SENSE, 8.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 8.f, "combatstate super-hot" ); break;
-		}*/
+		   {
+		   case COMBATSTATE_COLD:   G_AddSkillPoints( ent, SK_BATTLE_SENSE, 0.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 0.f, "combatstate cold" ); break;
+		   case COMBATSTATE_WARM:   G_AddSkillPoints( ent, SK_BATTLE_SENSE, 2.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 2.f, "combatstate warm" ); break;
+		   case COMBATSTATE_HOT:    G_AddSkillPoints( ent, SK_BATTLE_SENSE, 5.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 5.f, "combatstate hot" ); break;
+		   case COMBATSTATE_SUPERHOT:   G_AddSkillPoints( ent, SK_BATTLE_SENSE, 8.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 8.f, "combatstate super-hot" ); break;
+		   } */
 
-		if ( client->combatState != COMBATSTATE_COLD ) {
-			if ( client->combatState & ( 1 << COMBATSTATE_KILLEDPLAYER ) && client->combatState & ( 1 << COMBATSTATE_DAMAGERECEIVED ) ) {
-				G_AddSkillPoints( ent, SK_BATTLE_SENSE, 8.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 8.f, "combatstate super-hot" );
-			} else if ( client->combatState & ( 1 << COMBATSTATE_DAMAGEDEALT ) && client->combatState & ( 1 << COMBATSTATE_DAMAGERECEIVED ) ) {
-				G_AddSkillPoints( ent, SK_BATTLE_SENSE, 5.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 5.f, "combatstate hot" );
-			} else {
-				G_AddSkillPoints( ent, SK_BATTLE_SENSE, 2.f ); G_DebugAddSkillPoints( ent, SK_BATTLE_SENSE, 2.f, "combatstate warm" );
+		if(client->combatState != COMBATSTATE_COLD)
+		{
+			if(client->combatState & (1 << COMBATSTATE_KILLEDPLAYER) && client->combatState & (1 << COMBATSTATE_DAMAGERECEIVED))
+			{
+				G_AddSkillPoints(ent, SK_BATTLE_SENSE, 8.f);
+				G_DebugAddSkillPoints(ent, SK_BATTLE_SENSE, 8.f, "combatstate super-hot");
+			}
+			else if(client->combatState & (1 << COMBATSTATE_DAMAGEDEALT) &&
+					client->combatState & (1 << COMBATSTATE_DAMAGERECEIVED))
+			{
+				G_AddSkillPoints(ent, SK_BATTLE_SENSE, 5.f);
+				G_DebugAddSkillPoints(ent, SK_BATTLE_SENSE, 5.f, "combatstate hot");
+			}
+			else
+			{
+				G_AddSkillPoints(ent, SK_BATTLE_SENSE, 2.f);
+				G_DebugAddSkillPoints(ent, SK_BATTLE_SENSE, 2.f, "combatstate warm");
 			}
 		}
 
 		client->pers.lastBattleSenseBonusTime = level.timeCurrent;
-		client->combatState = COMBATSTATE_COLD; // cool down again
+		client->combatState = COMBATSTATE_COLD;	// cool down again
 	}
 
 	pm.leadership = qfalse;
 	/*for ( i = 0 ; i < level.numConnectedClients; i++ ) {
-		gclient_t *cl = &level.clients[level.sortedClients[i]];
-		vec3_t dist;
+	   gclient_t *cl = &level.clients[level.sortedClients[i]];
+	   vec3_t dist;
 
-		if( cl->sess.sessionTeam != client->sess.sessionTeam ) {
-			continue;
-		}
+	   if( cl->sess.sessionTeam != client->sess.sessionTeam ) {
+	   continue;
+	   }
 
-		if( cl->sess.skill[SK_SIGNALS] < 5 ) {
-			continue;
-		}
+	   if( cl->sess.skill[SK_SIGNALS] < 5 ) {
+	   continue;
+	   }
 
-		if( !trap_InPVS( g_entities[level.sortedClients[i]].r.currentOrigin, ent->r.currentOrigin ) ) {
-			continue;
-		}
+	   if( !trap_InPVS( g_entities[level.sortedClients[i]].r.currentOrigin, ent->r.currentOrigin ) ) {
+	   continue;
+	   }
 
-		VectorSubtract( g_entities[level.sortedClients[i]].r.currentOrigin, ent->r.currentOrigin, dist );
-		if( VectorLengthSquared( dist ) > SQR(512) )
-			continue;
+	   VectorSubtract( g_entities[level.sortedClients[i]].r.currentOrigin, ent->r.currentOrigin, dist );
+	   if( VectorLengthSquared( dist ) > SQR(512) )
+	   continue;
 
-		pm.leadership = qtrue;
+	   pm.leadership = qtrue;
 
-		break;
-	}*/
+	   break;        
+	   } */
 
 #ifdef SAVEGAME_SUPPORT
-	if ( g_gametype.integer == GT_SINGLE_PLAYER && g_reloading.integer ) {
+	if(g_gametype.integer == GT_SINGLE_PLAYER && g_reloading.integer)
+	{
 		pm.reloading = qtrue;
 	}
 #endif // SAVEGAME_SUPPORT
 
 	// Gordon: bit hacky, stop the slight lag from client -> server even on locahost, switching back to the weapon you were holding
-	//			and then back to what weapon you should have, became VERY noticible for the kar98/carbine + gpg40, esp now i've added the
-	//			animation locking
-	if ( level.time - client->pers.lastSpawnTime < 1000 ) {
+	//          and then back to what weapon you should have, became VERY noticible for the kar98/carbine + gpg40, esp now i've added the
+	//          animation locking
+	if(level.time - client->pers.lastSpawnTime < 1000)
+	{
 		pm.cmd.weapon = client->ps.weapon;
 	}
 
-	monsterslick = Pmove( &pm );
+	monsterslick = Pmove(&pm);
 
 	// Gordon: thx to bani for this
-	// ikkyo - fix leaning players bug
-	VectorCopy( client->ps.velocity, ent->s.pos.trDelta );
-	SnapVector( ent->s.pos.trDelta );
+	// ikkyo - fix leaning players bug                                       
+	VectorCopy(client->ps.velocity, ent->s.pos.trDelta);
+	SnapVector(ent->s.pos.trDelta);
 	// end
 
 	// server cursor hints
 	// TAT 1/10/2003 - bots don't need to check for cursor hints
-	if ( !( ent->r.svFlags & SVF_BOT ) && ent->lastHintCheckTime < level.time ) {
-		G_CheckForCursorHints( ent );
+	if(!(ent->r.svFlags & SVF_BOT) && ent->lastHintCheckTime < level.time)
+	{
+		G_CheckForCursorHints(ent);
 
 		ent->lastHintCheckTime = level.time + FRAMETIME;
 	}
 
 	// DHM - Nerve :: Set animMovetype to 1 if ducking
-	if ( ent->client->ps.pm_flags & PMF_DUCKED ) {
+	if(ent->client->ps.pm_flags & PMF_DUCKED)
+	{
 		ent->s.animMovetype = 1;
-	} else {
+	}
+	else
+	{
 		ent->s.animMovetype = 0;
 	}
 
 	// save results of pmove
-	if ( ent->client->ps.eventSequence != oldEventSequence ) {
+	if(ent->client->ps.eventSequence != oldEventSequence)
+	{
 		ent->eventTime = level.time;
 		ent->r.eventTime = level.time;
 	}
 
 	// Ridah, fixes jittery zombie movement
-	if ( g_smoothClients.integer ) {
-		BG_PlayerStateToEntityStateExtraPolate( &ent->client->ps, &ent->s, level.time, qfalse );
-	} else {
-		BG_PlayerStateToEntityState( &ent->client->ps, &ent->s, qfalse );
+	if(g_smoothClients.integer)
+	{
+		BG_PlayerStateToEntityStateExtraPolate(&ent->client->ps, &ent->s, level.time, qfalse);
+	}
+	else
+	{
+		BG_PlayerStateToEntityState(&ent->client->ps, &ent->s, qfalse);
 	}
 
-	if ( !( ent->client->ps.eFlags & EF_FIRING ) ) {
-		client->fireHeld = qfalse;      // for grapple
+	if(!(ent->client->ps.eFlags & EF_FIRING))
+	{
+		client->fireHeld = qfalse;	// for grapple
 	}
 
 //
-//	// use the precise origin for linking
-//	VectorCopy( ent->client->ps.origin, ent->r.currentOrigin );
+//  // use the precise origin for linking
+//  VectorCopy( ent->client->ps.origin, ent->r.currentOrigin );
 //
-//	// use the snapped origin for linking so it matches client predicted versions
-	VectorCopy( ent->s.pos.trBase, ent->r.currentOrigin );
+//  // use the snapped origin for linking so it matches client predicted versions
+	VectorCopy(ent->s.pos.trBase, ent->r.currentOrigin);
 
-	VectorCopy( pm.mins, ent->r.mins );
-	VectorCopy( pm.maxs, ent->r.maxs );
+	VectorCopy(pm.mins, ent->r.mins);
+	VectorCopy(pm.maxs, ent->r.maxs);
 
 	ent->waterlevel = pm.waterlevel;
 	ent->watertype = pm.watertype;
 
 	// execute client events
-	if ( level.match_pause == PAUSE_NONE ) {
-		ClientEvents( ent, oldEventSequence );
+	if(level.match_pause == PAUSE_NONE)
+	{
+		ClientEvents(ent, oldEventSequence);
 	}
 
 	// link entity now, after any personal teleporters have been used
-	trap_LinkEntity( ent );
-	if ( !ent->client->noclip ) {
-		G_TouchTriggers( ent );
+	trap_LinkEntity(ent);
+	if(!ent->client->noclip)
+	{
+		G_TouchTriggers(ent);
 	}
 
 	// NOTE: now copy the exact origin over otherwise clients can be snapped into solid
-	VectorCopy( ent->client->ps.origin, ent->r.currentOrigin );
+	VectorCopy(ent->client->ps.origin, ent->r.currentOrigin);
 
 	// touch other objects
-	ClientImpacts( ent, &pm );
+	ClientImpacts(ent, &pm);
 
 	// save results of triggers and client events
-	if ( ent->client->ps.eventSequence != oldEventSequence ) {
+	if(ent->client->ps.eventSequence != oldEventSequence)
+	{
 		ent->eventTime = level.time;
 	}
 
@@ -1409,75 +1524,99 @@ void ClientThink_real( gentity_t *ent ) {
 	client->oldbuttons = client->buttons;
 	client->buttons = ucmd->buttons;
 	client->latched_buttons = client->buttons & ~client->oldbuttons;
-//	client->latched_buttons |= client->buttons & ~client->oldbuttons;	// FIXME:? (SA) MP method (causes problems for us.  activate 'sticks')
+//  client->latched_buttons |= client->buttons & ~client->oldbuttons;   // FIXME:? (SA) MP method (causes problems for us.  activate 'sticks')
 
-	//----(SA)	added
+	//----(SA)  added
 	client->oldwbuttons = client->wbuttons;
 	client->wbuttons = ucmd->wbuttons;
 	client->latched_wbuttons = client->wbuttons & ~client->oldwbuttons;
-//	client->latched_wbuttons |= client->wbuttons & ~client->oldwbuttons;	// FIXME:? (SA) MP method
+//  client->latched_wbuttons |= client->wbuttons & ~client->oldwbuttons;    // FIXME:? (SA) MP method
 
 	// Rafael - Activate
 	// Ridah, made it a latched event (occurs on keydown only)
-	if ( client->latched_buttons & BUTTON_ACTIVATE ) {
-		Cmd_Activate_f( ent );
+	if(client->latched_buttons & BUTTON_ACTIVATE)
+	{
+		Cmd_Activate_f(ent);
 	}
 
-	if ( ent->flags & FL_NOFATIGUE ) {
+	if(ent->flags & FL_NOFATIGUE)
+	{
 		ent->client->pmext.sprintTime = SPRINTTIME;
 	}
 
-	if ( g_entities[ent->client->ps.identifyClient].team == ent->team && g_entities[ent->client->ps.identifyClient].client ) {
+	if(g_entities[ent->client->ps.identifyClient].team == ent->team && g_entities[ent->client->ps.identifyClient].client)
+	{
 		ent->client->ps.identifyClientHealth = g_entities[ent->client->ps.identifyClient].health;
-	} else {
+	}
+	else
+	{
 		ent->client->ps.identifyClient = -1;
 		ent->client->ps.identifyClientHealth = 0;
 	}
 
+// Omni-bot BEGIN
+	// Omni-bot: used for class changes, bot will /kill 2 seconds before spawn
+	Bot_Util_CheckForSuicide(ent);
+// Omni-bot END
+
 	// check for respawning
-	if ( client->ps.stats[STAT_HEALTH] <= 0 ) {
+	if(client->ps.stats[STAT_HEALTH] <= 0)
+	{
 
 		// DHM - Nerve
-		WolfFindMedic( ent );
+		WolfFindMedic(ent);
 
 		// See if we need to hop to limbo
-		if ( level.timeCurrent > client->respawnTime && !( ent->client->ps.pm_flags & PMF_LIMBO ) ) {
-			if ( ucmd->upmove > 0 ) {
-				if ( g_gametype.integer == GT_WOLF_LMS || client->ps.persistant[PERS_RESPAWNS_LEFT] >= 0 ) {
-					trap_SendServerCommand( ent - g_entities, "reqforcespawn" );
-				} else {
-					limbo( ent, ( client->ps.stats[STAT_HEALTH] > GIB_HEALTH ) );
+		if(level.timeCurrent > client->respawnTime && !(ent->client->ps.pm_flags & PMF_LIMBO))
+		{
+			if(ucmd->upmove > 0)
+			{
+				if(g_gametype.integer == GT_WOLF_LMS || client->ps.persistant[PERS_RESPAWNS_LEFT] >= 0)
+				{
+					trap_SendServerCommand(ent - g_entities, "reqforcespawn");
+				}
+				else
+				{
+					limbo(ent, (client->ps.stats[STAT_HEALTH] > GIB_HEALTH));
 				}
 			}
 
-			if ( ( g_forcerespawn.integer > 0 && level.timeCurrent - client->respawnTime > g_forcerespawn.integer * 1000 ) || client->ps.stats[STAT_HEALTH] <= GIB_HEALTH ) {
-				limbo( ent, ( client->ps.stats[STAT_HEALTH] > GIB_HEALTH ) );
+			if((g_forcerespawn.integer > 0 && level.timeCurrent - client->respawnTime > g_forcerespawn.integer * 1000) ||
+			   client->ps.stats[STAT_HEALTH] <= GIB_HEALTH)
+			{
+				limbo(ent, (client->ps.stats[STAT_HEALTH] > GIB_HEALTH));
 			}
 		}
 
 		return;
 	}
 
-	if ( level.gameManager && level.timeCurrent - client->pers.lastHQMineReportTime > 20000 ) {  // NOTE: 60 seconds? bit much innit
-		if ( level.gameManager->s.modelindex && client->sess.sessionTeam == TEAM_AXIS ) {
-			if ( G_SweepForLandmines( ent->r.currentOrigin, 256.f, TEAM_AXIS ) ) {
+	if(level.gameManager && level.timeCurrent - client->pers.lastHQMineReportTime > 20000)
+	{							// NOTE: 60 seconds? bit much innit
+		if(level.gameManager->s.modelindex && client->sess.sessionTeam == TEAM_AXIS)
+		{
+			if(G_SweepForLandmines(ent->r.currentOrigin, 256.f, TEAM_AXIS))
+			{
 				client->pers.lastHQMineReportTime = level.timeCurrent;
-				trap_SendServerCommand( ent - g_entities, "cp \"Mines have been reported in this area.\" 1" );
+				trap_SendServerCommand(ent - g_entities, "cp \"Mines have been reported in this area.\" 1");
 			}
-		} else if ( level.gameManager->s.modelindex2 && client->sess.sessionTeam == TEAM_ALLIES ) {
-			if ( G_SweepForLandmines( ent->r.currentOrigin, 256.f, TEAM_ALLIES ) ) {
+		}
+		else if(level.gameManager->s.modelindex2 && client->sess.sessionTeam == TEAM_ALLIES)
+		{
+			if(G_SweepForLandmines(ent->r.currentOrigin, 256.f, TEAM_ALLIES))
+			{
 				client->pers.lastHQMineReportTime = level.timeCurrent;
-				trap_SendServerCommand( ent - g_entities, "cp \"Mines have been reported in this area.\" 1" );
+				trap_SendServerCommand(ent - g_entities, "cp \"Mines have been reported in this area.\" 1");
 			}
 		}
 	}
 
 	// perform once-a-second actions
-	if ( level.match_pause == PAUSE_NONE ) {
-		ClientTimerActions( ent, msec );
+	if(level.match_pause == PAUSE_NONE)
+	{
+		ClientTimerActions(ent, msec);
 	}
 }
-// *INDENT-ON*
 
 /*
 ==================

@@ -28,6 +28,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+// Omni-bot BEGIN
+#include "g_etbot_interface.h"
+// Omni-bot END
+
 #define MISSILE_PRESTEP_TIME    50
 
 
@@ -318,6 +322,13 @@ void G_MissileImpact(gentity_t * ent, trace_t * trace, int impactDamage)
 //  trap_LinkEntity( ent );
 
 	G_FreeEntity(ent);
+
+// Omni-bot BEGIN
+	if(ent->s.weapon == WP_MORTAR_SET)
+	{
+		Bot_Event_MortarImpact(ent->r.ownerNum, trace->endpos);
+	}
+// Omni-bot END
 }
 
 /*
@@ -546,6 +557,10 @@ void G_ExplodeMissile(gentity_t * ent)
 					G_UseTargets(hit, ent);
 					hit->think = G_FreeEntity;
 					hit->nextthink = level.time + FRAMETIME;
+
+					// Omni-bot BEGIN
+					G_Script_ScriptEvent(hit, "destroyed", "");
+					// Omni-bot END
 				}
 			}
 		}
@@ -1857,7 +1872,7 @@ void G_LandmineThink(gentity_t * self)
 	vec3_t          range = { LANDMINE_TRIGGER_DIST, LANDMINE_TRIGGER_DIST, LANDMINE_TRIGGER_DIST };
 	vec3_t          mins, maxs;
 	qboolean        trigger = qfalse;
-	gentity_t      *ent;
+	gentity_t      *ent = NULL;
 
 	self->nextthink = level.time + FRAMETIME;
 
@@ -1880,9 +1895,16 @@ void G_LandmineThink(gentity_t * self)
 			continue;
 		}
 
-		//% if( !g_friendlyFire.integer && G_LandmineTeam( self ) == ent->client->sess.sessionTeam ) {
-		//%     continue;
-		//% }
+		// Omni-bot BEGIN
+		if(!(g_OmniBotFlags.integer & OBF_TRIGGER_MINES) && ent->r.svFlags & SVF_BOT)
+		{
+			if(G_LandmineTeam(self) == ent->client->sess.sessionTeam)
+				continue;
+
+			if(G_LandmineSpotted(self))
+				continue;
+		}
+		// Omni-bot END
 
 		// TAT 11/20/2002 use the unified trigger check to see if we are close enough to prime the mine
 		if(sEntWillTriggerMine(ent, self))
@@ -1892,8 +1914,12 @@ void G_LandmineThink(gentity_t * self)
 		}
 	}
 
-	if(trigger)
+	if(trigger && ent)
 	{
+		// Omni-bot BEGIN
+		Bot_Event_PreTriggerMine(ent - g_entities, self);
+		// Omni-bot END
+
 		LandMineTrigger(self);
 	}
 }
@@ -1905,7 +1931,7 @@ void LandminePostThink(gentity_t * self)
 	vec3_t          range = { LANDMINE_TRIGGER_DIST, LANDMINE_TRIGGER_DIST, LANDMINE_TRIGGER_DIST };
 	vec3_t          mins, maxs;
 	qboolean        trigger = qfalse;
-	gentity_t      *ent;
+	gentity_t      *ent = NULL;
 
 	self->nextthink = level.time + FRAMETIME;
 
@@ -1931,8 +1957,12 @@ void LandminePostThink(gentity_t * self)
 		}
 	}
 
-	if(!trigger)
+	if(!trigger && ent)
 	{
+		// Omni-bot BEGIN
+		Bot_Event_PostTriggerMine(ent - g_entities, self);
+		// Omni-bot END
+
 		LandMinePostTrigger(self);
 	}
 }

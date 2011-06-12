@@ -34,6 +34,82 @@ extern void     CG_StartShakeCamera(float param);
 extern void     CG_Tracer(vec3_t source, vec3_t dest, int sparks);
 
 //==========================================================================
+static void CG_BotDebugLine(vec3_t start, vec3_t end, vec3_t color)
+{
+	localEntity_t  *le;
+	refEntity_t    *re;
+
+	le = CG_AllocLocalEntity();
+	re = &le->refEntity;
+
+	le->leType = LE_CONST_RGB;
+	le->startTime = cg.time;
+	le->endTime = cg.time + 2000;
+	le->lifeRate = 1.0 / (le->endTime - le->startTime);
+
+	if(!cgs.media.railCoreShader)
+		cgs.media.railCoreShader = trap_R_RegisterShader("railCore");
+
+	re->reType = RT_RAIL_CORE;
+	re->customShader = cgs.media.railCoreShader;
+	re->shaderTime = cg.time / 1000.0f;
+
+	VectorCopy(start, re->origin);
+	VectorCopy(end, re->oldorigin);
+
+	le->color[0] = color[0];
+	le->color[1] = color[1];
+	le->color[2] = color[2];
+	le->color[3] = 1.0f;
+
+	AxisClear(re->axis);
+}
+
+static void CG_BotDebugRadius(vec3_t pos, vec3_t info, vec3_t color)
+{
+	localEntity_t  *le;
+	refEntity_t    *re;
+	float           fRadius = info[0];
+	int             iNumSteps = (int)info[1];
+	vec3_t          start, end;
+	float           fStepSize = 180.0f / (float)iNumSteps;
+	int             i;
+
+	if(!cgs.media.railCoreShader)
+		cgs.media.railCoreShader = trap_R_RegisterShader("railCore");
+
+	VectorCopy(pos, start);
+	VectorCopy(pos, end);
+	start[1] += fRadius;
+	end[1] -= fRadius;
+
+	for(i = 0; i < iNumSteps; ++i)
+	{
+		le = CG_AllocLocalEntity();
+		re = &le->refEntity;
+
+		le->leType = LE_CONST_RGB;
+		le->startTime = cg.time;
+		le->endTime = cg.time + 2000;
+		le->lifeRate = 1.0 / (le->endTime - le->startTime);
+
+		re->reType = RT_RAIL_CORE;
+		re->customShader = cgs.media.railCoreShader;
+		re->shaderTime = cg.time / 1000.0f;
+
+		VectorCopy(start, re->origin);
+		VectorCopy(end, re->oldorigin);
+
+		le->color[0] = color[0];
+		le->color[1] = color[1];
+		le->color[2] = color[2];
+		le->color[3] = 1.0f;
+
+		AxisClear(re->axis);
+		RotatePointAroundVertex(start, 0.0f, 0.0f, fStepSize, pos);
+		RotatePointAroundVertex(end, 0.0f, 0.0f, fStepSize, pos);
+	}
+}
 
 /*
 =============
@@ -3336,8 +3412,19 @@ void CG_EntityEvent(centity_t * cent, vec3_t position)
 				default:		// shouldn't happen
 					break;
 			}
-
 			break;
+
+// Omni-bot BEGIN
+		case EV_BOT_DEBUG_LINE:
+			DEBUGNAME("EV_BOT_DEBUG_LINE");
+			CG_BotDebugLine(es->origin2, es->pos.trBase, es->angles2);
+			break;
+
+		case EV_BOT_DEBUG_RADIUS:
+			DEBUGNAME("EV_BOT_DEBUG_RADIUS");
+			CG_BotDebugRadius(es->pos.trBase, es->origin2, es->angles2);
+			break;
+// Omni-bot END
 
 		default:
 			DEBUGNAME("UNKNOWN");

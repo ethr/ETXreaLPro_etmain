@@ -1602,7 +1602,10 @@ int CG_DrawSpawnPointInfo(int px, int py, int pw, int ph, qboolean draw, mapScis
 				{
 					float           w;
 
-					Com_sprintf(buffer, sizeof(buffer), "%s (Troops: %i)", cg.spawnPoints[i], cg.spawnPlayerCounts[i]);
+					// Omni-bot BEGIN
+					Com_sprintf(buffer, sizeof(buffer), "%s (^3%i^7) (Troops: %i)", cg.spawnPoints[i], i,
+								cg.spawnPlayerCounts[i]);
+					// Omni-bot END
 					w = CG_Text_Width_Ext(buffer, 0.2f, 0, &cgs.media.limboFont2);
 					CG_CommandMap_SetHighlightText(buffer, point[0] - (w * 0.5f), point[1] - 8);
 				}
@@ -1630,7 +1633,9 @@ int CG_DrawSpawnPointInfo(int px, int py, int pw, int ph, qboolean draw, mapScis
 
 				if(!scissor)
 				{
-					Com_sprintf(buffer, sizeof(buffer), "(Troops: %i)", cg.spawnPlayerCounts[i]);
+					// Omni-bot BEGIN
+					Com_sprintf(buffer, sizeof(buffer), "(^3%i^7) (Troops: %i)", i, cg.spawnPlayerCounts[i]);
+					// Omni-bot END
 					CG_Text_Paint_Ext(point[0] + FLAGSIZE_NORMAL * 0.25f, point[1], 0.2f, 0.2f, colorWhite, buffer, 0, 0,
 									  ITEM_TEXTSTYLE_SHADOWED, &cgs.media.limboFont2);
 				}
