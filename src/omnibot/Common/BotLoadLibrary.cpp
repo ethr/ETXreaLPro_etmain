@@ -213,6 +213,8 @@ eomnibot_error Omnibot_LoadLibrary(int version, const char *lib, const char *pat
 	eomnibot_error r = BOT_ERROR_NONE;
 	g_BotLibrary = Omnibot_LL( OB_VA("%s\\%s.dll", path ? path : ".", lib) );
 	if(g_BotLibrary == 0)
+		g_BotLibrary = Omnibot_LL( OB_VA(".\\%s.dll", lib) );
+	if(g_BotLibrary == 0)
 		g_BotLibrary = Omnibot_LL( OB_VA(".\\omni-bot\\%s.dll", lib) );
 	if(g_BotLibrary == 0)
 		g_BotLibrary = Omnibot_LL( OB_VA("%s.dll", lib) );

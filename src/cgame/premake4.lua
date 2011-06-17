@@ -42,17 +42,6 @@ project "etmain_cgame"
 	
 	configuration "x64"
 		targetname  "cgame_mp_x86_64"
-		
-	--
-	-- Release/Debug Configurations
-	--
-	configuration "Debug"
-		defines     "_DEBUG"
-		flags       { "Symbols" }
-	
-	configuration "Release"
-		defines     "NDEBUG"
-		flags       { "OptimizeSpeed" }
 				
 	-- 
 	-- Project Configurations
@@ -61,11 +50,6 @@ project "etmain_cgame"
 		linkoptions
 		{
 			"/DEF:cgame.def",
-		}
-		buildoptions
-		{
-			"/fp:fast",
-			"/arch:SSE"
 		}
 		defines
 		{

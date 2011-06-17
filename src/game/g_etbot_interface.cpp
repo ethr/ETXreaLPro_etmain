@@ -5553,7 +5553,16 @@ public:
 
 	const char *GetBotPath()
 	{
-		return Omnibot_GetLibraryPath();
+		//return Omnibot_GetLibraryPath();
+
+		char		basepath[MAX_OSPATH];
+		static char botpath[MAX_OSPATH];
+
+		trap_Cvar_VariableStringBuffer("fs_basepath", basepath, sizeof(basepath));
+
+		Com_sprintf(botpath, sizeof(botpath), "%s\\omni-bot", basepath);
+
+		return Omnibot_FixPath(botpath);
 	}
 
 	const char *GetLogPath()

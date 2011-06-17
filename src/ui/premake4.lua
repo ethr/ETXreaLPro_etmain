@@ -43,17 +43,6 @@ project "etmain_ui"
 	
 	configuration "x64"
 		targetname  "ui_mp_x86_64"
-		
-	--
-	-- Release/Debug Configurations
-	--
-	configuration "Debug"
-		defines     "_DEBUG"
-		flags       { "Symbols" }
-	
-	configuration "Release"
-		defines     "NDEBUG"
-		flags       { "OptimizeSpeed" }
 				
 	-- 
 	-- Project Configurations
@@ -62,11 +51,6 @@ project "etmain_ui"
 		linkoptions
 		{
 			"/DEF:ui.def",
-		}
-		buildoptions
-		{
-			"/fp:fast",
-			"/arch:SSE"
 		}
 		defines
 		{

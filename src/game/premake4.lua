@@ -39,17 +39,6 @@ project "etmain_game"
 	
 	configuration "x64"
 		targetname  "qagame_mp_x86_64"
-		
-	--
-	-- Release/Debug Configurations
-	--
-	configuration "Debug"
-		defines     "_DEBUG"
-		flags       { "Symbols" }
-	
-	configuration "Release"
-		defines     "NDEBUG"
-		flags       { "OptimizeSpeed" }
 				
 	-- 
 	-- Project Configurations
@@ -58,11 +47,6 @@ project "etmain_game"
 		linkoptions
 		{
 			"/DEF:game.def",
-		}
-		buildoptions
-		{
-			"/fp:fast",
-			"/arch:SSE"
 		}
 		defines
 		{
