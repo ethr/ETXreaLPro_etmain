@@ -6,6 +6,11 @@ textures/assault/atool_m02
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/assault/atool_m02
+	diffusemap		textures/assault/atool_m02
+	bumpmap         displacemap( textures/assault/atool_m02_normal invertColor(textures/assault/atool_m02_parallax) )
+	specularmap		textures/assault/atool_m02_spec
 }
 
 textures/assault/atruss_m06a
@@ -18,6 +23,21 @@ textures/assault/atruss_m06a
 	surfaceparm pointlight
 	surfaceparm trans
 	implicitMask -
+	
+	qer_editorimage textures/assault/atruss_m06a
+	diffusemap		textures/assault/atruss_m06a
+	bumpmap         displacemap( textures/assault/atruss_m06a_normal invertColor(textures/assault/atruss_m06a_parallax) )
+	specularmap		textures/assault/atruss_m06a_spec
+}
+
+textures/assault/awall_m01
+{
+
+	qer_editorimage textures/assault/awall_m01
+	diffusemap		textures/assault/awall_m01
+	bumpmap         displacemap( textures/assault/awall_m01_normal invertColor(textures/assault/awall_m01_parallax) )
+	specularmap		textures/assault/awall_m01_spec
+
 }
 
 textures/assault/machine_cl01
@@ -72,12 +92,18 @@ textures/assault/metal_c06
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/assault/metal_c06
+	diffusemap		textures/assault/metal_c06
+	bumpmap         displacemap( textures/assault/awall_m01_normal invertColor(textures/assault/metal_c06_parallax) )
+	specularmap		textures/assault/metal_c06_spec
 }
 
 textures/assault/metal_c07a
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
 }
 
 textures/assault/metal_c07ans

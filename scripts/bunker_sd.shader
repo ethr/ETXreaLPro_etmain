@@ -53,4 +53,67 @@ textures/bunker_sd/wirefence01
 	implicitMask -
 }
 
+// Addition by Eonfge, check that (^^) stuff later 
 
+textures/bunker_sd/concrete_c07bcmp_sand
+{
+    qer_editorimage textures/bunker_sd/concrete_c07bcmp_sand
+	diffusemap		textures/bunker_sd/concrete_c07bcmp_sand
+	bumpmap         displacemap( textures/bunker_sd/concrete_c07bcmp_sand_normal, invertColor(textures/bunker_sd/concrete_c07bcmp_sand_parallax) )
+	specularmap		textures/bunker_sd/concrete_c07bcmp_sand_spec
+	
+}
+
+textures/bunker_sd/grinder02
+{
+    qer_editorimage textures/bunker_sd/grinder02
+	diffusemap		textures/bunker_sd/grinder02
+	bumpmap         displacemap( textures/bunker_sd/grinder03_normal, invertColor(textures/bunker_sd/grinder03_parallax) )
+	specularmap		textures/bunker_sd/grinder03_spec
+	
+}
+
+textures/bunker_sd/grinder03
+{
+    qer_editorimage textures/bunker_sd/grinder03
+	diffusemap		textures/bunker_sd/grinder03
+	bumpmap         displacemap( textures/bunker_sd/grinder03_normal, invertColor(textures/bunker_sd/grinder03_parallax) )
+	specularmap		textures/bunker_sd/grinder03_spec
+	
+}
+
+textures/bunker_sd/int_wall01
+{
+    qer_editorimage textures/bunker_sd/int_wall01
+	diffusemap		textures/bunker_sd/int_wall01
+	bumpmap         displacemap( textures/bunker_sd/int_wall01_normal, invertColor(textures/bunker_sd/int_wall01_parallax) )
+	specularmap		textures/bunker_sd/int_wall01_spec
+	
+}
+
+textures/bunker_sd/int_wall01_white
+{
+    qer_editorimage textures/bunker_sd/int_wall01_white
+	diffusemap		textures/bunker_sd/int_wall01_white
+	bumpmap         displacemap( textures/bunker_sd/int_wall01_normal, invertColor(textures/bunker_sd/int_wall01_parallax) )
+	specularmap		textures/bunker_sd/int_wall01_spec
+	
+}
+
+textures/bunker_sd/int_wall01_rusty
+{
+    qer_editorimage textures/bunker_sd/int_wall01_rusty
+	diffusemap		textures/bunker_sd/int_wall01_rusty
+	bumpmap         displacemap( textures/bunker_sd/int_wall01_normal, invertColor(textures/bunker_sd/int_wall01_parallax) )
+	specularmap		textures/bunker_sd/int_wall01_spec
+	
+}
+
+textures/bunker_sd/int_wall07
+{
+    qer_editorimage textures/bunker_sd/int_wall07
+	diffusemap		textures/bunker_sd/int_wall07
+	bumpmap         displacemap( textures/bunker_sd/int_wall01_normal, invertColor(textures/bunker_sd/int_wall01_parallax) )
+	specularmap		textures/bunker_sd/int_wall01_spec
+	
+}

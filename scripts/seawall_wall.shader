@@ -4,8 +4,44 @@
 // *************************************************************
 // *************************************************************
 
+// thanks for leaving this legacy stuff now i have to make it 
+// backwards compatible because someone might have used it in
+// a custom lvl - Eonfge May 2011
+
 textures/seawall_wall/metal_trim1
 {
-	surfaceparm metalsteps
-	implicitMap -
+	surfaceparm		metalsteps
+	implicitMap 	-
+	
+	qer_editorimage textures/seawall_wall/metal_trim1
+	diffusemap		textures/seawall_wall/metal_trim1
+	bumpmap         displacemap( textures/seawall_wall/metal_trim1 invertColor(textures/seawall_wall/metal_trim1_parallax) )
+	
+}
+
+textures/seawall_wall/wall02_mid
+{
+    qer_editorimage textures/seawall_wall/wall02_mid
+	diffusemap		textures/seawall_wall/wall02_mid
+	bumpmap         displacemap( textures/seawall_wall/wall02_normal, invertColor(textures/seawall_wall/wall02_parallax) )
+	specularmap		textures/assault/wall02_spec
+	
+}
+
+textures/seawall_wall/wall03_mid
+{
+    qer_editorimage textures/seawall_wall/wall03_mid
+	diffusemap		textures/seawall_wall/wall03_mid
+	bumpmap         displacemap( textures/seawall_wall/wall03_normal, invertColor(textures/seawall_wall/wall03_parallax) )
+	specularmap		textures/assault/wall03_spec
+	
+}
+
+textures/battery_wall/wall03_top
+{
+    qer_editorimage textures/seawall_wall/wall03_top
+	diffusemap		textures/seawall_wall/wall03_top
+	bumpmap         displacemap( textures/seawall_wall/wall03_normal, invertColor(textures/seawall_wall/wall03_parallax) )
+	specularmap		textures/assault/wall03_spec
+	
 }

@@ -15,12 +15,31 @@ textures/alpha/barb_wire
 	surfaceparm metalsteps
 	surfaceparm pointlight
 	surfaceparm trans
-	implicitMask -
+	
+	implicitMask textures/alpha/barb_wire //initinaly -
+	
+	qer_editorimage textures/alpha/barb_wire
+	diffusemap		textures/alpha/barb_wire
+	
+	{
+	stage diffusemap
+	map textures/alpha/barb_wire
+	alphaTest 0.5
+	}
+	
+	normalMap textures/alpha/barb_wire_normal
+	
+	
+	
+	//normalMap 		displaceMap(textures/alpha/barb_wire_normal, textures/alpha/barb_wire_parallax) 
+	
+	//bumpmap         displacemap( textures/alpha/barb_wire_normal
+	//invertColor(textures/alpha/barb_wire_parallax) )
 }
 
-textures/alpha/barb_wire_clip
+textures/alpha/barb_wire_clip // what does this do?
 {
-	qer_editorimage textures/alpha/barb_wire.tga
+	qer_editorimage textures/alpha/barb_wire 
 	cull disable
 	nomipmaps
 	nopicmip
@@ -31,7 +50,7 @@ textures/alpha/barb_wire_clip
 	surfaceparm playerclip
 	surfaceparm pointlight
 	surfaceparm trans
-	implicitMask textures/alpha/barb_wire.tga
+	implicitMask textures/alpha/barb_wire
 }
 
 textures/alpha/bars_m01
@@ -45,6 +64,18 @@ textures/alpha/bars_m01
 	surfaceparm pointlight
 	surfaceparm trans
 	implicitMask -
+	
+	qer_editorimage textures/alpha/bars_m01
+	diffusemap		textures/alpha/bars_m01
+	
+	{
+	stage diffusemap
+	map textures/alpha/bars_m01
+	alphaTest 0.5
+	}
+	
+	normalMap textures/alpha/bars_m01_normal
+	
 }
 
 textures/alpha/bel_orn_m01
@@ -54,6 +85,18 @@ textures/alpha/bel_orn_m01
 	surfaceparm trans
 	nopicmip
 	implicitBlend -
+	
+	qer_editorimage textures/alpha/bel_orn_m01
+	diffusemap		textures/alpha/bel_orn_m01
+	
+	{
+	stage diffusemap
+	map textures/alpha/bel_orn_m01
+	alphaTest 0.5
+	}
+	
+	normalMap textures/alpha/bel_orn_m01_normal
+	
 }
 
 textures/alpha/chateau_c06a
@@ -266,6 +309,17 @@ textures/alpha/fence_c11
 	surfaceparm pointlight
 	surfaceparm trans
 	implicitMask -
+	
+	qer_editorimage textures/alpha/fence_c11
+	diffusemap		textures/alpha/fence_c11
+	
+	{
+	stage diffusemap
+	map textures/alpha/fence_c11
+	alphaTest 0.5
+	}
+	
+	//normalMap textures/alpha/bars_m01_normal
 }
 
 textures/alpha/fence_c14
@@ -379,6 +433,18 @@ textures/alpha/fence_m06
 	surfaceparm pointlight
 	surfaceparm trans
 	implicitMask -
+	
+	qer_editorimage textures/alpha/fence_m06
+	diffusemap		textures/alpha/fence_m06
+	
+	{
+	stage diffusemap
+	map textures/alpha/fence_m06
+	alphaTest 0.5
+	}
+	
+	normalMap textures/alpha/fence_m06_normal
+	
 }
 
 textures/alpha/fence_m06b
