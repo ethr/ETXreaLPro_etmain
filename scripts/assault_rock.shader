@@ -8,7 +8,7 @@ textures/assault_rock/concrete_m02
 	qer_editorimage textures/assault_rock/concrete_m02
 	diffusemap		textures/assault_rock/concrete_m02
 	bumpmap         displacemap( textures/assault_rock/concrete_m02_normal, invertColor(textures/assault_rock/concrete_m02_parallax) )
-	specularmap		textures/assault/metal_trim1_spec
+	specularmap		textures/assault_rock/concrete_m02_spec
 }
 
 textures/assault_rock/ground_c07a

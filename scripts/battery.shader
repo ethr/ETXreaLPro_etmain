@@ -351,6 +351,8 @@ textures/battery/terrain_3
 	}
 // XreaL END
 	
+
+
 	{
 		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -617,12 +619,15 @@ textures/battery/terrain_0to3
 		stage diffusemap
 		map textures/temperate_sd/sand_disturb_bright
 		vertexColor
+
 	}
 	{
 		stage diffusemap
+
 		map textures/temperate_sd/rock_graynoise
 		vertexColor
 		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+
 	}
 
 // XreaL END
@@ -872,12 +877,15 @@ textures/battery/terrain_1to3
 		stage diffusemap
 		map textures/temperate_sd/sand_wave_bright
 		vertexColor
+
 	}
 	{
 		stage diffusemap
+
 		map textures/temperate_sd/rock_graynoise
 		vertexColor
 		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+
 	}
 
 // XreaL END
@@ -1248,14 +1256,17 @@ textures/battery/terrain_3to4
 	
 	{
 		stage diffusemap
+
 		map textures/temperate_sd/rock_graynoise
 		vertexColor
+
 	}
 	{
 		stage diffusemap
 		map textures/temperate_sd/rock_grayvar
 		vertexColor
 		blend GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
+
 	}
 
 // XreaL END
@@ -1310,8 +1321,10 @@ textures/battery/terrain_3to5
 	
 	{
 		stage diffusemap
+
 		map textures/temperate_sd/rock_graynoise
 		vertexColor
+
 	}
 	{
 		stage diffusemap

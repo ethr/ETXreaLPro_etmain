@@ -62,52 +62,91 @@ textures/snow_sd/ametal_m03_snow
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/ametal_m03_snow
+	diffusemap		textures/snow_sd/ametal_m03_snow
+	bumpmap         displacemap( textures/snow_sd/ametal_m03_snow_normal, invertColor(textures/snow_sd/ametal_m03_snow_parallax) )
+	specularmap		textures/snow_sd/ametal_m03_snow_spec
 }
 
 textures/snow_sd/ametal_m04a_snow
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/ametal_m04a_snow
+	diffusemap		textures/snow_sd/ametal_m04a_snow
+	bumpmap         displacemap( textures/snow_sd/ametal_m04a_snow_normal, invertColor(textures/snow_sd/ametal_m04a_snow_parallax) )
+	specularmap		textures/snow_sd/ametal_m04a_snow_spec
 }
 
 textures/snow_sd/ametal_m04a_snowfade
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/ametal_m04a_snowfade
+	diffusemap		textures/snow_sd/ametal_m04a_snowfade
+	bumpmap         displacemap( textures/snow_sd/ametal_m04a_snowfade_normal, invertColor(textures/snow_sd/ametal_m04a_snowfade_parallax) )
+	specularmap		textures/snow_sd/ametal_m04a_snowfade_spec
+}
+
+textures/snow_sd/bigrock_rounded_faint
+{
+	qer_editorimage textures/snow_sd/bigrock_rounded_faint
+	diffusemap		textures/snow_sd/bigrock_rounded_faint
+	bumpmap         displacemap( textures/snow_sd/bigrock_rounded_faint_normal, invertColor(textures/snow_sd/bigrock_rounded_faint_parallax) )
+	specularmap		textures/snow_sd/bigrock_rounded_faint_spec
 }
 
 textures/snow_sd/bunkertrim_snow
 {
-	qer_editorimage textures/snow_sd/bunkertrim_snow.tga
+	qer_editorimage textures/snow_sd/bunkertrim_snow
 	q3map_nonplanar
 	q3map_shadeangle 160
 	implicitMap -
+	
+	diffusemap		textures/snow_sd/bunkertrim_snow
+	bumpmap         displacemap( textures/bunkertrim_snow_normal, invertColor(textures/snow_sd/bunkertrim_snow_parallax) )
+	specularmap		textures/snow_sd/bunkertrim_snow_spec
+	
+	
 }
 
 //==========================================================================
-// Corner/edges of axis fueldump bunker buildings, needs phong goodness.
+// Corner/edges of axis fueldump bunker buildings, needs phong goodness. // Eonfge: whatevar....
 //==========================================================================
 textures/snow_sd/bunkertrim3_snow
 {
 	q3map_nonplanar
 	q3map_shadeangle 179
-	qer_editorimage textures/snow_sd/bunkertrim3_snow.tga
+	qer_editorimage textures/snow_sd/bunkertrim3_snow
+	
+	diffusemap		textures/snow_sd/bunkertrim3_snow
+	bumpmap         displacemap( textures/bunkertrim3_snow_normal, invertColor(textures/snow_sd/bunkertrim3_snow_parallax) )
+	specularmap		textures/snow_sd/bunkertrim3_snow_spec
+	
 	{
 		map $lightmap
 		rgbGen identity
 	}
 	{
-		map textures/snow_sd/bunkertrim3_snow.tga
+		map textures/snow_sd/bunkertrim3_snow
 		blendFunc filter
 	}
+	
 }
 
 textures/snow_sd/bunkerwall_lrg02
 {
-	qer_editorimage textures/snow_sd/bunkerwall_lrg02.tga
+	qer_editorimage textures/snow_sd/bunkerwall_lrg02
 	q3map_nonplanar
 	q3map_shadeangle 80
 	implicitMap -
+	
+	diffusemap		textures/snow_sd/bunkerwall_lrg02
+	bumpmap         displacemap( textures/bunkerwall_lrg02_normal, invertColor(textures/snow_sd/bunkerwall_lrg02_parallax) )
+	specularmap		textures/snow_sd/bunkerwall_lrg02_spec
 }
 
 textures/snow_sd/icey_lake
