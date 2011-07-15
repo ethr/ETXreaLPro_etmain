@@ -118,3 +118,16 @@ tr3b_lava
 asset
 mawi
 # MAWI END
+
+#Skyboxes BEGIN
+#CC-BY-SA by AVOC
+arabian_nights
+darkness_sky
+Endless_sky
+frozen_sky
+heat_sky
+horizon_sky
+overcast_sky
+rufus_sky
+turbulent_blue
+#Skyboxes END
