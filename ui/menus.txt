@@ -70,4 +70,36 @@
 	loadMenu { "ui/ingame_messagemode.menu" }
 	loadMenu { "ui/ingame_tapout.menu" }
 	loadMenu { "ui/ingame_tapoutlms.menu" }
+
+	// omnibot
+	loadMenu { "ui/omnibot.menu" }
+	loadMenu { "ui/omnibot_goalname.menu" }
+	loadMenu { "ui/attack_goalname.menu" }
+	loadMenu { "ui/defend_goalname.menu" }
+	loadMenu { "ui/snipe_goalname.menu" }
+	loadMenu { "ui/camp_goalname.menu" }
+	loadMenu { "ui/airstrike_goalname.menu" }
+	loadMenu { "ui/artillery_goalname.menu" }
+	loadMenu { "ui/mortar_goalname.menu" }
+	loadMenu { "ui/grenade_goalname.menu" }
+	loadMenu { "ui/grenade_target_goalname.menu" }
+	loadMenu { "ui/build_goalname.menu" }
+	loadMenu { "ui/plant_goalname.menu" }
+	loadMenu { "ui/dyno_goalname.menu" }
+	loadMenu { "ui/plantmine_goalname.menu" }
+	loadMenu { "ui/smokebomb_goalname.menu" }
+	loadMenu { "ui/escort_goalname.menu" }
+	loadMenu { "ui/escort_target_goalname.menu" }
+	loadMenu { "ui/mount_target_goalname.menu" }
+	loadMenu { "ui/mount_goalname.menu" }
+	loadMenu { "ui/mover_build_goalname.menu" }
+	loadMenu { "ui/ride_goalname.menu" }
+	loadMenu { "ui/ride_target_goalname.menu" }
+	loadMenu { "ui/switch_goalname.menu" }
+	loadMenu { "ui/route_goalname.menu" }
+	loadMenu { "ui/mobilemg_goalname.menu" }
+	loadMenu { "ui/cappoint_goalname.menu" }
+	loadMenu { "ui/omnibot_groupname.menu" }
+	loadMenu { "ui/omnibot_waypointname.menu" }
+	loadMenu { "ui/ingame_vote_bots_fun.menu" }
 }
