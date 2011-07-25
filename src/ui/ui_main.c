@@ -5069,7 +5069,11 @@ void UI_Update(const char *name)
 	{
 		float           rate = trap_Cvar_VariableValue("ui_rate");
 
-		if(rate >= 5000)
+		if (rate >= 20000) {
+			trap_Cvar_Set("ui_cl_maxpackets", "100");
+			trap_Cvar_Set("ui_cl_packetdup", "2");
+		}
+		else if(rate >= 5000)
 		{
 			trap_Cvar_Set("ui_cl_maxpackets", "30");
 			trap_Cvar_Set("ui_cl_packetdup", "1");
@@ -5084,6 +5088,14 @@ void UI_Update(const char *name)
 			trap_Cvar_Set("ui_cl_maxpackets", "15");
 			trap_Cvar_Set("ui_cl_packetdup", "1");	// favor lower bandwidth
 		}
+	}
+	else if(Q_stricmp(name, "ui_cl_packetdup") == 0)
+	{
+		trap_Cvar_SetValue("cl_packetdup", val);
+	}
+	else if(Q_stricmp(name, "ui_cl_maxpackets") == 0)
+	{
+		trap_Cvar_SetValue("cl_maxpackets", val);
 	}
 	else if(Q_stricmp(name, "ui_GetName") == 0)
 	{
@@ -5150,6 +5162,46 @@ void UI_Update(const char *name)
 			trap_Cvar_SetValue("m_pitch", -0.022f);
 		}
 	}
+}
+
+/*
+==============
+UI_ResetUICvars
+Resets all ui_... values to "" for use when exiting menus
+==============
+*/
+void UI_ResetUICvars(void)
+{
+	// System Menu
+	trap_Cvar_Set("ui_com_hunkmegs", "");
+	trap_Cvar_Set("ui_com_soundmegs", "");
+	trap_Cvar_Set("ui_com_zonemegs", "");
+	trap_Cvar_Set("ui_cl_maxpackets", "");
+	trap_Cvar_Set("ui_cl_packetdup", "");
+	trap_Cvar_Set("ui_s_khz", "");
+	trap_Cvar_Set("ui_rate", "");
+
+	// Graphics Menu
+	trap_Cvar_Set("ui_r_mode", "");
+	trap_Cvar_Set("ui_r_gamma", "");
+	trap_Cvar_Set("ui_r_colorbits", "");
+	trap_Cvar_Set("ui_r_fullscreen", "");
+	trap_Cvar_Set("ui_r_lodbias", "");
+	trap_Cvar_Set("ui_r_subdivisions", "");
+	trap_Cvar_Set("ui_r_picmip", "");
+	trap_Cvar_Set("ui_r_texturebits", "");
+	trap_Cvar_Set("ui_r_depthbits", "");
+	trap_Cvar_Set("ui_r_ext_compressed_textures", "");
+	trap_Cvar_Set("ui_r_finish", "");
+	trap_Cvar_Set("ui_r_dynamiclight", "");
+	trap_Cvar_Set("ui_r_allowextensions", "");
+	trap_Cvar_Set("ui_r_detailtextures", "");
+	trap_Cvar_Set("ui_r_texturemode", "");
+	trap_Cvar_Set("ui_cg_shadows", "");
+	trap_Cvar_Set("ui_r_hdrrendering", "");
+	trap_Cvar_Set("ui_r_bloom", "");
+	trap_Cvar_Set("ui_r_normalmapping", "");
+	trap_Cvar_Set("ui_r_parallaxmapping", "");
 }
 
 
@@ -6513,155 +6565,63 @@ void UI_RunMenuScript(char **args)
 		{
 			trap_Cvar_Set("r_oldMode", "");
 		}
-		else if(Q_stricmp(name, "systemCvarsGet") == 0)
+		else if(Q_stricmp(name, "graphicsCvarsGet") == 0)
 		{
-			int             ui_r_mode = trap_Cvar_VariableValue("r_mode");
-			float           ui_r_gamma = trap_Cvar_VariableValue("r_gamma");
-			int             ui_rate = trap_Cvar_VariableValue("rate");
-			int             ui_cl_maxpackets = trap_Cvar_VariableValue("cl_maxpackets");
-			int             ui_cl_packetdup = trap_Cvar_VariableValue("cl_packetdup");
-			float           ui_sensitivity = trap_Cvar_VariableValue("sensitivity");
-			int             ui_r_colorbits = trap_Cvar_VariableValue("r_colorbits");
-			int             ui_r_fullscreen = trap_Cvar_VariableValue("r_fullscreen");
-			int             ui_r_lodbias = trap_Cvar_VariableValue("r_lodbias");
-			int             ui_r_subdivisions = trap_Cvar_VariableValue("r_subdivisions");
-			int             ui_r_picmip = trap_Cvar_VariableValue("r_picmip");
-			int             ui_r_texturebits = trap_Cvar_VariableValue("r_texturebits");
-			int             ui_r_depthbits = trap_Cvar_VariableValue("r_depthbits");
-			int             ui_r_ext_compressed_textures = trap_Cvar_VariableValue("r_ext_compressed_textures");
-			int             ui_r_finish = trap_Cvar_VariableValue("r_finish");
-			int             ui_r_dynamiclight = trap_Cvar_VariableValue("r_dynamiclight");
-			int             ui_r_allowextensions = trap_Cvar_VariableValue("r_allowextensions");
-			int             ui_m_filter = trap_Cvar_VariableValue("m_filter");
-			int             ui_s_khz = trap_Cvar_VariableValue("s_khz");
-			int             ui_r_detailtextures = trap_Cvar_VariableValue("r_detailtextures");
 			char            ui_r_texturemode[MAX_CVAR_VALUE_STRING];
-
+			trap_Cvar_CopyValue_i("r_mode", "ui_r_mode");
+			trap_Cvar_CopyValue_i("r_gamma", "ui_r_gamma");
+			trap_Cvar_CopyValue_i("r_colorbits", "ui_r_colorbits");
+			trap_Cvar_CopyValue_i("r_fullscreen", "ui_r_fullscreen");
+			trap_Cvar_CopyValue_i("r_lodbias", "ui_r_lodbias");
+			trap_Cvar_CopyValue_i("r_subdivisions", "ui_r_subdivisions");
+			trap_Cvar_CopyValue_i("r_picmip", "ui_r_picmip");
+			trap_Cvar_CopyValue_i("r_texturebits", "ui_r_texturebits");
+			trap_Cvar_CopyValue_i("r_depthbits", "ui_r_depthbits");
+			trap_Cvar_CopyValue_i("r_ext_compressed_textures", "ui_r_ext_compressed_textures");
+			trap_Cvar_CopyValue_i("r_finish", "ui_r_finish");
+			trap_Cvar_CopyValue_i("r_dynamiclight", "ui_r_dynamiclight");
+			trap_Cvar_CopyValue_i("r_allowextensions", "ui_r_allowextensions");
+			trap_Cvar_CopyValue_i("r_detailtextures", "ui_r_detailtextures");
+			trap_Cvar_CopyValue_i("cg_shadows", "ui_cg_shadows");
+			trap_Cvar_CopyValue_i("r_hdrrendering", "ui_r_hdrrendering");
+			trap_Cvar_CopyValue_i("r_bloom", "r_bloom");
+			trap_Cvar_CopyValue_i("r_normalmapping", "ui_r_normalmapping");
+			trap_Cvar_CopyValue_i("r_parallaxmapping", "ui_r_parallaxmapping");
+			
 			trap_Cvar_VariableStringBuffer("r_texturemode", ui_r_texturemode, sizeof(ui_r_texturemode));
-
-			trap_Cvar_Set("ui_r_mode", va("%i", ui_r_mode));
-			trap_Cvar_Set("ui_r_gamma", va("%f", ui_r_gamma));
-			trap_Cvar_Set("ui_rate", va("%i", ui_rate));
-			trap_Cvar_Set("ui_cl_maxpackets", va("%i", ui_cl_maxpackets));
-			trap_Cvar_Set("ui_cl_packetdup", va("%i", ui_cl_packetdup));
-			trap_Cvar_Set("ui_sensitivity", va("%f", ui_sensitivity));
-			trap_Cvar_Set("ui_r_colorbits", va("%i", ui_r_colorbits));
-			trap_Cvar_Set("ui_r_fullscreen", va("%i", ui_r_fullscreen));
-			trap_Cvar_Set("ui_r_lodbias", va("%i", ui_r_lodbias));
-			trap_Cvar_Set("ui_r_subdivisions", va("%i", ui_r_subdivisions));
-			trap_Cvar_Set("ui_r_picmip", va("%i", ui_r_picmip));
-			trap_Cvar_Set("ui_r_texturebits", va("%i", ui_r_texturebits));
-			trap_Cvar_Set("ui_r_depthbits", va("%i", ui_r_depthbits));
-			trap_Cvar_Set("ui_r_ext_compressed_textures", va("%i", ui_r_ext_compressed_textures));
-			trap_Cvar_Set("ui_r_finish", va("%i", ui_r_finish));
-			trap_Cvar_Set("ui_r_dynamiclight", va("%i", ui_r_dynamiclight));
-			trap_Cvar_Set("ui_r_allowextensions", va("%i", ui_r_allowextensions));
-			trap_Cvar_Set("ui_m_filter", va("%i", ui_m_filter));
-			trap_Cvar_Set("ui_s_khz", va("%i", ui_s_khz));
-			trap_Cvar_Set("ui_r_detailtextures", va("%i", ui_r_detailtextures));
 			trap_Cvar_Set("ui_r_texturemode", ui_r_texturemode);
 		}
-		else if(Q_stricmp(name, "systemCvarsReset") == 0)
+		else if(Q_stricmp(name, "graphicsCvarsReset") == 0)
 		{
-			trap_Cvar_Set("ui_r_mode", "");
-			trap_Cvar_Set("ui_r_gamma", "");
-			trap_Cvar_Set("ui_rate", "");
-			trap_Cvar_Set("ui_cl_maxpackets", "");
-			trap_Cvar_Set("ui_cl_packetdup", "");
-			trap_Cvar_Set("ui_sensitivity", "");
-			trap_Cvar_Set("ui_r_colorbits", "");
-			trap_Cvar_Set("ui_r_fullscreen", "");
-			trap_Cvar_Set("ui_r_lodbias", "");
-			trap_Cvar_Set("ui_r_subdivisions", "");
-			trap_Cvar_Set("ui_r_picmip", "");
-			trap_Cvar_Set("ui_r_texturebits", "");
-			trap_Cvar_Set("ui_r_depthbits", "");
-			trap_Cvar_Set("ui_r_ext_compressed_textures", "");
-			trap_Cvar_Set("ui_r_finish", "");
-			trap_Cvar_Set("ui_r_dynamiclight", "");
-			trap_Cvar_Set("ui_r_allowextensions", "");
-			trap_Cvar_Set("ui_m_filter", "");
-			trap_Cvar_Set("ui_s_khz", "");
-			trap_Cvar_Set("ui_r_detailtextures", "");
-			trap_Cvar_Set("ui_r_texturemode", "");
+			UI_ResetUICvars();
 		}
-		else if(Q_stricmp(name, "systemCvarsApply") == 0)
+		else if(Q_stricmp(name, "graphicsCvarsApply") == 0)
 		{
-			int             ui_r_mode = trap_Cvar_VariableValue("ui_r_mode");
-			float           ui_r_gamma = trap_Cvar_VariableValue("ui_r_gamma");
-			int             ui_rate = trap_Cvar_VariableValue("ui_rate");
-			int             ui_cl_maxpackets = trap_Cvar_VariableValue("ui_cl_maxpackets");
-			int             ui_cl_packetdup = trap_Cvar_VariableValue("ui_cl_packetdup");
-			float           ui_sensitivity = trap_Cvar_VariableValue("ui_sensitivity");
-			int             ui_r_colorbits = trap_Cvar_VariableValue("ui_r_colorbits");
-			int             ui_r_fullscreen = trap_Cvar_VariableValue("ui_r_fullscreen");
-			int             ui_r_lodbias = trap_Cvar_VariableValue("ui_r_lodbias");
-			int             ui_r_subdivisions = trap_Cvar_VariableValue("ui_r_subdivisions");
-			int             ui_r_picmip = trap_Cvar_VariableValue("ui_r_picmip");
-			int             ui_r_texturebits = trap_Cvar_VariableValue("ui_r_texturebits");
-			int             ui_r_depthbits = trap_Cvar_VariableValue("ui_r_depthbits");
-			int             ui_r_ext_compressed_textures = trap_Cvar_VariableValue("ui_r_ext_compressed_textures");
-			int             ui_r_finish = trap_Cvar_VariableValue("ui_r_finish");
-			int             ui_r_dynamiclight = trap_Cvar_VariableValue("ui_r_dynamiclight");
-			int             ui_r_allowextensions = trap_Cvar_VariableValue("ui_r_allowextensions");
-			int             ui_m_filter = trap_Cvar_VariableValue("ui_m_filter");
-			int             ui_s_khz = trap_Cvar_VariableValue("ui_s_khz");
-			int             ui_r_detailtextures = trap_Cvar_VariableValue("ui_r_detailtextures");
 			char            ui_r_texturemode[MAX_CVAR_VALUE_STRING];
+			trap_Cvar_CopyValue_i("ui_r_mode", "r_mode");
+			trap_Cvar_CopyValue_i("ui_r_gamma", "r_gamma");
+			trap_Cvar_CopyValue_i("ui_r_colorbits", "r_colorbits");
+			trap_Cvar_CopyValue_i("ui_r_fullscreen", "r_fullscreen");
+			trap_Cvar_CopyValue_i("ui_r_lodbias", "r_lodbias");
+			trap_Cvar_CopyValue_i("ui_r_subdivisions", "r_subdivisions");
+			trap_Cvar_CopyValue_i("ui_r_picmip", "r_picmip");
+			trap_Cvar_CopyValue_i("ui_r_texturebits", "r_texturebits");
+			trap_Cvar_CopyValue_i("ui_r_depthbits", "r_depthbits");
+			trap_Cvar_CopyValue_i("ui_r_ext_compressed_textures", "r_ext_compressed_textures");
+			trap_Cvar_CopyValue_i("ui_r_finish", "r_finish");
+			trap_Cvar_CopyValue_i("ui_r_dynamiclight", "r_dynamiclight");
+			trap_Cvar_CopyValue_i("ui_r_allowextensions", "r_allowextensions");
+			trap_Cvar_CopyValue_i("ui_r_detailtextures", "r_detailtextures");
+			trap_Cvar_CopyValue_i("ui_cg_shadows", "cg_shadows");
+			trap_Cvar_CopyValue_i("ui_r_hdrrendering", "r_hdrrendering");
+			trap_Cvar_CopyValue_i("ui_r_bloom", "r_bloom");
+			trap_Cvar_CopyValue_i("ui_r_normalmapping", "r_normalmapping");
+			trap_Cvar_CopyValue_i("ui_r_parallaxmapping", "r_parallaxmapping");
 
 			trap_Cvar_VariableStringBuffer("ui_r_texturemode", ui_r_texturemode, sizeof(ui_r_texturemode));
-
-			// failsafe
-			if(ui_rate == 0)
-			{
-				ui_rate = 5000;
-				ui_cl_maxpackets = 30;
-				ui_cl_packetdup = 1;
-			}
-
-			trap_Cvar_Set("r_mode", va("%i", ui_r_mode));
-			trap_Cvar_Set("r_gamma", va("%f", ui_r_gamma));
-			trap_Cvar_Set("rate", va("%i", ui_rate));
-			trap_Cvar_Set("cl_maxpackets", va("%i", ui_cl_maxpackets));
-			trap_Cvar_Set("cl_packetdup", va("%i", ui_cl_packetdup));
-			trap_Cvar_Set("sensitivity", va("%f", ui_sensitivity));
-			trap_Cvar_Set("r_colorbits", va("%i", ui_r_colorbits));
-			trap_Cvar_Set("r_fullscreen", va("%i", ui_r_fullscreen));
-			trap_Cvar_Set("r_lodbias", va("%i", ui_r_lodbias));
-			trap_Cvar_Set("r_subdivisions", va("%i", ui_r_subdivisions));
-			trap_Cvar_Set("r_picmip", va("%i", ui_r_picmip));
-			trap_Cvar_Set("r_texturebits", va("%i", ui_r_texturebits));
-			trap_Cvar_Set("r_depthbits", va("%i", ui_r_depthbits));
-			trap_Cvar_Set("r_ext_compressed_textures", va("%i", ui_r_ext_compressed_textures));
-			trap_Cvar_Set("r_finish", va("%i", ui_r_finish));
-			trap_Cvar_Set("r_dynamiclight", va("%i", ui_r_dynamiclight));
-			trap_Cvar_Set("r_allowextensions", va("%i", ui_r_allowextensions));
-			trap_Cvar_Set("m_filter", va("%i", ui_m_filter));
-			trap_Cvar_Set("s_khz", va("%i", ui_s_khz));
-			trap_Cvar_Set("r_detailtextures", va("%i", ui_r_detailtextures));
 			trap_Cvar_Set("r_texturemode", ui_r_texturemode);
 
-			trap_Cvar_Set("ui_r_mode", "");
-			trap_Cvar_Set("ui_r_gamma", "");
-			trap_Cvar_Set("ui_rate", "");
-			trap_Cvar_Set("ui_cl_maxpackets", "");
-			trap_Cvar_Set("ui_cl_packetdup", "");
-			trap_Cvar_Set("ui_sensitivity", "");
-			trap_Cvar_Set("ui_r_colorbits", "");
-			trap_Cvar_Set("ui_r_fullscreen", "");
-			trap_Cvar_Set("ui_r_lodbias", "");
-			trap_Cvar_Set("ui_r_subdivisions", "");
-			trap_Cvar_Set("ui_r_picmip", "");
-			trap_Cvar_Set("ui_r_texturebits", "");
-			trap_Cvar_Set("ui_r_depthbits", "");
-			trap_Cvar_Set("ui_r_ext_compressed_textures", "");
-			trap_Cvar_Set("ui_r_finish", "");
-			trap_Cvar_Set("ui_r_dynamiclight", "");
-			trap_Cvar_Set("ui_r_allowextensions", "");
-			trap_Cvar_Set("ui_m_filter", "");
-			trap_Cvar_Set("ui_s_khz", "");
-			trap_Cvar_Set("ui_r_detailtextures", "");
-			trap_Cvar_Set("ui_r_texturemode", "");
+			UI_ResetUICvars();
 		}
 		else if(Q_stricmp(name, "profileCvarsGet") == 0)
 		{
@@ -6722,6 +6682,43 @@ void UI_RunMenuScript(char **args)
 				trap_Cmd_ExecuteText(EXEC_APPEND, "exec default_left.cfg\n");
 				Controls_SetDefaults(qtrue);
 			}
+		}
+		else if(Q_stricmp(name, "systemCvarsGet") == 0)
+		{
+			trap_Cvar_CopyValue_i("com_hunkmegs", "ui_com_hunkmegs");
+			trap_Cvar_CopyValue_i("com_soundmegs", "ui_com_soundmegs");
+			trap_Cvar_CopyValue_i("com_zonemegs", "ui_com_zonemegs");
+			trap_Cvar_CopyValue_i("cl_maxpackets", "ui_cl_maxpackets");
+			trap_Cvar_CopyValue_i("cl_packetdup", "ui_cl_packetdup");
+			trap_Cvar_CopyValue_i("s_khz", "ui_s_khz");
+			trap_Cvar_CopyValue_i("rate", "ui_rate");
+		}
+		else if(Q_stricmp(name, "systemCvarsReset") == 0)
+		{
+			UI_ResetUICvars();
+		}
+		else if(Q_stricmp(name, "systemCvarsApply") == 0)
+		{
+			int             ui_cl_maxpackets = trap_Cvar_VariableValue("ui_cl_maxpackets");
+			int             ui_cl_packetdup = trap_Cvar_VariableValue("ui_cl_packetdup");
+			int             ui_rate = trap_Cvar_VariableValue("ui_rate");
+
+			if(ui_rate == 0)
+			{
+				ui_rate = 5000;
+				ui_cl_maxpackets = 30;
+				ui_cl_packetdup = 1;
+			}
+
+			trap_Cvar_CopyValue_i("ui_com_hunkmegs", "com_hunkmegs");
+			trap_Cvar_CopyValue_i("ui_com_soundmegs", "com_soundmegs");
+			trap_Cvar_CopyValue_i("ui_com_zonemegs", "com_zonemegs");
+			trap_Cvar_CopyValue_i("ui_s_khz", "s_khz");
+			trap_Cvar_Set("cl_maxpackets", va("%i", ui_cl_maxpackets));
+			trap_Cvar_Set("cl_packetdup", va("%i", ui_cl_packetdup));
+			trap_Cvar_Set("rate", va("%i", ui_rate));
+			
+			UI_ResetUICvars();
 		}
 		else
 		{
@@ -10421,6 +10418,11 @@ cvarTable_t     cvarTable[] = {
 	{NULL, "ui_handedness", "", CVAR_ARCHIVE},
 	{NULL, "ui_sensitivity", "", CVAR_ARCHIVE},
 	{NULL, "ui_profile_mousePitch", "", CVAR_ARCHIVE},
+	{NULL, "ui_cg_shadows", "", CVAR_ARCHIVE},
+	{NULL, "ui_r_hdrrendering", "", CVAR_ARCHIVE},
+	{NULL, "ui_r_bloom", "", CVAR_ARCHIVE},
+	{NULL, "ui_r_normalmapping", "", CVAR_ARCHIVE},
+	{NULL, "ui_r_parallaxmapping", "", CVAR_ARCHIVE},
 
 	{&cl_bypassMouseInput, "cl_bypassMouseInput", "0", CVAR_TEMP},
 

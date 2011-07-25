@@ -106,6 +106,12 @@ void trap_Cvar_SetValue(const char *var_name, float value)
 	syscall(UI_CVAR_SETVALUE, var_name, PASSFLOAT(value));
 }
 
+void trap_Cvar_CopyValue_i(const char *in_var, const char *out_var)
+{
+	int				v1 = trap_Cvar_VariableValue(in_var);
+	trap_Cvar_Set(out_var, va("%i", v1));
+}
+
 void trap_Cvar_Reset(const char *name)
 {
 	syscall(UI_CVAR_RESET, name);
