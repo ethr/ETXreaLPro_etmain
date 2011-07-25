@@ -1671,6 +1671,30 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 						Item_RunScript(item, bAbort, script2);
 					}
 				}
+				else if(!Q_stricmp(cvar, "systemrestartIsRequired"))
+				{
+					int				ui_com_hunkmegs = DC->getCVarValue("ui_com_hunkmegs");
+					int				ui_com_soundmegs = DC->getCVarValue("ui_com_soundmegs");
+					int				ui_com_zonemegs = DC->getCVarValue("ui_com_zonemegs");
+					int             ui_s_khz = DC->getCVarValue("ui_s_khz");
+
+					int				com_hunkmegs = DC->getCVarValue("com_hunkmegs");
+					int				com_soundmegs = DC->getCVarValue("com_soundmegs");
+					int				com_zonemegs = DC->getCVarValue("com_zonemegs");
+					int				s_khz = DC->getCVarValue("s_khz");
+					
+					if(ui_com_hunkmegs != com_hunkmegs ||
+						ui_com_soundmegs != com_soundmegs ||
+						ui_com_zonemegs != com_zonemegs ||
+						ui_s_khz != s_khz)
+					{
+						Item_RunScript(item, bAbort, script1);
+					}
+					else
+					{
+						Item_RunScript(item, bAbort, script2);
+					}
+				}
 				else if(!Q_stricmp(cvar, "vidrestartIsRequired"))
 				{
 					int             ui_r_mode = DC->getCVarValue("ui_r_mode");
@@ -1680,10 +1704,14 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 					int             ui_r_depthbits = DC->getCVarValue("ui_r_depthbits");
 					int             ui_r_ext_compressed_textures = DC->getCVarValue("ui_r_ext_compressed_textures");
 					int             ui_r_allowextensions = DC->getCVarValue("ui_r_allowextensions");
-					int             ui_s_khz = DC->getCVarValue("ui_s_khz");
 					int             ui_r_detailtextures = DC->getCVarValue("ui_r_detailtextures");
 					int             ui_r_subdivisions = DC->getCVarValue("ui_r_subdivisions");
 					char            ui_r_texturemode[MAX_CVAR_VALUE_STRING];
+					int				ui_cg_shadows = DC->getCVarValue("ui_cg_shadows");
+					int				ui_r_hdrrendering = DC->getCVarValue("ui_r_hdrrendering");
+					int				ui_r_bloom = DC->getCVarValue("ui_r_bloom");
+					int				ui_r_normalmapping = DC->getCVarValue("ui_r_normalmapping");
+					int				ui_r_parallaxmapping = DC->getCVarValue("ui_r_parallaxmapping");
 
 					int             r_mode = DC->getCVarValue("r_mode");
 					int             r_colorbits = DC->getCVarValue("r_colorbits");
@@ -1692,10 +1720,14 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 					int             r_depthbits = DC->getCVarValue("r_depthbits");
 					int             r_ext_compressed_textures = DC->getCVarValue("r_ext_compressed_textures");
 					int             r_allowextensions = DC->getCVarValue("r_allowextensions");
-					int             s_khz = DC->getCVarValue("s_khz");
 					int             r_detailtextures = DC->getCVarValue("r_detailtextures");
 					int             r_subdivisions = DC->getCVarValue("r_subdivisions");
 					char            r_texturemode[MAX_CVAR_VALUE_STRING];
+					int				cg_shadows = DC->getCVarValue("cg_shadows");
+					int				r_hdrrendering = DC->getCVarValue("r_hdrrendering");
+					int				r_bloom	= DC->getCVarValue("r_bloom");
+					int				r_normalmapping	= DC->getCVarValue("r_normalmapping");
+					int				r_parallaxmapping = DC->getCVarValue("r_parallaxmapping");
 
 					trap_Cvar_VariableStringBuffer("ui_r_texturemode", ui_r_texturemode, sizeof(ui_r_texturemode));
 					trap_Cvar_VariableStringBuffer("r_texturemode", r_texturemode, sizeof(r_texturemode));
@@ -1708,7 +1740,11 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 					   ui_r_depthbits != r_depthbits ||
 					   ui_r_ext_compressed_textures != r_ext_compressed_textures ||
 					   ui_r_allowextensions != r_allowextensions ||
-					   ui_s_khz != s_khz || ui_r_detailtextures != r_detailtextures || Q_stricmp(r_texturemode, ui_r_texturemode))
+					   ui_r_detailtextures != r_detailtextures ||
+					   Q_stricmp(r_texturemode, ui_r_texturemode) ||
+					   ui_cg_shadows != cg_shadows || ui_r_hdrrendering != r_hdrrendering ||
+					   ui_r_bloom != r_bloom || ui_r_normalmapping != r_normalmapping ||
+					   ui_r_parallaxmapping != r_parallaxmapping)
 					{
 						Item_RunScript(item, bAbort, script1);
 					}

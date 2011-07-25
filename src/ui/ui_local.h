@@ -1040,6 +1040,11 @@ void            UI_SPSkillMenu_Cache(void);
 //
 // ui_syscalls.c
 //
+
+// Copies the integer value of cvar in_var into cvar out_var
+// Note that values must be integers compatible with va("%i",..)
+void trap_Cvar_CopyValue_i(const char *in_var, const char *out_var);
+
 void            trap_Print(const char *string);
 void            trap_Error(const char *string);
 int             trap_Milliseconds(void);
