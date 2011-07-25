@@ -61,9 +61,8 @@ textures/mp_railgun/lmterrain_0to1
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	
 	diffusemap 	textures/snow_sd/bigrock_rounded_faint //new
-	//bumpmap 	textures/snow_sd/bigrock_rounded_faint_normal //new
-	bumpmap     displacemap( textures/snow_sd/bigrock_rounded_faint_normal, invertColor(textures/snow_sd/bigrock_rounded_faint_parallax) )
-    specularmap textures/snow_sd/bigrock_rounded_faint_spec //new
+	bumpmap 	textures/snow_sd/bigrock_rounded_faint_norm //new
+	specularmap textures/snow_sd/bigrock_rounded_faint_spec //new
 	
 	{
 		map textures/snow_sd/s_dirt_m03i_2_big
