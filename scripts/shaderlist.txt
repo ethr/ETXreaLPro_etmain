@@ -3,6 +3,7 @@ alpha
 alpha_sd
 assault
 assault_rock
+awf
 awf_props
 battery
 battery_wall
