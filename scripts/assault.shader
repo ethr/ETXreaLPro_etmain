@@ -9,7 +9,7 @@ textures/assault/atool_m02
 	
 	qer_editorimage textures/assault/atool_m02
 	diffusemap		textures/assault/atool_m02
-	bumpmap         displacemap( textures/assault/atool_m02_normal invertColor(textures/assault/atool_m02_parallax) )
+	bumpmap         displacemap( textures/assault/atool_m02_norm invertColor(textures/assault/atool_m02_disp) )
 	specularmap		textures/assault/atool_m02_spec
 }
 
@@ -26,7 +26,7 @@ textures/assault/atruss_m06a
 	
 	qer_editorimage textures/assault/atruss_m06a
 	diffusemap		textures/assault/atruss_m06a
-	bumpmap         displacemap( textures/assault/atruss_m06a_normal invertColor(textures/assault/atruss_m06a_parallax) )
+	bumpmap         displacemap( textures/assault/atruss_m06a_norm invertColor(textures/assault/atruss_m06a_disp) )
 	specularmap		textures/assault/atruss_m06a_spec
 }
 
@@ -35,7 +35,7 @@ textures/assault/awall_m01
 
 	qer_editorimage textures/assault/awall_m01
 	diffusemap		textures/assault/awall_m01
-	bumpmap         displacemap( textures/assault/awall_m01_normal invertColor(textures/assault/awall_m01_parallax) )
+	bumpmap         displacemap( textures/assault/awall_m01_norm invertColor(textures/assault/awall_m01_disp) )
 	specularmap		textures/assault/awall_m01_spec
 
 }
@@ -95,7 +95,7 @@ textures/assault/metal_c06
 	
 	qer_editorimage textures/assault/metal_c06
 	diffusemap		textures/assault/metal_c06
-	bumpmap         displacemap( textures/assault/awall_m01_normal invertColor(textures/assault/metal_c06_parallax) )
+	bumpmap         displacemap( textures/assault/awall_m01_norm invertColor(textures/assault/metal_c06_disp) )
 	specularmap		textures/assault/metal_c06_spec
 }
 
@@ -104,14 +104,23 @@ textures/assault/metal_c07a
 	surfaceparm metalsteps
 	implicitMap -
 	
+	qer_editorimage textures/assault/metal_c07a
+	diffusemap		textures/assault/metal_c07a
+	bumpmap         displacemap( textures/assault/metal_c07a_norm invertColor(textures/assault/metal_c07a_disp) )
+	specularmap		textures/assault/metal_c07a_spec
+	
 }
 
 textures/assault/metal_c07ans
 {
-	qer_editorimage textures/assault/metal_c07a.tga
+	qer_editorimage textures/assault/metal_c07a
 	surfaceparm nonsolid
 	surfaceparm trans
-	implicitMap textures/assault/metal_c07a.tga
+	implicitMap textures/assault/metal_c07a
+	
+	diffusemap		textures/assault/metal_c07a
+	bumpmap         displacemap( textures/assault/metal_c07a_norm invertColor(textures/assault/metal_c07a_disp) )
+	specularmap		textures/assault/metal_c07a_spec
 }
 
 textures/assault/trim_c01

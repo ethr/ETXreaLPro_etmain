@@ -12,7 +12,7 @@
 
 #include "ui/menumacros.h"
 		
-// System Menu //
+// Controls Menu //
 	
 menuDef {
 	name		"options_controls"

@@ -154,7 +154,7 @@ textures/battery/rock_graynoise
     qer_editorimage textures/temperate_sd/rock_grayvar
 	
 	diffusemap 	textures/temperate_sd/rock_grayvar //new
-	bumpmap 	textures/temperate_sd/rock_grayvar_normal //new
+	bumpmap 	textures/temperate_sd/rock_grayvar_norm //new
     specularmap textures/temperate_sd/rock_grayvar_spec //new
 	
     {
@@ -183,7 +183,7 @@ textures/battery/sand_disturb
     surfaceparm gravelsteps
     
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 	
     {
@@ -219,7 +219,7 @@ textures/battery/terrain_0
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 	
 // XreaL BEGIN
@@ -257,7 +257,7 @@ textures/battery/terrain_1
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_wave_bright //new
-	bumpmap	 	textures/temperate_sd/sand_wave_bright_normal //new
+	bumpmap	 	textures/temperate_sd/sand_wave_bright_norm //new
     specularmap textures/temperate_sd/sand_wave_bright_spec //new
 
 // XreaL BEGIN
@@ -294,7 +294,7 @@ textures/battery/terrain_2
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/rocky_sand //new
-	bumpmap	 	textures/temperate_sd/rocky_sand_normal //new
+	bumpmap	 	textures/temperate_sd/rocky_sand_norm //new
     specularmap textures/temperate_sd/rocky_sand_spec //new
 	
 // XreaL BEGIN
@@ -329,7 +329,7 @@ textures/battery/terrain_3
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rock_graynoise //new
-	bumpmap	 	textures/temperate_sd/rock_graynoise_normal //new
+	bumpmap	 	textures/temperate_sd/rock_graynoise_norm //new
     specularmap textures/temperate_sd/rock_graynoise_spec //new
 	
 // XreaL BEGIN
@@ -366,7 +366,7 @@ textures/battery/terrain_4
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rock_grayvar //new
-	bumpmap	 	textures/temperate_sd/rock_grayvar_normal //new
+	bumpmap	 	textures/temperate_sd/rock_grayvar_norm //new
     specularmap textures/temperate_sd/rock_grayvar_spec //new
 	
 // XreaL BEGIN
@@ -403,7 +403,7 @@ textures/battery/terrain_5
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_patchnoise //new
-	bumpmap 	textures/temperate_sd/sand_patchnoise_normal //new
+	bumpmap 	textures/temperate_sd/sand_patchnoise_norm //new
     specularmap textures/temperate_sd/sand_patchnoise_spec //new
 	
 // XreaL BEGIN
@@ -441,7 +441,7 @@ textures/battery/terrain_0to1
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 
 // XreaL BEGIN
@@ -466,7 +466,7 @@ textures/battery/terrain_0to1
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_disturb_bright_normal
+		map textures/temperate_sd/sand_disturb_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -514,7 +514,7 @@ textures/battery/terrain_0to2
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 	
 // XreaL BEGIN
@@ -539,7 +539,7 @@ textures/battery/terrain_0to2
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_disturb_bright_normal
+		map textures/temperate_sd/sand_disturb_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -578,7 +578,7 @@ textures/battery/terrain_0to3
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 	
 // XreaL BEGIN
@@ -603,7 +603,7 @@ textures/battery/terrain_0to3
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_disturb_bright_normal
+		map textures/temperate_sd/sand_disturb_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -644,7 +644,7 @@ textures/battery/terrain_0to4
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 	
 // XreaL BEGIN
@@ -669,7 +669,7 @@ textures/battery/terrain_0to4
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_disturb_bright_normal
+		map textures/temperate_sd/sand_disturb_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -709,7 +709,7 @@ textures/battery/terrain_0to5
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_disturb_bright //new
-	bumpmap 	textures/temperate_sd/sand_disturb_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_disturb_bright_norm //new
     specularmap textures/temperate_sd/sand_disturb_bright_spec //new
 	
 // XreaL BEGIN
@@ -733,7 +733,7 @@ textures/battery/terrain_0to5
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_disturb_bright_normal
+		map textures/temperate_sd/sand_disturb_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -774,7 +774,7 @@ textures/battery/terrain_1to2
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_wave_bright //new
-	bumpmap 	textures/temperate_sd/sand_wave_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_wave_bright_norm //new
     specularmap textures/temperate_sd/sand_wave_bright_spec //new
 	
 // XreaL BEGIN
@@ -799,7 +799,7 @@ textures/battery/terrain_1to2
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_wave_bright_normal
+		map textures/temperate_sd/sand_wave_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -837,7 +837,7 @@ textures/battery/terrain_1to3
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/sand_wave_bright //new
-	bumpmap 	textures/temperate_sd/sand_wave_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_wave_bright_norm //new
     specularmap textures/temperate_sd/sand_wave_bright_spec //new
 	
 // XreaL BEGIN
@@ -861,7 +861,7 @@ textures/battery/terrain_1to3
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_wave_bright_normal
+		map textures/temperate_sd/sand_wave_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -902,7 +902,7 @@ textures/battery/terrain_1to4
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/sand_wave_bright //new
-	bumpmap 	textures/temperate_sd/sand_wave_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_wave_bright_norm //new
     specularmap textures/temperate_sd/sand_wave_bright_spec //new
 	
 // XreaL BEGIN
@@ -926,7 +926,7 @@ textures/battery/terrain_1to4
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_wave_bright_normal
+		map textures/temperate_sd/sand_wave_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -966,7 +966,7 @@ textures/battery/terrain_1to5
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/sand_wave_bright //new
-	bumpmap 	textures/temperate_sd/sand_wave_bright_normal //new
+	bumpmap 	textures/temperate_sd/sand_wave_bright_norm //new
     specularmap textures/temperate_sd/sand_wave_bright_spec //new
 	
 // XreaL BEGIN
@@ -990,7 +990,7 @@ textures/battery/terrain_1to5
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/sand_wave_bright_normal
+		map textures/temperate_sd/sand_wave_bright_norm
 		vertexColor
 		blend blend
 	}
@@ -1030,7 +1030,7 @@ textures/battery/terrain_2to3
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rocky_sand //new
-	bumpmap 	textures/temperate_sd/rocky_sand_normal //new
+	bumpmap 	textures/temperate_sd/rocky_sand_norm //new
     specularmap textures/temperate_sd/rocky_sand_spec //new
 	
 // XreaL BEGIN
@@ -1054,7 +1054,7 @@ textures/battery/terrain_2to3
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/rocky_sand_normal
+		map textures/temperate_sd/rocky_sand_norm
 		vertexColor
 		blend blend
 	}
@@ -1092,7 +1092,7 @@ textures/battery/terrain_2to4
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rocky_sand //new
-	bumpmap 	textures/temperate_sd/rocky_sand_normal //new
+	bumpmap 	textures/temperate_sd/rocky_sand_norm //new
     specularmap textures/temperate_sd/rocky_sand_spec //new
 	
 // XreaL BEGIN
@@ -1116,7 +1116,7 @@ textures/battery/terrain_2to4
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/rocky_sand_normal
+		map textures/temperate_sd/rocky_sand_norm
 		vertexColor
 		blend blend
 	}
@@ -1156,7 +1156,7 @@ textures/battery/terrain_2to5
 	surfaceparm gravelsteps
 	
 	diffusemap 	textures/temperate_sd/rocky_sand //new
-	bumpmap 	textures/temperate_sd/rocky_sand_normal //new
+	bumpmap 	textures/temperate_sd/rocky_sand_norm //new
     specularmap textures/temperate_sd/rocky_sand_spec //new
 	
 // XreaL BEGIN
@@ -1180,7 +1180,7 @@ textures/battery/terrain_2to5
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/rocky_sand_normal
+		map textures/temperate_sd/rocky_sand_norm
 		vertexColor
 		blend blend
 	}
@@ -1218,7 +1218,7 @@ textures/battery/terrain_3to4
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rock_graynoise //new
-	bumpmap 	textures/temperate_sd/rock_graynoise_normal //new
+	bumpmap 	textures/temperate_sd/rock_graynoise_norm //new
     specularmap textures/temperate_sd/rock_graynoise_spec //new
 	
 // XreaL BEGIN
@@ -1242,7 +1242,7 @@ textures/battery/terrain_3to4
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/rock_graynoise_normal
+		map textures/temperate_sd/rock_graynoise_norm
 		vertexColor
 		blend blend
 	}
@@ -1283,7 +1283,7 @@ textures/battery/terrain_3to5
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rock_graynoise //new
-	bumpmap 	textures/temperate_sd/rock_graynoise_normal //new
+	bumpmap 	textures/temperate_sd/rock_graynoise_norm //new
     specularmap textures/temperate_sd/rock_graynoise_spec //new
 	
 // XreaL BEGIN
@@ -1307,7 +1307,7 @@ textures/battery/terrain_3to5
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/rock_graynoise_normal
+		map textures/temperate_sd/rock_graynoise_norm
 		vertexColor
 		blend blend
 	}
@@ -1347,7 +1347,7 @@ textures/battery/terrain_4to5
 	q3map_baseshader textures/battery/terrain_base
 	
 	diffusemap 	textures/temperate_sd/rock_grayvar //new
-	bumpmap 	textures/temperate_sd/rock_grayvar_normal //new
+	bumpmap 	textures/temperate_sd/rock_grayvar_norm //new
     specularmap textures/temperate_sd/rock_grayvar_spec //new
 	
 // XreaL BEGIN
@@ -1371,7 +1371,7 @@ textures/battery/terrain_4to5
 	
 	{	//new
 		stage bumpmap
-		map textures/temperate_sd/rock_grayvar_normal
+		map textures/temperate_sd/rock_grayvar_norm
 		vertexColor
 		blend blend
 	}

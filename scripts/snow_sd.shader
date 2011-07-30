@@ -366,6 +366,16 @@ textures/snow_sd/snow_path01
 	specularmap		textures/snow_sd/snow_path01_spec
 }
 
+textures/snow_sd/snow_road01
+{
+	qer_editorimage textures/snow_sd/snow_road01
+	
+	diffusemap		textures/snow_sd/snow_road01
+	bumpmap         displacemap( textures/snow_sd/snow_road01_norm, invertColor(textures/snow_sd/snow_road01_disp) )
+	specularmap		textures/snow_sd/snow_road01_spec
+}
+
+
 textures/snow_sd/snow_var01
 {
 	qer_editorimage textures/snow_sd/snow_var01
@@ -397,12 +407,24 @@ textures/snow_sd/sub1_snow
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/sub1_snow
+	
+	diffusemap		textures/snow_sd/sub1_snow
+	bumpmap         displacemap( textures/snow_sd/sub1_snow_norm, invertColor(textures/snow_sd/sub1_snow_disp) )
+	specularmap		textures/snow_sd/sub1_snow_spec
 }
 
 textures/snow_sd/sub1_snow2
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/sub1_snow2
+	
+	diffusemap		textures/snow_sd/sub1_snow2
+	bumpmap         displacemap( textures/snow_sd/sub1_snow2_norm, invertColor(textures/snow_sd/sub1_snow2_disp) )
+	specularmap		textures/snow_sd/sub1_snow2_spec
 }
 
 textures/snow_sd/wirefence01_snow
@@ -468,7 +490,6 @@ textures/snow_sd/s_grass_ml03b_big
 {
 	qer_editorimage textures/snow_sd/s_grass_ml03b_big
 	
-	
 	diffusemap		textures/snow_sd/s_grass_ml03b_big
 	bumpmap         displacemap( textures/snow_sd/s_grass_ml03b_big_norm, invertColor(textures/snow_sd/s_grass_ml03b_big_disp) )
 	specularmap		textures/snow_sd/s_dirt_m03i_2_big_spec
@@ -477,7 +498,6 @@ textures/snow_sd/s_grass_ml03b_big
 textures/snow_sd/snow_muddy
 {
 	qer_editorimage textures/snow_sd/snow_muddy
-	
 	
 	diffusemap		textures/snow_sd/snow_muddy
 	bumpmap         displacemap( textures/snow_sd/snow_muddy_norm, invertColor(textures/snow_sd/snow_muddy_disp) )
@@ -488,12 +508,25 @@ textures/snow_sd/xmetal_m02_snow
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/xmetal_m02_snow
+	
+	diffusemap		textures/snow_sd/xmetal_m02_snow
+	bumpmap         displacemap( textures/snow_sd/xmetal_m02_snow_norm, invertColor(textures/snow_sd/xmetal_m02_snow_disp) )
+	specularmap		textures/snow_sd/xmetal_m02_snow_spec
+	
 }
 
 textures/snow_sd/xmetal_m02t_snow
 {
 	surfaceparm metalsteps
 	implicitMap -
+	
+	qer_editorimage textures/snow_sd/xmetal_m02t_snow
+	
+	diffusemap		textures/snow_sd/xmetal_m02t_snow
+	bumpmap         displacemap( textures/snow_sd/xmetal_m02t_snow_norm, invertColor(textures/snow_sd/xmetal_m02t_snow_disp) )
+	specularmap		textures/snow_sd/xmetal_m02t_snow_spec
 }
 
 //==========================================================================
