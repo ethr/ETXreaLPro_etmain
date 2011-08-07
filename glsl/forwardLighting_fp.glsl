@@ -153,7 +153,7 @@ float ChebyshevUpperBound(vec2 shadowMoments, float vertexDistance, float minVar
 	float E_x2 = shadowDistanceSquared;
 	float Ex_2 = shadowDistance * shadowDistance;
 
-	float variance = max(E_x2 - Ex_2, minVariance);
+	float variance = max(E_x2 - Ex_2, max(minVariance, VSM_EPSILON));
 	// float variance = smoothstep(minVariance, 1.0, max(E_x2 - Ex_2, 0.0));
 
 	// compute probabilistic upper bound
