@@ -6,7 +6,7 @@
 
 textures/heat_sky/horizon_sky
 {
-	qer_editorimage textures/heat_sky/heat_up.jpg
+	qer_editorimage textures/heat_sky/heat_up
 	
 	skyParms textures/heat_sky/heat 2048 -
 

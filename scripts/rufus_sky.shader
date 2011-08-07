@@ -3,7 +3,7 @@
 
 textures/rufus_sky/rufus_sky
 {
-	qer_editorimage textures/rufus_sky/rufus_sky_up.jpg
+	qer_editorimage textures/rufus_sky/rufus_sky_up
 	
 	skyParms textures/rufus_sky/rufus_sky 2048 -
 

@@ -6,7 +6,7 @@
 
 textures/overcast_sky/overcast_sky
 {
-	qer_editorimage textures/overcast_sky/overcast_editor.jpg
+	qer_editorimage textures/overcast_sky/overcast_editor
 	
 	skyParms textures/overcast_sky/overcast 2048 -
 

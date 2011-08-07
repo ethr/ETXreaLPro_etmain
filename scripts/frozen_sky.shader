@@ -7,7 +7,7 @@
 
 textures/frozen_sky/frozen_sky
 {
-	qer_editorimage textures/frozen_sky/frozen_up.jpg
+	qer_editorimage textures/frozen_sky/frozen_up
 	
 	skyParms textures/frozen_sky/frozen 2048 -
 

@@ -6,7 +6,7 @@
 
 textures/endless_sky/endless_sky
 {
-	qer_editorimage textures/avoc_common/skybox_editor.jpg
+	qer_editorimage textures/avoc_common/skybox_editor
 	
 	skyParms textures/endless_sky/endless 2048 -
 
