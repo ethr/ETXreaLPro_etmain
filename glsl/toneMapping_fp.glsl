@@ -56,57 +56,65 @@ void	main()
 
 	float Ymax = u_HDRMaxLuminance;
 
-#if defined(r_HDRToneMappingOperator_0)
+	// RGB -> XYZ conversion 
+	const mat3 RGB2XYZ = mat3(  0.5141364, 0.3238786,  0.16036376, 
+								0.265068,  0.67023428, 0.06409157, 
+								0.0241188, 0.1228178,  0.84442666);				                      
+								
+	vec3 XYZ = RGB2XYZ * color.rgb;
 	
-	// simple tone map operator
-	float L = Yr / (1.0 + Yr);
+	// XYZ -> Yxy conversion 
+	vec3 Yxy; 
 	
-#elif defined(r_HDRToneMappingOperator_1)
+	// Y = Y luminance
+	Yxy.r = XYZ.g;
 	
-	// recommended by Wolgang Engel
-	float L = Yr * (1.0 + Yr / (Ymax * Ymax)) / (1.0 + Yr);
-
-#elif defined(r_HDRToneMappingOperator_2)
-
-	float Cmax = color.r;
-	if(color.g > Cmax)
-		Cmax = color.g;
-	if(color.b > Cmax)
-		Cmax = color.b;
-
-	float L = 1.0 - exp(-Yr * Cmax);
-
-	if(Cmax > 0.0)
-	{
-		L = L / Cmax;
-	}
-	else
-	{
-		L = 0.0;
-	}
-
-#elif defined(r_HDRToneMappingOperator_3)
+	// x = X / (X + Y + Z)
+	Yxy.g = XYZ.r / (XYZ.r + XYZ.g + XYZ.b);
 	
-	float L = Yr / (1.0 + Yr) * (1.0 + Yr / (Ymax * Ymax));
+	// y = Y / (X + Y + Z)
+	Yxy.b = XYZ.g / (XYZ.r + XYZ.g + XYZ.b);
 	
+	// (Lp) map average luminance to the middlegrey zone by scaling pixel luminance 
+	float Lp = Yxy.r * u_HDRKey / u_HDRAverageLuminance;
+	
+	// (Ld) scale all luminance within a displayable range of 0 to 1
+	
+#if defined(r_HDRToneMappingOperator_1)
+	Yxy.r = (Lp * (1.0 + Lp / (Ymax * Ymax))) / (1.0 + Lp);
 #else
-	float L = 1.0 - exp(-Yr);
+	Yxy.r = 1.0 - exp(-Lp);
 #endif
 	
+	// Yxy -> XYZ conversion 
+	
+	// X = Y * x / y
+	XYZ.r = Yxy.r * Yxy.g / Yxy.b;
+	
+	// Y = Y
+	XYZ.g = Yxy.r;
+	
+	// Z = Y * (1-x-y) / y  or  Z = (1 - x - y) * (Y / y)
+	XYZ.b = Yxy.r * (1 - Yxy.g - Yxy.b) / Yxy.b;
+	
+	// XYZ -> RGB conversion
+	const mat3 XYZ2RGB  = mat3(	2.5651,-1.1665,-0.3986,
+								-1.0217, 1.9777, 0.0439, 
+								0.0753, -0.2543, 1.1892);
+	
+	color.rgb = XYZ2RGB * XYZ;
 	
 #if defined(BRIGHTPASS_FILTER)
 #if defined(r_HDRRendering)
 	// adjust contrast
 	// L = pow(L, 1.32);
 	
-	float T = max(L - r_HDRContrastThreshold, 0.0);
-	//float T = max(1.0 - exp(-Yr) - r_HDRContrastThreshold, 0.0);
+	float T = max(Lp - r_HDRContrastThreshold, 0.0);
+	// float T = max(1.0 - exp(-Yr) - r_HDRContrastThreshold, 0.0);
 	float B = T / (r_HDRContrastOffset + T);
 	
-	color.rgb *= B;
+	color.rgb *= clamp(B, 0.0, 1.0);
 #endif
-#else
-	color.rgb *= L;
 #endif
 	
 #if 0 // defined(r_HDRGamma)
@@ -119,6 +127,6 @@ void	main()
 	gl_FragColor = color;
 	
 #if 0
-	gl_FragColor = vec4(L, L, L, 1.0);
+	gl_FragColor = vec4(Lp, Lp, Lp, 1.0);
 #endif
 }
