@@ -50,6 +50,14 @@ void	main()
 	
 	// get the luminance of the current pixel
 	float Y = dot(LUMINANCE_VECTOR, color);
+
+#if defined(BRIGHTPASS_FILTER)
+	if(Y < 0.1)
+	{
+		discard;
+		return;
+	}
+#endif
 	
 	// calculate the relative luminance
 	float Yr = u_HDRKey * Y / u_HDRAverageLuminance;
@@ -57,9 +65,9 @@ void	main()
 	float Ymax = u_HDRMaxLuminance;
 
 	// RGB -> XYZ conversion 
-	const mat3 RGB2XYZ = mat3(  0.5141364, 0.3238786,  0.16036376, 
-								0.265068,  0.67023428, 0.06409157, 
-								0.0241188, 0.1228178,  0.84442666);				                      
+	const mat3 RGB2XYZ = mat3(  0.4124564,  0.3575761,  0.1804375, 
+								0.2126729,  0.7151522,  0.0721750, 
+								0.0193339,  0.1191920,  0.9503041);				                      
 								
 	vec3 XYZ = RGB2XYZ * color.rgb;
 	
@@ -95,14 +103,15 @@ void	main()
 	XYZ.g = Yxy.r;
 	
 	// Z = Y * (1-x-y) / y  or  Z = (1 - x - y) * (Y / y)
-	XYZ.b = Yxy.r * (1 - Yxy.g - Yxy.b) / Yxy.b;
+	XYZ.b = (1 - Yxy.g - Yxy.b) * (Yxy.r / Yxy.b);
 	
 	// XYZ -> RGB conversion
-	const mat3 XYZ2RGB  = mat3(	2.5651,-1.1665,-0.3986,
-								-1.0217, 1.9777, 0.0439, 
-								0.0753, -0.2543, 1.1892);
+	const mat3 XYZ2RGB  = mat3(	3.2404542, -1.5371385, -0.4985314,
+								-0.9692660,  1.8760108,  0.0415560,
+								0.0556434, -0.2040259, 1.0572252);
 	
-	color.rgb = XYZ2RGB * XYZ;
+	color.rgb = clamp(XYZ2RGB * XYZ, 0.0, 1.0);
+	// color.rgb *= Yxy.r;
 	
 #if defined(BRIGHTPASS_FILTER)
 #if defined(r_HDRRendering)
@@ -111,7 +120,7 @@ void	main()
 	
 	float T = max(Lp - r_HDRContrastThreshold, 0.0);
 	// float T = max(1.0 - exp(-Yr) - r_HDRContrastThreshold, 0.0);
-	float B = T / (r_HDRContrastOffset + T);
+	float B = T > 0.0 ? T / (r_HDRContrastOffset + T) : T;
 	
 	color.rgb *= clamp(B, 0.0, 1.0);
 #endif
