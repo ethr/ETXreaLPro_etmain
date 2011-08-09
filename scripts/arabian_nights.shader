@@ -6,7 +6,7 @@
 
 textures/arabian_nights/arabian_nights_sky
 {
-	qer_editorimage textures/arabian_nights/arabian_nights_up.jpg
+	qer_editorimage textures/arabian_nights/arabian_nights_up
 	
 	skyParms textures/arabian_nights/arabian_nights 2048 -
 

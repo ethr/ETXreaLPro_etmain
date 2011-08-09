@@ -6,7 +6,7 @@
 
 textures/horizon_sky/horizon_sky
 {
-	qer_editorimage textures/horizon_sky/horizon_up.jpg
+	qer_editorimage textures/horizon_sky/horizon_up
 	
 	skyParms textures/horizon_sky/horizon 2048 -
 

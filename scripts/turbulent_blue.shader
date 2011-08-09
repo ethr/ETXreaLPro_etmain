@@ -6,7 +6,7 @@
 
 textures/turbulent_blue/turbulent_sky
 {
-	qer_editorimage textures/turbulent_blue/turbulent_up.jpg
+	qer_editorimage textures/turbulent_blue/turbulent_up
 	
 	skyParms textures/turbulent_blue/turbulent 2048 -
 
