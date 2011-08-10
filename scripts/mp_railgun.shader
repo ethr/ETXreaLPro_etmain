@@ -4,17 +4,17 @@
 
 textures/mp_railgun/cable
 {
-	qer_editorimage textures/props/cable_m01.tga
+	qer_editorimage textures/props/cable_m01
 	surfaceparm metalsteps
 	{
-		map textures/props/cable_m01.tga
+		map textures/props/cable_m01
 		rgbGen vertex
 	}
 }
 
 textures/mp_railgun/fog
 {
-	qer_editorimage textures/sfx/fog_grey1.tga
+	qer_editorimage textures/sfx/fog_grey1
 	fogparms ( 0.6 0.6 0.6 ) 2560
 	surfaceparm fog
 	surfaceparm nodraw
@@ -27,7 +27,7 @@ textures/mp_railgun/lmterrain_base
 	q3map_lightmapMergable
 	q3map_lightmapaxis z
 	q3map_lightmapsize 512 512
-	q3map_normalimage textures/sd_bumpmaps/normalmap_terrain.tga
+	q3map_normalimage textures/sd_bumpmaps/normalmap_terrain
 	q3map_tcGen ivector ( 512 0 0 ) ( 0 512 0 )
 	q3map_tcMod rotate 37
 	q3map_tcMod scale 1 1
@@ -39,7 +39,7 @@ textures/mp_railgun/lmterrain_0
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_dirt_m03i_2_big.tga
+		map textures/snow_sd/s_dirt_m03i_2_big
 		rgbgen identity
 	}
 	{
@@ -48,7 +48,7 @@ textures/mp_railgun/lmterrain_0
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -93,11 +93,11 @@ textures/mp_railgun/lmterrain_0to2
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_dirt_m03i_2_big.tga
+		map textures/snow_sd/s_dirt_m03i_2_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -108,7 +108,7 @@ textures/mp_railgun/lmterrain_0to2
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -120,11 +120,11 @@ textures/mp_railgun/lmterrain_0to3
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_dirt_m03i_2_big.tga
+		map textures/snow_sd/s_dirt_m03i_2_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -135,7 +135,7 @@ textures/mp_railgun/lmterrain_0to3
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -147,11 +147,11 @@ textures/mp_railgun/lmterrain_0to4
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_dirt_m03i_2_big.tga
+		map textures/snow_sd/s_dirt_m03i_2_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -162,7 +162,7 @@ textures/mp_railgun/lmterrain_0to4
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -174,11 +174,11 @@ textures/mp_railgun/lmterrain_0to5
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_dirt_m03i_2_big.tga
+		map textures/snow_sd/s_dirt_m03i_2_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -189,7 +189,7 @@ textures/mp_railgun/lmterrain_0to5
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -201,11 +201,11 @@ textures/mp_railgun/lmterrain_0to6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_dirt_m03i_2_big.tga
+		map textures/snow_sd/s_dirt_m03i_2_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -216,7 +216,7 @@ textures/mp_railgun/lmterrain_0to6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -228,7 +228,7 @@ textures/mp_railgun/lmterrain_1
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/bigrock_rounded_faint.tga
+		map textures/snow_sd/bigrock_rounded_faint
 		rgbgen identity
 	}
 	{
@@ -237,7 +237,7 @@ textures/mp_railgun/lmterrain_1
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -249,11 +249,11 @@ textures/mp_railgun/lmterrain_1to2
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/bigrock_rounded_faint.tga
+		map textures/snow_sd/bigrock_rounded_faint
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -264,7 +264,7 @@ textures/mp_railgun/lmterrain_1to2
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -276,11 +276,11 @@ textures/mp_railgun/lmterrain_1to3
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/bigrock_rounded_faint.tga
+		map textures/snow_sd/bigrock_rounded_faint
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -291,7 +291,7 @@ textures/mp_railgun/lmterrain_1to3
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -303,11 +303,11 @@ textures/mp_railgun/lmterrain_1to4
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/bigrock_rounded_faint.tga
+		map textures/snow_sd/bigrock_rounded_faint
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -318,7 +318,7 @@ textures/mp_railgun/lmterrain_1to4
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -330,11 +330,11 @@ textures/mp_railgun/lmterrain_1to5
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/bigrock_rounded_faint.tga
+		map textures/snow_sd/bigrock_rounded_faint
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -345,7 +345,7 @@ textures/mp_railgun/lmterrain_1to5
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -357,11 +357,11 @@ textures/mp_railgun/lmterrain_1to6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/bigrock_rounded_faint.tga
+		map textures/snow_sd/bigrock_rounded_faint
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -372,7 +372,7 @@ textures/mp_railgun/lmterrain_1to6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -384,7 +384,7 @@ textures/mp_railgun/lmterrain_2
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		rgbgen identity
 	}
 	{
@@ -393,7 +393,7 @@ textures/mp_railgun/lmterrain_2
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -405,11 +405,11 @@ textures/mp_railgun/lmterrain_2to3
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -420,7 +420,7 @@ textures/mp_railgun/lmterrain_2to3
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -432,11 +432,11 @@ textures/mp_railgun/lmterrain_2to4
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -447,7 +447,7 @@ textures/mp_railgun/lmterrain_2to4
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -459,11 +459,11 @@ textures/mp_railgun/lmterrain_2to5
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -474,7 +474,7 @@ textures/mp_railgun/lmterrain_2to5
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -486,11 +486,11 @@ textures/mp_railgun/lmterrain_2to6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_var01_big.tga
+		map textures/snow_sd/snow_var01_big
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -501,7 +501,7 @@ textures/mp_railgun/lmterrain_2to6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -513,7 +513,7 @@ textures/mp_railgun/lmterrain_3
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		rgbgen identity
 	}
 	{
@@ -522,7 +522,7 @@ textures/mp_railgun/lmterrain_3
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -534,11 +534,11 @@ textures/mp_railgun/lmterrain_3to4
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -549,7 +549,7 @@ textures/mp_railgun/lmterrain_3to4
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -561,11 +561,11 @@ textures/mp_railgun/lmterrain_3to5
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -576,7 +576,7 @@ textures/mp_railgun/lmterrain_3to5
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -588,11 +588,11 @@ textures/mp_railgun/lmterrain_3to6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_muddy.tga
+		map textures/snow_sd/snow_muddy
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -603,7 +603,7 @@ textures/mp_railgun/lmterrain_3to6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -615,7 +615,7 @@ textures/mp_railgun/lmterrain_4
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		rgbgen identity
 	}
 	{
@@ -624,7 +624,7 @@ textures/mp_railgun/lmterrain_4
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -636,11 +636,11 @@ textures/mp_railgun/lmterrain_4to5
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -651,7 +651,7 @@ textures/mp_railgun/lmterrain_4to5
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -663,11 +663,11 @@ textures/mp_railgun/lmterrain_4to6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/mxrock4b_snow.tga
+		map textures/snow_sd/mxrock4b_snow
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -678,7 +678,7 @@ textures/mp_railgun/lmterrain_4to6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -690,7 +690,7 @@ textures/mp_railgun/lmterrain_5
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		rgbgen identity
 	}
 	{
@@ -699,7 +699,7 @@ textures/mp_railgun/lmterrain_5
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -711,11 +711,11 @@ textures/mp_railgun/lmterrain_5to6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/snow_noisy.tga
+		map textures/snow_sd/snow_noisy
 		rgbgen identity
 	}
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 		alphaGen vertex
@@ -726,7 +726,7 @@ textures/mp_railgun/lmterrain_5to6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -738,7 +738,7 @@ textures/mp_railgun/lmterrain_6
 {
 	q3map_baseshader textures/mp_railgun/lmterrain_base
 	{
-		map textures/snow_sd/s_grass_ml03b_big.tga
+		map textures/snow_sd/s_grass_ml03b_big
 		rgbgen identity
 	}
 	{
@@ -747,7 +747,7 @@ textures/mp_railgun/lmterrain_6
 		rgbgen identity
 	}
 	{
-		map textures/detail_sd/snowdetail.tga
+		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		rgbgen identity
 		tcMod scale 5 5
@@ -757,7 +757,7 @@ textures/mp_railgun/lmterrain_6
 
 textures/mp_railgun/sky
 {
-	qer_editorimage textures/skies/sky_6.tga
+	qer_editorimage textures/skies/sky_6
 	q3map_skylight 90 3
 	q3map_sun 0.55 0.55 0.55 90 220 60
 	skyparms - 200 -

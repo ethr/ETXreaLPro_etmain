@@ -4,7 +4,7 @@
 
 textures/mp_rocket/fence_c10_light
 {
-	qer_editorimage textures/alpha/fence_c10_light.tga
+	qer_editorimage textures/alpha/fence_c10_light
 	cull disable
 	nomipmaps
 	nopicmip
@@ -12,5 +12,5 @@ textures/mp_rocket/fence_c10_light
 	surfaceparm metalsteps
 	surfaceparm nomarks
 	surfaceparm pointlight
-	implicitMask textures/alpha/fence_c10_light.tga
+	implicitMask textures/alpha/fence_c10_light
 }

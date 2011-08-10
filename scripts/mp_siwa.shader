@@ -4,8 +4,8 @@
 
 textures/mp_siwa/sky
 {
-	qer_editorimage textures/skies_sd/nero_bluelight.tga
-	q3map_lightimage textures/skies_sd/siwa_clouds.tga
+	qer_editorimage textures/skies_sd/nero_bluelight
+	q3map_lightimage textures/skies_sd/siwa_clouds
 	q3map_skylight 75 3
 	q3map_sun 0.75 0.70 0.6 135 199 49
 	skyparms - 200 -
@@ -14,7 +14,7 @@ textures/mp_siwa/sky
 	surfaceparm nolightmap
 	surfaceparm sky
 	{
-		map textures/skies_sd/siwa_clouds.tga
+		map textures/skies_sd/siwa_clouds
 		tcMod scale 3 3
 		tcMod scroll -0.001 -0.0025
 	}
@@ -39,7 +39,7 @@ textures/mp_siwa/lmterrain_0
 	 
 	 
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
@@ -49,7 +49,7 @@ textures/mp_siwa/lmterrain_0
 	}
 	
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -64,7 +64,7 @@ textures/mp_siwa/lmterrain_1
 	 
 	 
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
@@ -74,7 +74,7 @@ textures/mp_siwa/lmterrain_1
 	}
 	
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -89,7 +89,7 @@ textures/mp_siwa/lmterrain_2
 	 
 	 
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 	}
 	{
@@ -99,7 +99,7 @@ textures/mp_siwa/lmterrain_2
 	}
 	
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -114,7 +114,7 @@ textures/mp_siwa/lmterrain_3
 	 
 	 
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 	}
 	{
@@ -123,7 +123,7 @@ textures/mp_siwa/lmterrain_3
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -138,7 +138,7 @@ textures/mp_siwa/lmterrain_4
 	 
 	 
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 	}
 	{
@@ -147,7 +147,7 @@ textures/mp_siwa/lmterrain_4
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -159,7 +159,7 @@ textures/mp_siwa/lmterrain_5
 	q3map_baseshader textures/mp_siwa/lmterrain_base
 		 
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 	}
 	{
@@ -168,7 +168,7 @@ textures/mp_siwa/lmterrain_5
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -183,7 +183,7 @@ textures/mp_siwa/lmterrain_6
 	 
 	 
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 	}
 	{
@@ -192,7 +192,7 @@ textures/mp_siwa/lmterrain_6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -207,7 +207,7 @@ textures/mp_siwa/lmterrain_7
 	 
 	 
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 	}
 	{
@@ -216,7 +216,7 @@ textures/mp_siwa/lmterrain_7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -232,11 +232,11 @@ textures/mp_siwa/lmterrain_0to1
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -247,7 +247,7 @@ textures/mp_siwa/lmterrain_0to1
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -263,11 +263,11 @@ textures/mp_siwa/lmterrain_0to2
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -278,7 +278,7 @@ textures/mp_siwa/lmterrain_0to2
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -294,11 +294,11 @@ textures/mp_siwa/lmterrain_0to3
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -309,7 +309,7 @@ textures/mp_siwa/lmterrain_0to3
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -325,11 +325,11 @@ textures/mp_siwa/lmterrain_0to4
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -340,7 +340,7 @@ textures/mp_siwa/lmterrain_0to4
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -356,11 +356,11 @@ textures/mp_siwa/lmterrain_0to5
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -371,7 +371,7 @@ textures/mp_siwa/lmterrain_0to5
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -387,11 +387,11 @@ textures/mp_siwa/lmterrain_0to6
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -402,7 +402,7 @@ textures/mp_siwa/lmterrain_0to6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -418,11 +418,11 @@ textures/mp_siwa/lmterrain_0to7
 	 
 	
 	{
-		map textures/desert_sd/sand_wave_desert.tga
+		map textures/desert_sd/sand_wave_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -433,7 +433,7 @@ textures/mp_siwa/lmterrain_0to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -449,11 +449,11 @@ textures/mp_siwa/lmterrain_1to2
 	 
 	
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -464,7 +464,7 @@ textures/mp_siwa/lmterrain_1to2
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -480,11 +480,11 @@ textures/mp_siwa/lmterrain_1to3
 	 
 	
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -495,7 +495,7 @@ textures/mp_siwa/lmterrain_1to3
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -511,11 +511,11 @@ textures/mp_siwa/lmterrain_1to4
 	 
 	
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -526,7 +526,7 @@ textures/mp_siwa/lmterrain_1to4
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -542,11 +542,11 @@ textures/mp_siwa/lmterrain_1to5
 	 
 	
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -557,7 +557,7 @@ textures/mp_siwa/lmterrain_1to5
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -573,11 +573,11 @@ textures/mp_siwa/lmterrain_1to6
 	 
 	
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -588,7 +588,7 @@ textures/mp_siwa/lmterrain_1to6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -604,11 +604,11 @@ textures/mp_siwa/lmterrain_1to7
 	 
 	
 	{
-		map textures/desert_sd/grass_sand_flat.tga
+		map textures/desert_sd/grass_sand_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -619,7 +619,7 @@ textures/mp_siwa/lmterrain_1to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -635,11 +635,11 @@ textures/mp_siwa/lmterrain_2to3
 	 
 	
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -650,7 +650,7 @@ textures/mp_siwa/lmterrain_2to3
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -666,11 +666,11 @@ textures/mp_siwa/lmterrain_2to4
 	 
 	
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -681,7 +681,7 @@ textures/mp_siwa/lmterrain_2to4
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -697,11 +697,11 @@ textures/mp_siwa/lmterrain_2to5
 	 
 	
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -712,7 +712,7 @@ textures/mp_siwa/lmterrain_2to5
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -728,11 +728,11 @@ textures/mp_siwa/lmterrain_2to6
 	 
 	
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -743,7 +743,7 @@ textures/mp_siwa/lmterrain_2to6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -759,11 +759,11 @@ textures/mp_siwa/lmterrain_2to7
 	 
 	
 	{
-		map textures/desert_sd/sand_patchy.tga
+		map textures/desert_sd/sand_patchy
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -774,7 +774,7 @@ textures/mp_siwa/lmterrain_2to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -790,11 +790,11 @@ textures/mp_siwa/lmterrain_3to4
 	 
 	
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -805,7 +805,7 @@ textures/mp_siwa/lmterrain_3to4
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -821,11 +821,11 @@ textures/mp_siwa/lmterrain_3to5
 	 
 	
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -836,7 +836,7 @@ textures/mp_siwa/lmterrain_3to5
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -852,11 +852,11 @@ textures/mp_siwa/lmterrain_3to6
 	 
 	
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -867,7 +867,7 @@ textures/mp_siwa/lmterrain_3to6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -883,11 +883,11 @@ textures/mp_siwa/lmterrain_3to7
 	 
 	
 	{
-		map textures/desert_sd/sand_disturb_desert.tga
+		map textures/desert_sd/sand_disturb_desert
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -898,7 +898,7 @@ textures/mp_siwa/lmterrain_3to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -914,11 +914,11 @@ textures/mp_siwa/lmterrain_4to5
 	 
 	
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -929,7 +929,7 @@ textures/mp_siwa/lmterrain_4to5
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -945,11 +945,11 @@ textures/mp_siwa/lmterrain_4to6
 	 
 	
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -960,7 +960,7 @@ textures/mp_siwa/lmterrain_4to6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -976,11 +976,11 @@ textures/mp_siwa/lmterrain_4to7
 	 
 	
 	{
-		map textures/desert_sd/grass_desert_flat.tga
+		map textures/desert_sd/grass_desert_flat
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -991,7 +991,7 @@ textures/mp_siwa/lmterrain_4to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -1007,11 +1007,11 @@ textures/mp_siwa/lmterrain_5to6
 	 
 	
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -1022,7 +1022,7 @@ textures/mp_siwa/lmterrain_5to6
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -1038,11 +1038,11 @@ textures/mp_siwa/lmterrain_5to7
 	 
 	
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -1053,7 +1053,7 @@ textures/mp_siwa/lmterrain_5to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -1067,11 +1067,11 @@ textures/mp_siwa/lmterrain_6to7
 	surfaceparm gravelsteps
 	
 	{
-		map textures/desert_sd/sand_gravels_bright.tga
+		map textures/desert_sd/sand_gravels_bright
 		rgbgen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -1082,7 +1082,7 @@ textures/mp_siwa/lmterrain_6to7
 		 
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -1093,7 +1093,7 @@ textures/mp_siwa/sand_dirt
 {
 	q3map_nonplanar
 	q3map_shadeangle 120
-	qer_editorimage textures/desert_sd/sand_dirt_medium.tga
+	qer_editorimage textures/desert_sd/sand_dirt_medium
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	
@@ -1102,12 +1102,12 @@ textures/mp_siwa/sand_dirt
 		rgbGen identity
 	}
 	{
-		map textures/desert_sd/sand_dirt_medium.tga
+		map textures/desert_sd/sand_dirt_medium
 		rgbgen identity
 		blendFunc filter
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
@@ -1119,7 +1119,7 @@ textures/mp_siwa/rock_edged
 {
 	q3map_nonplanar
 	q3map_shadeangle 120
-	qer_editorimage textures/desert_sd/rock_edged_smooth.tga
+	qer_editorimage textures/desert_sd/rock_edged_smooth
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	
@@ -1128,12 +1128,12 @@ textures/mp_siwa/rock_edged
 		rgbGen identity
 	}
 	{
-		map textures/desert_sd/rock_edged_smooth.tga
+		map textures/desert_sd/rock_edged_smooth
 		rgbgen identity
 		blendFunc filter
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 6 6
