@@ -4,7 +4,7 @@
 
 textures/mp_guns/mp_guns_sky
 {
-	qer_editorimage textures/skies/newclouds.tga
+	qer_editorimage textures/skies/newclouds
 	q3map_globaltexture
 	q3map_lightsubdivide 512
 	q3map_surfacelight 85
@@ -15,13 +15,13 @@ textures/mp_guns/mp_guns_sky
 	surfaceparm nolightmap
 	surfaceparm sky
 	{
-		map textures/skies/dimclouds.tga
+		map textures/skies/dimclouds
 		tcMod scroll 0.002 0.002
 		tcMod scale 1 1
 		tcMod turb 0 0.05 0 .08
 	}
 	{
-		map textures/skies/dimclouds.tga
+		map textures/skies/dimclouds
 		blendfunc GL_ONE GL_ONE
 		tcMod scroll -0.001 -0.005
 		tcMod scale 10 10
@@ -72,7 +72,7 @@ textures/mp_guns/terrain_0to2
 		tcmod scale 0.041666667 0.041666667
 	}
 	{
-		map textures/xp_88mm/mud.tga
+		map textures/xp_88mm/mud
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbGen vertex
 		alphaGen vertex
@@ -112,7 +112,7 @@ textures/mp_guns/terrain_0to4
 		tcmod scale 0.041666667 0.041666667
 	}
 	{
-		map textures/xp_88mm/blasted_earth.tga
+		map textures/xp_88mm/blasted_earth
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbGen vertex
 		alphaGen vertex
@@ -144,7 +144,7 @@ textures/mp_guns/terrain_1to2
 		tcmod scale 0.083333333 0.083333333
 	}
 	{
-		map textures/xp_88mm/mud.tga
+		map textures/xp_88mm/mud
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbGen vertex
 		alphaGen vertex
@@ -178,7 +178,7 @@ textures/mp_guns/terrain_2
 	q3map_novertexshadows
 	surfaceparm nolightmap
 	{
-		map textures/xp_88mm/mud.tga
+		map textures/xp_88mm/mud
 		rgbGen vertex
 		tcmod scale 0.083333333 0.083333333
 	}
@@ -202,7 +202,7 @@ textures/mp_guns/terrain_4
 	q3map_novertexshadows
 	surfaceparm nolightmap
 	{
-		map textures/xp_88mm/blasted_earth.tga
+		map textures/xp_88mm/blasted_earth
 		rgbGen vertex
 		tcmod scale 0.166666666 0.166666666
 	}

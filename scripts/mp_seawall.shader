@@ -8,7 +8,7 @@
 // ocean fog water
 textures/mp_seawall/fog_water
 {
-	qer_editorimage textures/common/fog_water.tga
+	qer_editorimage textures/common/fog_water
 	surfaceparm nodraw
   	surfaceparm nonsolid
   	surfaceparm trans
@@ -18,7 +18,7 @@ textures/mp_seawall/fog_water
 // abstract shader for subclassed shaders
 textures/mp_seawall/ocean_base
 {
-	qer_editorimage textures/liquids_sd/seawall_ocean.tga
+	qer_editorimage textures/liquids_sd/seawall_ocean
 	qer_trans 0.75
 	q3map_tcGen ivector ( 512 0 0 ) ( 0 512 0 )
 	q3map_globalTexture
@@ -32,7 +32,7 @@ textures/mp_seawall/ocean_base
 // nonsolid terrain shader
 textures/mp_seawall/ocean_terrain
 {
-	qer_editorimage textures/common/terrain_nonsolid.tga
+	qer_editorimage textures/common/terrain_nonsolid
 	q3map_terrain
 	qer_trans .5
 	surfaceparm nodraw
@@ -50,7 +50,7 @@ textures/mp_seawall/ocean_0
  	deformVertexes wave 317 sin 0 1.5 0 0.30
 	
 	{
-		map textures/liquids_sd/seawall_specular.tga
+		map textures/liquids_sd/seawall_specular
 		blendFunc GL_ONE GL_ONE
 		rgbGen vertex
 		tcGen environment
@@ -58,7 +58,7 @@ textures/mp_seawall/ocean_0
 	}
 		
 	{ 
-		map textures/liquids_sd/sea_bright_na.tga
+		map textures/liquids_sd/sea_bright_na
 		blendFunc blend
 		rgbGen identity
 		alphaGen const 0.8
@@ -75,7 +75,7 @@ textures/mp_seawall/ocean_1
  	deformVertexes wave 317 sin 0 1.5 0 0.30
 	
 	{
-		map textures/liquids_sd/seawall_specular.tga
+		map textures/liquids_sd/seawall_specular
 		blendFunc GL_ONE GL_ONE
 		rgbGen vertex
 		tcGen environment
@@ -83,7 +83,7 @@ textures/mp_seawall/ocean_1
 	}
 	
 	{ 
-		map textures/liquids_sd/sea_bright_na.tga
+		map textures/liquids_sd/sea_bright_na
 		blendFunc blend
 		rgbGen identity
 		alphaGen const .8
@@ -91,7 +91,7 @@ textures/mp_seawall/ocean_1
 
 	}
 	{
-		map textures/liquids_sd/seawall_foam.tga
+		map textures/liquids_sd/seawall_foam
 		blendFunc GL_SRC_ALPHA GL_ONE
 		rgbGen wave sin 0.2 0.1 0 0.2
 		alphaGen vertex
@@ -99,7 +99,7 @@ textures/mp_seawall/ocean_1
 		tcmod scroll -0.01 0.08
 	}
 	{ 
-		map textures/liquids_sd/seawall_foam.tga
+		map textures/liquids_sd/seawall_foam
 		blendFunc GL_SRC_ALPHA GL_ONE
 		rgbGen wave sin 0.15 0.1 0.1 0.15
 		alphaGen vertex
@@ -117,7 +117,7 @@ textures/mp_seawall/ocean_0to1
  	deformVertexes wave 317 sin 0 1.5 0 0.30
 	
 	{
-		map textures/liquids_sd/seawall_specular.tga
+		map textures/liquids_sd/seawall_specular
 		blendFunc GL_ONE GL_ONE
 		rgbGen vertex
 		tcGen environment
@@ -125,14 +125,14 @@ textures/mp_seawall/ocean_0to1
 	}
 	
 	{ 
-		map textures/liquids_sd/sea_bright_na.tga
+		map textures/liquids_sd/sea_bright_na
 		blendFunc blend
 		rgbGen identity
 		alphaGen const .8
 		tcmod scroll 0.005 0.03
 	}
 	{
-		map textures/liquids_sd/seawall_foam.tga
+		map textures/liquids_sd/seawall_foam
 		blendFunc GL_SRC_ALPHA GL_ONE
 		rgbGen wave sin 0.2 0.1 0 0.2
 		alphaGen vertex
@@ -140,7 +140,7 @@ textures/mp_seawall/ocean_0to1
 		tcmod scroll -0.01 0.08
 	}
 	{ 
-		map textures/liquids_sd/seawall_foam.tga
+		map textures/liquids_sd/seawall_foam
 		blendFunc GL_SRC_ALPHA GL_ONE
 		rgbGen wave sin 0.15 0.1 0.1 0.15
 		alphaGen vertex
@@ -155,17 +155,17 @@ textures/mp_seawall/rock_graynoise
     q3map_nonplanar
     q3map_shadeangle 180
     //q3map_tcmodscale 1.5 1.5
-    qer_editorimage textures/temperate_sd/rock_grayvar.tga
+    qer_editorimage textures/temperate_sd/rock_grayvar
     {
         map $lightmap
         rgbGen identity
     }
     {
-        map textures/temperate_sd/rock_grayvar.tga
+        map textures/temperate_sd/rock_grayvar
         blendFunc filter
     }
     {
-    	map textures/detail_sd/sanddetail.tga
+    	map textures/detail_sd/sanddetail
     	blendFunc GL_DST_COLOR GL_SRC_COLOR
     	detail
     	tcMod scale 6 6
@@ -177,7 +177,7 @@ textures/mp_seawall/sand_disturb
     q3map_nonplanar
     q3map_shadeangle 180
     //q3map_tcmodscale 1.5 1.5
-    qer_editorimage textures/temperate_sd/sand_disturb_bright.tga
+    qer_editorimage textures/temperate_sd/sand_disturb_bright
     surfaceparm landmine
     surfaceparm gravelsteps
     
@@ -186,11 +186,11 @@ textures/mp_seawall/sand_disturb
         rgbGen identity
     }
     {
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
         blendFunc filter
     }
     {
-    	map textures/detail_sd/sanddetail.tga
+    	map textures/detail_sd/sanddetail
     	blendFunc GL_DST_COLOR GL_SRC_COLOR
     	detail
     	tcMod scale 6 6
@@ -215,7 +215,7 @@ textures/mp_seawall/terrain_0
 	
 	{
 
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
 		rgbgen identity
 	}
 	{
@@ -223,7 +223,7 @@ textures/mp_seawall/terrain_0
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -236,7 +236,7 @@ textures/mp_seawall/terrain_1
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_wave_bright.tga
+		map textures/temperate_sd/sand_wave_bright
 		rgbgen identity
 	}
 	{
@@ -244,7 +244,7 @@ textures/mp_seawall/terrain_1
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -257,7 +257,7 @@ textures/mp_seawall/terrain_2
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 	}
 	{
@@ -265,7 +265,7 @@ textures/mp_seawall/terrain_2
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -276,7 +276,7 @@ textures/mp_seawall/terrain_3
 {
 	q3map_baseshader textures/mp_seawall/terrain_base
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 	}
 	{
@@ -284,7 +284,7 @@ textures/mp_seawall/terrain_3
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -295,7 +295,7 @@ textures/mp_seawall/terrain_4
 {
 	q3map_baseshader textures/mp_seawall/terrain_base
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 	}
 	{
@@ -303,7 +303,7 @@ textures/mp_seawall/terrain_4
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -316,7 +316,7 @@ textures/mp_seawall/terrain_5
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_patchnoise.tga
+		map textures/temperate_sd/sand_patchnoise
 		rgbgen identity
 	}
 	{
@@ -324,7 +324,7 @@ textures/mp_seawall/terrain_5
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -338,13 +338,13 @@ textures/mp_seawall/terrain_0to1
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
 		rgbgen identity
 		alphaGen vertex
 		
 	}
 	{
-		map textures/temperate_sd/sand_wave_bright.tga
+		map textures/temperate_sd/sand_wave_bright
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -355,7 +355,7 @@ textures/mp_seawall/terrain_0to1
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -368,13 +368,13 @@ textures/mp_seawall/terrain_0to2
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
 		rgbgen identity
 		alphaGen vertex
 		
 	}
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -384,7 +384,7 @@ textures/mp_seawall/terrain_0to2
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -397,13 +397,13 @@ textures/mp_seawall/terrain_0to3
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
 		rgbgen identity
 		alphaGen vertex
 		
 	}
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -414,7 +414,7 @@ textures/mp_seawall/terrain_0to3
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -428,13 +428,13 @@ textures/mp_seawall/terrain_0to4
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
 		rgbgen identity
 		alphaGen vertex
 		
 	}
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -445,7 +445,7 @@ textures/mp_seawall/terrain_0to4
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -459,12 +459,12 @@ textures/mp_seawall/terrain_0to5
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_disturb_bright.tga
+		map textures/temperate_sd/sand_disturb_bright
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/sand_patchnoise.tga
+		map textures/temperate_sd/sand_patchnoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -474,7 +474,7 @@ textures/mp_seawall/terrain_0to5
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -489,13 +489,13 @@ textures/mp_seawall/terrain_1to2
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_wave_bright.tga
+		map textures/temperate_sd/sand_wave_bright
 		rgbgen identity
 		alphaGen vertex
 
 	}
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -505,7 +505,7 @@ textures/mp_seawall/terrain_1to2
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -519,12 +519,12 @@ textures/mp_seawall/terrain_1to3
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_wave_bright.tga
+		map textures/temperate_sd/sand_wave_bright
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -534,7 +534,7 @@ textures/mp_seawall/terrain_1to3
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -548,12 +548,12 @@ textures/mp_seawall/terrain_1to4
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_wave_bright.tga
+		map textures/temperate_sd/sand_wave_bright
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -563,7 +563,7 @@ textures/mp_seawall/terrain_1to4
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -577,12 +577,12 @@ textures/mp_seawall/terrain_1to5
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/sand_wave_bright.tga
+		map textures/temperate_sd/sand_wave_bright
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/sand_patchnoise.tga
+		map textures/temperate_sd/sand_patchnoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -592,7 +592,7 @@ textures/mp_seawall/terrain_1to5
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -608,12 +608,12 @@ textures/mp_seawall/terrain_2to3
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -623,7 +623,7 @@ textures/mp_seawall/terrain_2to3
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -637,12 +637,12 @@ textures/mp_seawall/terrain_2to4
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -652,7 +652,7 @@ textures/mp_seawall/terrain_2to4
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -666,12 +666,12 @@ textures/mp_seawall/terrain_2to5
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/sand_patchnoise.tga
+		map textures/temperate_sd/sand_patchnoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -681,7 +681,7 @@ textures/mp_seawall/terrain_2to5
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -693,12 +693,12 @@ textures/mp_seawall/terrain_3to4
 {
 	q3map_baseshader textures/mp_seawall/terrain_base
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -708,7 +708,7 @@ textures/mp_seawall/terrain_3to4
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -722,12 +722,12 @@ textures/mp_seawall/terrain_3to5
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/sand_patchnoise.tga
+		map textures/temperate_sd/sand_patchnoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -737,7 +737,7 @@ textures/mp_seawall/terrain_3to5
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -751,12 +751,12 @@ textures/mp_seawall/terrain_3to6
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_graynoise.tga
+		map textures/temperate_sd/rock_graynoise
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/sand_disturb_medium.tga
+		map textures/temperate_sd/sand_disturb_medium
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -766,7 +766,7 @@ textures/mp_seawall/terrain_3to6
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -782,12 +782,12 @@ textures/mp_seawall/terrain_4to5
 	surfaceparm landmine
 	surfaceparm gravelsteps
 	{
-		map textures/temperate_sd/rock_grayvar.tga
+		map textures/temperate_sd/rock_grayvar
 		rgbgen identity
 		alphaGen vertex
 	}
 	{
-		map textures/temperate_sd/sand_patchnoise.tga
+		map textures/temperate_sd/sand_patchnoise
 		rgbgen identity
 		alphaGen vertex
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
@@ -797,7 +797,7 @@ textures/mp_seawall/terrain_4to5
 		blendFunc GL_DST_COLOR GL_ZERO
 	}
 	{
-		map textures/detail_sd/sanddetail.tga
+		map textures/detail_sd/sanddetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
 		detail
 		tcMod scale 4 4
@@ -807,7 +807,7 @@ textures/mp_seawall/terrain_4to5
 
 textures/mp_seawall/water_nodraw
 {
-	qer_editorimage textures/common/nodraw.tga
+	qer_editorimage textures/common/nodraw
 	surfaceparm nodraw
   	surfaceparm nonsolid
   	surfaceparm trans
@@ -816,7 +816,7 @@ textures/mp_seawall/water_nodraw
 
 textures/mp_seawall/water_fog
 {
-	qer_editorimage textures/common/fog_water.tga
+	qer_editorimage textures/common/fog_water
 	surfaceparm nodraw
   	surfaceparm nonsolid
   	surfaceparm trans
