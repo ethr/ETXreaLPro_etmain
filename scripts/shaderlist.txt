@@ -55,9 +55,9 @@ models_foliage
 models_furniture
 models_mapobjects
 models_multiplayer
-#models_players
+models_players_extra
 models_shards
-#models_weapons2
+models_weapons2
 mp_goldrush
 mp_guns
 mp_railgun
