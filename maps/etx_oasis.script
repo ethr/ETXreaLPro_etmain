@@ -106,10 +106,10 @@ game_manager
 
 		wm_announce	"Allies have destroyed both Anti-Tank Guns!"
 
-		wait 8000
-
 		accum 1 set 1				// Both pak guns destroyed
 
+		wait 8000
+		
 		// Call function to check if the round has been won
 		trigger game_manager checkgame
 	}
@@ -151,6 +151,9 @@ game_manager
 
 	trigger timelimit_hit
 	{
+		// Call function to check if the round has been won
+		trigger game_manager checkgame
+		
 		trigger end_boom_north check_0
 		trigger end_boom_south check_1
 	}

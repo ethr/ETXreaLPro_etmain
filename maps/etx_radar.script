@@ -1,3 +1,6 @@
+// rain - Tue Sep 23 20:40:37 EDT 2003 - fixed setautospawns
+// rain - Mon Feb  9 23:50:28 EST 2004 - made truck non-dynamitable
+
 game_manager
 {
 	spawn
@@ -42,7 +45,8 @@ game_manager
 		// Abandoned Villa
 		// Forward Bunker
 		// Lower Warehouse
-		setautospawn "Forward Bunker" 1
+		// rain - set allied initial autospawn properly
+		setautospawn "Abandoned Villa" 1
 		setautospawn "Forward Bunker" 0
 
 		disablespeaker allies_compost_sound
@@ -324,6 +328,15 @@ radarbox1
 		// *---------------------------------------------------------------------------------*
 	}
 
+	trigger dropped
+	{
+		// *----------------------------------- vo ------------------------------------------*
+		wm_teamvoiceannounce 0 "radar_axis_radarw_lost"
+
+		wm_teamvoiceannounce 1 "radar_allies_radarw_lost"
+		// *---------------------------------------------------------------------------------*
+	}
+
 	trigger returned
 	{
 		// *----------------------------------- vo ------------------------------------------*
@@ -420,6 +433,15 @@ radarbox2
 		wm_teamvoiceannounce 0 "radar_axis_radare_taken"
 
 		wm_teamvoiceannounce 1 "radar_allies_radare_taken"
+		// *---------------------------------------------------------------------------------*
+	}
+
+	trigger dropped
+	{
+		// *----------------------------------- vo ------------------------------------------*
+		wm_teamvoiceannounce 0 "radar_axis_radare_lost"
+
+		wm_teamvoiceannounce 1 "radar_allies_radare_lost"
 		// *---------------------------------------------------------------------------------*
 	}
 
@@ -1320,5 +1342,15 @@ lmshacab2
 	{
 		wait 50
 		remove
+	}
+}
+
+truck_trig
+{
+	spawn {
+		set {
+			// don't allow dynamite at the truck
+			spawnflags 139 // AXIS/ALLIED_OBJECTIVE | TANK | DISABLED
+		}
 	}
 }

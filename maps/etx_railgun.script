@@ -6657,6 +6657,7 @@ switch_invtrig1
 {
 	spawn
 	{
+		wait 200
 		trigger self allies_want_depot
 		trigger self axis_want_base
 

@@ -1,6 +1,6 @@
 // ============================================================================
 // Map: Fueldump
-// Last update : 01/05/03 Sock
+// Last update : 16/06/03 Sock
 // ============================================================================
 game_manager
 {
@@ -270,12 +270,12 @@ axis_radio_built
 
 	trigger setup
 	{
-		setchargetimefactor 0 soldier 0.75
-		setchargetimefactor 0 lieutenant 0.75
-		setchargetimefactor 0 medic 0.75
-		setchargetimefactor 0 engineer 0.75
-		setchargetimefactor 0 covertops 0.75
-		sethqstatus 0 1
+		setchargetimefactor 0 soldier 1
+		setchargetimefactor 0 lieutenant 1
+		setchargetimefactor 0 medic 1
+		setchargetimefactor 0 engineer 1
+		setchargetimefactor 0 covertops 1
+		sethqstatus 0 0
 	}
 
 	buildstart final
@@ -344,7 +344,7 @@ axis_radio_built_model
 	trigger enable_axis_features
 	{
 		//-----------------------------------------------------------------------
-		// Increase Allies charge times
+		// Increase Axis charge times
 		//-----------------------------------------------------------------------
 		setchargetimefactor 0 soldier 0.75
 		setchargetimefactor 0 lieutenant 0.75
@@ -596,7 +596,7 @@ allied_radio_built_model
 		setchargetimefactor 1 medic 1
 		setchargetimefactor 1 engineer 1
 		setchargetimefactor 1 covertops 1
-		sethqstatus 1 1
+		sethqstatus 1 0
 
 		// *----------------------------------- vo ------------------------------------------*
 		wm_teamvoiceannounce 1 "allies_hq_compost_damaged"
