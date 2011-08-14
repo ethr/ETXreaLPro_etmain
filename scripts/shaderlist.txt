@@ -131,6 +131,11 @@ horizon_sky
 overcast_sky
 rufus_sky
 turbulent_blue
-
-hell_foliage
 #Skyboxes END
+
+#custom Models
+hell_foliage
+castlemap
+ff_popmodels
+doa_models
+hanomag

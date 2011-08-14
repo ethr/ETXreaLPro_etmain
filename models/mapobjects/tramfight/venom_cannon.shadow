@@ -1,0 +1,13 @@
+models/mapobjects/tramfight/ff_gunshadow -24 -12 50 25 96 -32
+//models/mapobjects/tanks_sd/shadow_tank -80 -160 160 320 192 -32
+//tank goldrush 				     -64 -168 176 336 192 -16
+//blitz truc   				     -75 0 150 320 96 -64
+
+//<path/to/shader> <Y> <X> <y size> <x size> <influence> <alpha> 
+
+//<Y> = Y axis off set, in game units, from model origin. 
+//<X> = X axis off set, in game units, from model origin. 
+//<y size> = sets texture projection size, in game units for Y axis. 
+//<x size> = sets texture projection size, in game units for X axis. 
+//<influence> = distance from origin, in game units that the shadow fades across. 
+//<alpha> = sets the alpha levels (0 means white is value "0", a lower value the more transparent) 

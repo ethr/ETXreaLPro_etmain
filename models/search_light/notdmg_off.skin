@@ -1,0 +1,5 @@
+sl_bottom,models/doa/search_light/s_light_main
+sl_middle,models/doa/search_light/s_light_main
+sl_top,models/doa/search_light/s_light_main
+sl_light,models/doa/search_light/s_light_lamp_off
+

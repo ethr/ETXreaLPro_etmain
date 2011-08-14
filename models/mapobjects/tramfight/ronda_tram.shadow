@@ -1,0 +1,4 @@
+models/mapobjects/tramfight/ff_tramshadow -100 -200 200 400 96 -64
+//models/mapobjects/tanks_sd/shadow_tank -80 -160 160 320 192 -32
+//tank goldrush 				     -64 -168 176 336 192 -16
+//blitz truc   				     -75 0 150 320 96 -64
