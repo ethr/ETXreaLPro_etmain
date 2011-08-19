@@ -16,6 +16,33 @@ textures/egypt_walls_sd/stucco01_decor01
 	
 }
 
+textures/egypt_walls_sd/stucco03
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco03
+	diffusemap			textures/egypt_walls_sd/stucco03
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco03_norm, invertColor(textures/egypt_walls_sd/stucco03_disp) )
+	specularmap			textures/egypt_walls_sd/stucco03_spec
+	
+}
+
+textures/egypt_walls_sd/stucco03b
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco03b
+	diffusemap			textures/egypt_walls_sd/stucco03b
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco03_norm, invertColor(textures/egypt_walls_sd/stucco03_disp) )
+	specularmap			textures/egypt_walls_sd/stucco03_spec
+	
+}
+
+textures/egypt_walls_sd/stucco03_dark
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco03_dark
+	diffusemap			textures/egypt_walls_sd/stucco03_dark
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco03_norm, invertColor(textures/egypt_walls_sd/stucco03_disp) )
+	specularmap			textures/egypt_walls_sd/stucco03_spec
+	
+}
+
 textures/egypt_walls_sd/stucco07_trim03
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07_trim03
