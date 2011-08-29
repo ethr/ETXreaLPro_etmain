@@ -16,6 +16,42 @@ textures/egypt_walls_sd/stucco01_decor01
 	
 }
 
+textures/egypt_walls_sd/stucco02
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco02
+	diffusemap			textures/egypt_walls_sd/stucco02
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco02_norm, invertColor(textures/egypt_walls_sd/stucco02_disp) )
+	specularmap			textures/egypt_walls_sd/stucco02_spec
+	
+}
+
+textures/egypt_walls_sd/stucco02_04blend
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco02_04blend
+	diffusemap			textures/egypt_walls_sd/stucco02_04blend
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco02_04blend_norm, invertColor(textures/egypt_walls_sd/stucco02_04blend_disp) )
+	specularmap			textures/egypt_walls_sd/stucco02_04blend_spec
+	
+}
+
+textures/egypt_walls_sd/stucco02_rough
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco02_rough
+	diffusemap			textures/egypt_walls_sd/stucco02_rough
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco02_norm, invertColor(textures/egypt_walls_sd/stucco02_disp) )
+	specularmap			textures/egypt_walls_sd/stucco02_spec
+	
+}
+
+textures/egypt_walls_sd/stucco02_rough2
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco02_rough2
+	diffusemap			textures/egypt_walls_sd/stucco02_rough2
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco02_norm, invertColor(textures/egypt_walls_sd/stucco02_disp) )
+	specularmap			textures/egypt_walls_sd/stucco02_spec
+	
+}
+
 textures/egypt_walls_sd/stucco03
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco03
@@ -40,6 +76,15 @@ textures/egypt_walls_sd/stucco03_dark
 	diffusemap			textures/egypt_walls_sd/stucco03_dark
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco03_norm, invertColor(textures/egypt_walls_sd/stucco03_disp) )
 	specularmap			textures/egypt_walls_sd/stucco03_spec
+	
+}
+
+textures/egypt_walls_sd/stucco04
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco04
+	diffusemap			textures/egypt_walls_sd/stucco04
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco04_norm, invertColor(textures/egypt_walls_sd/stucco04_disp) )
+	specularmap			textures/egypt_walls_sd/stucco04_spec
 	
 }
 
