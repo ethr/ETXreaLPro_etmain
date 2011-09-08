@@ -1,3 +1,112 @@
+textures/egypt_walls_sd/bankwall01
+{
+    qer_editorimage 	textures/egypt_walls_sd/bankwall01
+	diffusemap			textures/egypt_walls_sd/bankwall01
+	bumpmap        		displacemap( textures/egypt_walls_sd/bankwall01_norm, invertColor(textures/egypt_walls_sd/bankwall01_disp) )
+	specularmap			textures/egypt_walls_sd/bankwall01_spec
+	
+}
+
+textures/egypt_walls_sd/concrete_m03
+{
+    qer_editorimage 	textures/egypt_walls_sd/concrete_m03
+	diffusemap			textures/egypt_walls_sd/concrete_m03
+	bumpmap        		displacemap( textures/egypt_walls_sd/concrete_m03_norm, invertColor(textures/egypt_walls_sd/concrete_m03_disp) )
+	specularmap			textures/egypt_walls_sd/concrete_m03_spec
+	
+}
+
+textures/egypt_walls_sd/debri_m05
+{
+    qer_editorimage 	textures/egypt_walls_sd/debri_m05
+	diffusemap			textures/egypt_walls_sd/debri_m05
+	bumpmap        		displacemap( textures/egypt_walls_sd/debri_m05_norm, invertColor(textures/egypt_walls_sd/debri_m05_disp) )
+	specularmap			textures/egypt_walls_sd/debri_m05_spec
+	
+}
+
+textures/egypt_walls_sd/mat_wall1
+{
+    qer_editorimage 	textures/egypt_walls_sd/mat_wall1
+	diffusemap			textures/egypt_walls_sd/mat_wall1
+	bumpmap        		displacemap( textures/egypt_walls_sd/mat_wall1_norm, invertColor(textures/egypt_walls_sd/mat_wall1_disp) )
+	specularmap			textures/egypt_walls_sd/mat_wall1_spec
+	
+}
+
+textures/egypt_walls_sd/roughbrick02
+{
+    qer_editorimage 	textures/egypt_walls_sd/roughbrick02
+	diffusemap			textures/egypt_walls_sd/roughbrick02
+	bumpmap        		displacemap( textures/egypt_walls_sd/roughbrick02_norm, invertColor(textures/egypt_walls_sd/roughbrick02_disp) )
+	specularmap			textures/egypt_walls_sd/roughbrick02_spec
+	
+}
+
+textures/egypt_walls_sd/roughbrick01
+{
+    qer_editorimage 	textures/egypt_walls_sd/roughbrick01
+	diffusemap			textures/egypt_walls_sd/roughbrick01
+	bumpmap        		displacemap( textures/egypt_walls_sd/roughbrick01_norm, invertColor(textures/egypt_walls_sd/roughbrick01_disp) )
+	specularmap			textures/egypt_walls_sd/roughbrick01_spec
+	
+}
+
+textures/egypt_walls_sd/bigblock02
+{
+    qer_editorimage 	textures/egypt_walls_sd/bigblock02
+	diffusemap			textures/egypt_walls_sd/bigblock02
+	bumpmap        		displacemap( textures/egypt_walls_sd/bigblock02_norm, invertColor(textures/egypt_walls_sd/bigblock02_disp) )
+	specularmap			textures/egypt_walls_sd/bigblock02_spec
+	
+}
+
+textures/egypt_walls_sd/roughbrick03
+{
+    qer_editorimage 	textures/egypt_walls_sd/roughbrick03
+	diffusemap			textures/egypt_walls_sd/roughbrick03
+	bumpmap        		displacemap( textures/egypt_walls_sd/roughbrick03_norm, invertColor(textures/egypt_walls_sd/roughbrick03_disp) )
+	specularmap			textures/egypt_walls_sd/roughbrick03_spec
+	
+}
+
+textures/egypt_walls_sd/roughbrick03a
+{
+    qer_editorimage 	textures/egypt_walls_sd/roughbrick03a
+	diffusemap			textures/egypt_walls_sd/roughbrick03a
+	bumpmap        		displacemap( textures/egypt_walls_sd/roughbrick03a_norm, invertColor(textures/egypt_walls_sd/roughbrick03a_disp) )
+	specularmap			textures/egypt_walls_sd/roughbrick03a_spec
+	
+}
+
+textures/egypt_walls_sd/roughedge01
+{
+    qer_editorimage 	textures/egypt_walls_sd/roughedge01
+	diffusemap			textures/egypt_walls_sd/roughedge01
+	bumpmap        		displacemap( textures/egypt_walls_sd/roughedge01_norm, invertColor(textures/egypt_walls_sd/roughedge01_disp) )
+	specularmap			textures/egypt_walls_sd/roughedge01_spec
+	
+}
+
+
+textures/egypt_walls_sd/stripedbrick01
+{
+    qer_editorimage 	textures/egypt_walls_sd/stripedbrick01
+	diffusemap			textures/egypt_walls_sd/stripedbrick01
+	bumpmap        		displacemap( textures/egypt_walls_sd/stripedbrick01_norm, invertColor(textures/egypt_walls_sd/stripedbrick01_disp) )
+	specularmap			textures/egypt_walls_sd/stripedbrick01_spec
+	
+}
+
+textures/egypt_walls_sd/stripedbrick01
+{
+    qer_editorimage 	textures/egypt_walls_sd/stripedbrick01
+	diffusemap			textures/egypt_walls_sd/stripedbrick01
+	bumpmap        		displacemap( textures/egypt_walls_sd/stripedbrick01_norm, invertColor(textures/egypt_walls_sd/stripedbrick01_disp) )
+	specularmap			textures/egypt_walls_sd/stripedbrick01_spec
+	
+}
+
 textures/egypt_walls_sd/stucco01
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco01
@@ -265,6 +374,15 @@ textures/egypt_walls_sd/stucco09g2
 	diffusemap			textures/egypt_walls_sd/stucco09g2
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco09g2_norm, invertColor(textures/egypt_walls_sd/stucco09g2_disp) )
 	specularmap			textures/egypt_walls_sd/stucco09g2_spec
+	
+}
+
+textures/egypt_walls_sd/stucco09h
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco09h
+	diffusemap			textures/egypt_walls_sd/stucco09h
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco09h_norm, invertColor(textures/egypt_walls_sd/stucco09h_disp) )
+	specularmap			textures/egypt_walls_sd/stucco09h_spec
 	
 }
 
