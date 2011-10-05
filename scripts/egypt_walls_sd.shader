@@ -388,37 +388,37 @@ textures/egypt_walls_sd/stucco09h
 
 textures/egypt_walls_sd/white01
 {
-    qer_editorimage 	textures/egypt_walls_sd/white01
-	diffusemap			textures/egypt_walls_sd/white01
+    qer_editorimage 	textures/egypt_walls_sd/white01.png
+	diffusemap			textures/egypt_walls_sd/white01.png
 	bumpmap        		displacemap( textures/egypt_walls_sd/white01_norm, invertColor(textures/egypt_walls_sd/white01_disp) )
 	specularmap			textures/egypt_walls_sd/white01_spec
 	
 }
 
-textures/egypt_walls_sd/white01var1
+textures/egypt_walls_sd/white01var01
 {
-    qer_editorimage 	textures/egypt_walls_sd/white01var1
-	diffusemap			textures/egypt_walls_sd/white01var1
-	bumpmap        		displacemap( textures/egypt_walls_sd/white01var1_norm, invertColor(textures/egypt_walls_sd/white01var1_disp) )
-	specularmap			textures/egypt_walls_sd/white01var1_spec
+    qer_editorimage 	textures/egypt_walls_sd/white01var01
+	diffusemap			textures/egypt_walls_sd/white01var01
+	bumpmap        		displacemap( textures/egypt_walls_sd/white01var01_norm, invertColor(textures/egypt_walls_sd/white01var01_disp) )
+	specularmap			textures/egypt_walls_sd/white01var01_spec
 	
 }
 
-textures/egypt_walls_sd/white01var2
+textures/egypt_walls_sd/white01var02
 {
-    qer_editorimage 	textures/egypt_walls_sd/white01var2
-	diffusemap			textures/egypt_walls_sd/white01var2
-	bumpmap        		displacemap( textures/egypt_walls_sd/white01var2_norm, invertColor(textures/egypt_walls_sd/white01var2_disp) )
-	specularmap			textures/egypt_walls_sd/white01var2_spec
+    qer_editorimage 	textures/egypt_walls_sd/white01var02
+	diffusemap			textures/egypt_walls_sd/white01var02
+	bumpmap        		displacemap( textures/egypt_walls_sd/white01var02_norm, invertColor(textures/egypt_walls_sd/white01var02_disp) )
+	specularmap			textures/egypt_walls_sd/white01var02_spec
 	
 }
 
-textures/egypt_walls_sd/white01var3
+textures/egypt_walls_sd/white01var03
 {
-    qer_editorimage 	textures/egypt_walls_sd/white01var3
-	diffusemap			textures/egypt_walls_sd/white01var3
-	bumpmap        		displacemap( textures/egypt_walls_sd/white01var3_norm, invertColor(textures/egypt_walls_sd/white01var3_disp) )
-	specularmap			textures/egypt_walls_sd/white01var3_spec
+    qer_editorimage 	textures/egypt_walls_sd/white01var03
+	diffusemap			textures/egypt_walls_sd/white01var03
+	bumpmap        		displacemap( textures/egypt_walls_sd/white01var03_norm, invertColor(textures/egypt_walls_sd/white01var03_disp) )
+	specularmap			textures/egypt_walls_sd/white01var03_spec
 	
 }
 
