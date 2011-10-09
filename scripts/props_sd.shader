@@ -110,17 +110,44 @@ textures/props_sd/sign_radar
 
 textures/mp_colditz/tool_m07
 {
-	qer_editorimage textures/awf_props/tool_m07.tga
+	qer_editorimage textures/awf_props/tool_m07
 	cull disable
 	nomipmaps
 	nopicmip
-	implicitMask textures/awf_props/tool_m07.tga
+	implicitMask textures/awf_props/tool_m07
 }
 
 textures/props_sd/barrel_m01_rednwhite
 {
 	surfaceparm metalsteps
 	implicitMap -
+}
+
+textures/props_sd/trim_c10w
+{
+	
+	qer_editorimage 	textures/props_sd/trim_c10w
+	diffusemap			textures/props_sd/trim_c10w
+	bumpmap        		displacemap(textures/props_sd/trim_c10w_norm, invertColor(textures/props_sd/trim_c10w_disp) )
+	specularmap			textures/props_sd/trim_c10w_spec
+}
+
+textures/props_sd/trim_c01w
+{
+	
+	qer_editorimage 	textures/props_sd/trim_c01w
+	diffusemap			textures/props_sd/trim_c01w
+	bumpmap        		displacemap(textures/props_sd/trim_c01w_norm, invertColor(textures/props_sd/trim_c01w_disp) )
+	specularmap			textures/props_sd/trim_c01w_spec
+}
+
+textures/props_sd/trim_c03w
+{
+	
+	qer_editorimage 	textures/props_sd/trim_c03w
+	diffusemap			textures/props_sd/trim_c03w
+	bumpmap        		displacemap(textures/props_sd/trim_c03w_norm, invertColor(textures/props_sd/trim_c03w_disp) )
+	specularmap			textures/props_sd/trim_c03w_spec
 }
 
 textures/props_sd/wires
