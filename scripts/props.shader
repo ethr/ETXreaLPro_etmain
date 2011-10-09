@@ -45,24 +45,55 @@ textures/props/board_cl01
 {
 	surfaceparm woodsteps
 	implicitMap -
+	
+	qer_editorimage 	textures/props/board_c01
+	diffusemap			textures/props/board_c01
+	bumpmap        		displacemap( textures/props/board_c01_norm, invertColor(textures/props/board_c01_disp) )
+	specularmap			textures/props/board_c01_spec
 }
 
 textures/props/board_cl01m
 {
 	surfaceparm woodsteps
 	implicitMap -
+	
+	qer_editorimage 	textures/props/board_c01
+	diffusemap			textures/props/board_c01
+	bumpmap        		displacemap( textures/props/board_c01_norm, invertColor(textures/props/board_c01_disp) )
+	specularmap			textures/props/board_c01_spec
 }
 
 textures/props/board_c01
 {
 	surfaceparm woodsteps
 	implicitMap -
+	
+	qer_editorimage 	textures/props/board_c01
+	diffusemap			textures/props/board_c01
+	bumpmap        		displacemap( textures/props/board_c01_norm, invertColor(textures/props/board_c01_disp) )
+	specularmap			textures/props/board_c01_spec
 }
 
 textures/props/board_c03
 {
 	surfaceparm woodsteps
 	implicitMap -
+	
+	qer_editorimage 	textures/props/board_c03
+	diffusemap			textures/props/board_c03
+	bumpmap        		displacemap( textures/props/board_c03_norm, invertColor(textures/props/board_c03_disp) )
+	specularmap			textures/props/board_c03_spec
+}
+
+textures/props/board_cl02m
+{
+	surfaceparm woodsteps
+	implicitMap -
+	
+	qer_editorimage 	textures/props/board_cl02m
+	diffusemap			textures/props/board_cl02m
+	bumpmap        		displacemap( textures/props/board_cl02m_norm, invertColor(textures/props/board_cl02m_disp) )
+	specularmap			textures/props/board_cl02m_spec
 }
 
 textures/props/board_m01
