@@ -1,6 +1,6 @@
-set VERSION=20110811
+set VERSION=20111015
 set MAPNAME=etx_battery
-cd ../../bin32
+cd ../../bin/win64
 PATH=%PATH%;%CD%
 cd ..
 set BASEPATH=%CD%

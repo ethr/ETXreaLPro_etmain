@@ -59,7 +59,7 @@ project "etmain_ui"
 		}
 	
 	configuration { "linux", "x32" }
-		targetname  "ui.mp.x86"
+		targetname  "ui.mp.i386"
 		targetprefix ""
 	
 	configuration { "linux", "x64" }
