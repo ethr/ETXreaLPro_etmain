@@ -13,7 +13,7 @@ levelshots/automap_mask
 	}
 }
 
-levelshots/fueldump_cc_automap
+levelshots/etx_fueldump_cc_automap
 {
 	nopicmip
 	nocompress
@@ -25,7 +25,7 @@ levelshots/fueldump_cc_automap
 	}
 }
 
-levelshots/fueldump_cc_trans
+levelshots/etx_fueldump_cc_trans
 {
 	nopicmip
 	nocompress
@@ -38,7 +38,7 @@ levelshots/fueldump_cc_trans
 	}
 }
 
-levelshots/goldrush_cc_automap
+levelshots/etx_goldrush_cc_automap
 {
 	nopicmip
 	nocompress
@@ -50,7 +50,7 @@ levelshots/goldrush_cc_automap
 	}
 }
 
-levelshots/goldrush_cc_trans
+levelshots/etx_goldrush_cc_trans
 {
 	nopicmip
 	nocompress
@@ -63,7 +63,7 @@ levelshots/goldrush_cc_trans
 	}
 }
 
-levelshots/railgun_cc_automap
+levelshots/etx_railgun_cc_automap
 {
 	nopicmip
 	nocompress
@@ -75,7 +75,7 @@ levelshots/railgun_cc_automap
 	}
 }
 
-levelshots/railgun_cc_trans
+levelshots/etx_railgun_cc_trans
 {
 	nopicmip
 	nocompress
@@ -88,7 +88,7 @@ levelshots/railgun_cc_trans
 	}
 }
 
-levelshots/battery_cc_automap
+levelshots/etx_battery_cc_automap
 {
 	nopicmip
 	nocompress
@@ -100,7 +100,7 @@ levelshots/battery_cc_automap
 	}
 }
 
-levelshots/battery_cc_trans
+levelshots/etx_battery_cc_trans
 {
 	nopicmip
 	nocompress
@@ -113,7 +113,7 @@ levelshots/battery_cc_trans
 	}
 }
 
-levelshots/oasis_cc_automap
+levelshots/etx_oasis_cc_automap
 {
 	nopicmip
 	nocompress
@@ -125,7 +125,7 @@ levelshots/oasis_cc_automap
 	}
 }
 
-levelshots/oasis_cc_trans
+levelshots/etx_oasis_cc_trans
 {
 	nopicmip
 	nocompress
@@ -138,7 +138,7 @@ levelshots/oasis_cc_trans
 	}
 }
 
-levelshots/radar_cc_automap
+levelshots/etx_radar_cc_automap
 {
 	nopicmip
 	nocompress
@@ -150,7 +150,7 @@ levelshots/radar_cc_automap
 	}
 }
 
-levelshots/radar_cc_trans
+levelshots/etx_radar_cc_trans
 {
 	nopicmip
 	nocompress
