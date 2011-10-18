@@ -1703,6 +1703,7 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 					int             ui_r_texturebits = DC->getCVarValue("ui_r_texturebits");
 					int             ui_r_depthbits = DC->getCVarValue("ui_r_depthbits");
 					int             ui_r_ext_compressed_textures = DC->getCVarValue("ui_r_ext_compressed_textures");
+					int				ui_r_ext_texture_filter_anisotropic = DC->getCVarValue("ui_r_ext_texture_filter_anisotropic");
 					int             ui_r_allowextensions = DC->getCVarValue("ui_r_allowextensions");
 					int             ui_r_detailtextures = DC->getCVarValue("ui_r_detailtextures");
 					int             ui_r_subdivisions = DC->getCVarValue("ui_r_subdivisions");
@@ -1719,6 +1720,7 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 					int             r_texturebits = DC->getCVarValue("r_texturebits");
 					int             r_depthbits = DC->getCVarValue("r_depthbits");
 					int             r_ext_compressed_textures = DC->getCVarValue("r_ext_compressed_textures");
+					int				r_ext_texture_filter_anisotropic = DC->getCVarValue("r_ext_texture_filter_anisotropic");
 					int             r_allowextensions = DC->getCVarValue("r_allowextensions");
 					int             r_detailtextures = DC->getCVarValue("r_detailtextures");
 					int             r_subdivisions = DC->getCVarValue("r_subdivisions");
@@ -1744,7 +1746,8 @@ void Script_ConditionalScript(itemDef_t * item, qboolean * bAbort, char **args)
 					   Q_stricmp(r_texturemode, ui_r_texturemode) ||
 					   ui_cg_shadows != cg_shadows || ui_r_hdrrendering != r_hdrrendering ||
 					   ui_r_bloom != r_bloom || ui_r_normalmapping != r_normalmapping ||
-					   ui_r_parallaxmapping != r_parallaxmapping)
+					   ui_r_parallaxmapping != r_parallaxmapping ||
+					   ui_r_ext_texture_filter_anisotropic != r_ext_texture_filter_anisotropic)
 					{
 						Item_RunScript(item, bAbort, script1);
 					}

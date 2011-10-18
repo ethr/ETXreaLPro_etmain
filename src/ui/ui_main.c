@@ -5192,6 +5192,7 @@ void UI_ResetUICvars(void)
 	trap_Cvar_Set("ui_r_texturebits", "");
 	trap_Cvar_Set("ui_r_depthbits", "");
 	trap_Cvar_Set("ui_r_ext_compressed_textures", "");
+	trap_Cvar_Set("ui_r_ext_texture_filter_anisotropic", "");
 	trap_Cvar_Set("ui_r_finish", "");
 	trap_Cvar_Set("ui_r_dynamiclight", "");
 	trap_Cvar_Set("ui_r_allowextensions", "");
@@ -5202,6 +5203,7 @@ void UI_ResetUICvars(void)
 	trap_Cvar_Set("ui_r_bloom", "");
 	trap_Cvar_Set("ui_r_normalmapping", "");
 	trap_Cvar_Set("ui_r_parallaxmapping", "");
+	trap_Cvar_Set("ui_r_vboVertexSkinning", "");
 }
 
 
@@ -6578,6 +6580,7 @@ void UI_RunMenuScript(char **args)
 			trap_Cvar_CopyValue_i("r_texturebits", "ui_r_texturebits");
 			trap_Cvar_CopyValue_i("r_depthbits", "ui_r_depthbits");
 			trap_Cvar_CopyValue_i("r_ext_compressed_textures", "ui_r_ext_compressed_textures");
+			trap_Cvar_CopyValue_i("r_ext_texture_filter_anisotropic", "ui_r_ext_texture_filter_anisotropic");
 			trap_Cvar_CopyValue_i("r_finish", "ui_r_finish");
 			trap_Cvar_CopyValue_i("r_dynamiclight", "ui_r_dynamiclight");
 			trap_Cvar_CopyValue_i("r_allowextensions", "ui_r_allowextensions");
@@ -6587,6 +6590,7 @@ void UI_RunMenuScript(char **args)
 			trap_Cvar_CopyValue_i("r_bloom", "r_bloom");
 			trap_Cvar_CopyValue_i("r_normalmapping", "ui_r_normalmapping");
 			trap_Cvar_CopyValue_i("r_parallaxmapping", "ui_r_parallaxmapping");
+			trap_Cvar_CopyValue_i("r_vboVertexSkinning", "ui_r_vboVertexSkinning");
 			
 			trap_Cvar_VariableStringBuffer("r_texturemode", ui_r_texturemode, sizeof(ui_r_texturemode));
 			trap_Cvar_Set("ui_r_texturemode", ui_r_texturemode);
@@ -6608,6 +6612,7 @@ void UI_RunMenuScript(char **args)
 			trap_Cvar_CopyValue_i("ui_r_texturebits", "r_texturebits");
 			trap_Cvar_CopyValue_i("ui_r_depthbits", "r_depthbits");
 			trap_Cvar_CopyValue_i("ui_r_ext_compressed_textures", "r_ext_compressed_textures");
+			trap_Cvar_CopyValue_i("ui_r_ext_texture_filter_anisotropic", "r_ext_texture_filter_anisotropic");
 			trap_Cvar_CopyValue_i("ui_r_finish", "r_finish");
 			trap_Cvar_CopyValue_i("ui_r_dynamiclight", "r_dynamiclight");
 			trap_Cvar_CopyValue_i("ui_r_allowextensions", "r_allowextensions");
@@ -6617,6 +6622,7 @@ void UI_RunMenuScript(char **args)
 			trap_Cvar_CopyValue_i("ui_r_bloom", "r_bloom");
 			trap_Cvar_CopyValue_i("ui_r_normalmapping", "r_normalmapping");
 			trap_Cvar_CopyValue_i("ui_r_parallaxmapping", "r_parallaxmapping");
+			trap_Cvar_CopyValue_i("ui_r_vboVertexSkinning", "r_vboVertexSkinning");
 
 			trap_Cvar_VariableStringBuffer("ui_r_texturemode", ui_r_texturemode, sizeof(ui_r_texturemode));
 			trap_Cvar_Set("r_texturemode", ui_r_texturemode);
