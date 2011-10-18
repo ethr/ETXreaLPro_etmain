@@ -16,6 +16,7 @@ ETXMap.exe -fs_basepath %BASEPATH% -v -minimap -size 512 -o levelshots/%MAPNAME%
 del map-%MAPNAME%-%VERSION%.pk3
 zip map-%MAPNAME%-%VERSION%.pk3 levelshots/%MAPNAME%.png
 zip map-%MAPNAME%-%VERSION%.pk3 levelshots/%MAPNAME%_cc.png
+zip map-%MAPNAME%-%VERSION%.pk3 scripts/%MAPNAME%.arena
 zip map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%.bat
 zip map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%.map
 zip map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%.bsp
