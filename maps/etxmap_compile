@@ -59,10 +59,12 @@ map_package() {
 	cd ..
 	DATE=`date +%Y%m%d`
 	MAP_STRIPPED=`basename $MAP .map`
-	PK3NAME=map-$MAP_STRIPPED-$DATE.pk3
+	PK3NAME=xreal-map-$MAP_STRIPPED-$DATE.pk3
 	zip $PK3NAME maps/$MAP_STRIPPED.bsp
 	zip $PK3NAME maps/$MAP_STRIPPED.map
 	zip $PK3NAME maps/$MAP_STRIPPED.bat
+	zip $PK3NAME maps/$MAP_STRIPPED-compile-final.bat
+	zip $PK3NAME maps/$MAP_STRIPPED-compile-quick.bat
 	zip $PK3NAME maps/$MAP_STRIPPED.objdata
 	zip $PK3NAME maps/$MAP_STRIPPED.script
 	zip $PK3NAME maps/$MAP_STRIPPED_lms.objdata
@@ -152,10 +154,10 @@ map_help() {
 check_compiler() {
 	case `uname -m` in
 		x86_64)
-			COMPILER='../../bin64/etxmap'
+			COMPILER='../../bin/linux-x86_64/etxmap'
 			;;
 		i386|i486|i586|i686)
-			COMPILER='../../bin32/etxmap'
+			COMPILER='../../bin/linux-x86/etxmap'
 			;;
 		*)
 			echo "You are not running a supported platform for compiling ETXreaL maps. If you would like to compile ETXreaL maps on your platform, please visit http://www.moddb.com/mods/etxreal/ for contact information."
