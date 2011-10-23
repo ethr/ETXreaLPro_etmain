@@ -8,7 +8,7 @@ cd etmain
 
 ETXMap.exe -fs_basepath %BASEPATH% -v -meta -leaktest maps/%MAPNAME%.map
 REM pause
-ETXMap.exe -fs_basepath %BASEPATH% -vis -fast maps/%MAPNAME%.map
+ETXMap.exe -fs_basepath %BASEPATH% -vis maps/%MAPNAME%.map
 REM pause
 ETXMap.exe -fs_basepath %BASEPATH% -light -fast -filter -samplesize 1 -lightmapsize 2048 -randomsamples -bounce 0 maps/%MAPNAME%.map
 REM ETXMap.exe -fs_basepath %BASEPATH% -light -fast -filter -samplesize 1 -lightmapsize 2048 maps/%MAPNAME%.map
