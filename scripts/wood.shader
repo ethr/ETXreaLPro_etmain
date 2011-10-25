@@ -5,25 +5,41 @@
 textures/wood/wood_c01
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_c01
+	diffusemap			textures/wood/wood_c01
+	bumpmap        		displacemap( textures/wood/wood_c01_norm, invertColor(textures/wood/wood_c01_disp) )
+	specularmap			textures/wood/wood_c01_spec 
 }
 
 textures/wood/wood_m01_usat
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m01_usat
+	diffusemap			textures/wood/wood_m01_usat
+	bumpmap        		displacemap( textures/wood/wood_m01_usat_norm, invertColor(textures/wood/wood_m01_usat_disp) )
+	specularmap			textures/wood/wood_m01_usat_spec 
 }
 
-textures/wood/wood_m02
+textures/wood/wood_m02 //same hight-maps as wood_m01_usat but OWN specular
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m02
+	diffusemap			textures/wood/wood_m02
+	bumpmap        		displacemap( textures/wood/wood_m01_usat_norm, invertColor(textures/wood/wood_m01_usat_disp) )
+	specularmap			textures/wood/wood_m02_spec 
 }
 
-textures/wood/wood_m02a
+textures/wood/wood_m02a //same special-maps as wood_m01_usat
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m02a
+	diffusemap			textures/wood/wood_m02a
+	bumpmap        		displacemap( textures/wood/wood_m01_usat_norm, invertColor(textures/wood/wood_m01_usat_disp) )
+	specularmap			textures/wood/wood_m01_usat_spec 
 }
 
 textures/wood/wood_m05
@@ -32,34 +48,47 @@ textures/wood/wood_m05
 	implicitMap -
 }
 
-textures/wood/wood_m05_usata
+textures/wood/wood_m05_usata //missing
 {
 	surfaceparm woodsteps
 	implicitMap -
 }
 
-textures/wood/wood_m05a_usat
+
+textures/wood/wood_m05a_usat //crossbar
+{
+	surfaceparm woodsteps
+	
+	qer_editorimage 	textures/wood/wood_m05a_usat
+	diffusemap			textures/wood/wood_m05a_usat
+	bumpmap        		displacemap( textures/wood/wood_m05a_usat_norm, invertColor(textures/wood/wood_m05a_usat_disp) )
+	specularmap			textures/wood/wood_m05a_usat_spec 
+}
+
+textures/wood/wood_m05a_usat_snow //missing
 {
 	surfaceparm woodsteps
 	implicitMap -
 }
 
-textures/wood/wood_m05a_usat_snow
+textures/wood/wood_m05a_usata 
 {
 	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m05a_usata
-{
-	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m05a_usata
+	diffusemap			textures/wood/wood_m05a_usata
+	bumpmap        		displacemap( textures/wood/wood_m05a_usata_norm, invertColor(textures/wood/wood_m05a_usata_disp) )
+	specularmap			textures/wood/wood_m05a_usata_spec
 }
 
 textures/wood/wood_m05a_usata_dm
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m05a_usata_dm
+	diffusemap			textures/wood/wood_m05a_usata_dm
+	bumpmap        		displacemap( textures/wood/wood_m05a_usata_norm, invertColor(textures/wood/wood_m05a_usata_disp) )
+	specularmap			textures/wood/wood_m05a_usata_spec
 }
 
 textures/wood/wood_m06
