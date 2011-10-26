@@ -91,64 +91,36 @@ textures/wood/wood_m05a_usata_dm
 	specularmap			textures/wood/wood_m05a_usata_spec
 }
 
-textures/wood/wood_m06
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m06_usat
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
 textures/wood/wood_m06a
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m06a
+	diffusemap			textures/wood/wood_m06a
+	bumpmap        		displacemap( textures/wood/wood_m06a_norm, invertColor(textures/wood/wood_m06a_disp) )
+	specularmap			textures/wood/wood_m06a_spec
 }
 
-textures/wood/wood_m06b
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m08
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m08_usat
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m09
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m09_usat
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
-
-textures/wood/wood_m11
-{
-	surfaceparm woodsteps
-	implicitMap -
-}
+//Everything between 6 and 12 is misteriously absent
 
 textures/wood/wood_m12
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m12
+	diffusemap			textures/wood/wood_m12
+	bumpmap        		displacemap( textures/wood/wood_m12_norm, invertColor(textures/wood/wood_m12_disp) )
+	specularmap			textures/wood/wood_m12_spec
+}
+
+textures/wood/wood_m15 //zelfde special maps als wood_m12
+{
+	surfaceparm woodsteps
+	
+	qer_editorimage 	textures/wood/wood_m15
+	diffusemap			textures/wood/wood_m15
+	bumpmap        		displacemap( textures/wood/wood_m12_norm, invertColor(textures/wood/wood_m12_disp) )
+	specularmap			textures/wood/wood_m12_spec
 }
 
 textures/wood/wood_m12_usat
@@ -157,39 +129,62 @@ textures/wood/wood_m12_usat
 	implicitMap -
 }
 
-textures/wood/wood_m12a
+textures/wood/wood_m12a //whatever the difference migth be with _m12
 {
-	qer_editorimage textures/wood/wood_m12.tga
 	surfaceparm woodsteps
-	implicitMap textures/wood/wood_m12.tga
+	
+	qer_editorimage 	textures/wood/wood_m12
+	diffusemap			textures/wood/wood_m12
+	bumpmap        		displacemap( textures/wood/wood_m12_norm, invertColor(textures/wood/wood_m12_disp) )
+	specularmap			textures/wood/wood_m12_spec
 }
 
-textures/wood/wood_m13
+textures/wood/wood_m13 //same specialmaps as _m13_usat
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m13
+	diffusemap			textures/wood/wood_m13
+	bumpmap        		displacemap( textures/wood/wood_m13_usat_norm, invertColor(textures/wood/wood_m13_usat_disp) )
+	specularmap			textures/wood/wood_m13_usat_spec
 }
 
 textures/wood/wood_m13_usat
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m13_usat
+	diffusemap			textures/wood/wood_m13_usat
+	bumpmap        		displacemap( textures/wood/wood_m13_usat_norm, invertColor(textures/wood/wood_m13_usat_disp) )
+	specularmap			textures/wood/wood_m13_usat_spec
 }
 
 textures/wood/wood_m16
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m16
+	diffusemap			textures/wood/wood_m16
+	bumpmap        		displacemap( textures/wood/wood_m16_norm, invertColor(textures/wood/wood_m16_disp) )
+	specularmap			textures/wood/wood_m16_spec
 }
 
-textures/wood/wood_m16cm
+textures/wood/wood_m16cm //the SAME as _m16, one wonders what they were thinking
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m16
+	diffusemap			textures/wood/wood_m16
+	bumpmap        		displacemap( textures/wood/wood_m16_norm, invertColor(textures/wood/wood_m16_disp) )
+	specularmap			textures/wood/wood_m16_spec
 }
 
 textures/wood/wood_m18
 {
 	surfaceparm woodsteps
-	implicitMap -
+	
+	qer_editorimage 	textures/wood/wood_m18
+	diffusemap			textures/wood/wood_m18
+	bumpmap        		displacemap( textures/wood/wood_m18_norm, invertColor(textures/wood/wood_m18_disp) )
+	specularmap			textures/wood/wood_m18_spec
 }
