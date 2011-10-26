@@ -4946,12 +4946,16 @@ void SP_func_explosive(gentity_t * ent)
 		ent->use = func_explosive_spawn;
 		trap_UnlinkEntity(ent);
 	}
+// XreaL BEGIN
+	/*
+	// Doom 3 mapping convention: every entity has a name
 	else if(ent->targetname)
 	{
 		ent->use = func_explosive_use;
 		ent->AIScript_AlertEntity = func_explosive_alert;
 	}
-
+	*/
+// XreaL END
 
 	if(ent->spawnflags & EXPLOSIVE_TOUCHABLE)
 	{							// touchable

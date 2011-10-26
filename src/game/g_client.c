@@ -2764,12 +2764,17 @@ void ClientSpawn(gentity_t * ent, qboolean revived)
 	if(!revived && client->sess.sessionTeam != TEAM_SPECTATOR)
 	{
 		Bot_ScriptInitBot(ent->s.number);
-		//
+		
+// XreaL BEGIN
+		/*
+		// Doom 3 mapping convention: every entity has a name
 		if(spawnPoint && spawnPoint->targetname)
 		{
 			Bot_ScriptEvent(ent->s.number, "spawn", spawnPoint->targetname);
 		}
 		else
+		*/
+// XreaL END
 		{
 			Bot_ScriptEvent(ent->s.number, "spawn", "");
 		}
