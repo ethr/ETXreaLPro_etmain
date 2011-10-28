@@ -107,6 +107,7 @@ xlab_wall
 
 #aditional shaders for remade content
 desert_sd
+tobruk_roof_sd
 
 
 # XreaL BEGIN
