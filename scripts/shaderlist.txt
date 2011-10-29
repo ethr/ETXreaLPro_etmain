@@ -105,6 +105,10 @@ xlab_door
 xlab_props
 xlab_wall
 
+#aditional shaders for remade content
+desert_sd
+tobruk_roof_sd
+
 
 # XreaL BEGIN
 #eX
@@ -114,6 +118,9 @@ qx_hod
 tr3b_parallax
 tr3b_lava
 # XreaL END
+
+#Oasis Tunnel
+models_oasis
 
 # MAWI BEGIN
 asset
