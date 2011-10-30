@@ -18,6 +18,15 @@ textures/desert_sd/grass_desert_flat
 	
 }
 
+textures/desert_sd/grass_sand_flat
+{
+    qer_editorimage 	textures/desert_sd/grass_sand_flat
+	diffusemap			textures/desert_sd/grass_sand_flat
+	bumpmap        		displacemap( textures/desert_sd/grass_sand_flat_norm, invertColor(textures/desert_sd/grass_sand_flat_disp) )
+	specularmap			textures/desert_sd/grass_sand_flat_spec
+	
+}
+
 textures/desert_sd/pavement_quad_sandy
 {
     qer_editorimage 	textures/desert_sd/pavement_quad_sandy
