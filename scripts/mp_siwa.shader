@@ -1758,7 +1758,7 @@ textures/mp_siwa/rock_edged
 	}
 	*/
 	
-	
+	{
 		stage diffusemap
 		map textures/desert_sd/rock_edged_smooth
 		vertexColor
