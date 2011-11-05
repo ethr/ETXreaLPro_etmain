@@ -53,3 +53,57 @@ textures/desert_sd/pavement_tris_sandy
 	specularmap			textures/desert_sd/pavement_tris_sandy_spec
 	
 }
+
+textures/desert_sd/rock_edged_smooth
+{
+    qer_editorimage 	textures/desert_sd/rock_edged_smooth
+	diffusemap			textures/desert_sd/rock_edged_smooth
+	bumpmap        		displacemap( textures/desert_sd/rock_edged_smooth_norm, invertColor(textures/desert_sd/rock_edged_smooth_disp) )
+	specularmap			textures/desert_sd/rock_edged_smooth_spec
+	
+}
+
+textures/desert_sd/sand_dirt_medium
+{
+    qer_editorimage 	textures/desert_sd/sand_dirt_medium
+	diffusemap			textures/desert_sd/sand_dirt_medium
+	bumpmap        		displacemap( textures/desert_sd/sand_dirt_medium_norm, invertColor(textures/desert_sd/sand_dirt_medium_disp) )
+	specularmap			textures/desert_sd/sand_dirt_medium_spec
+	
+}
+
+textures/desert_sd/sand_gravels_bright
+{
+    qer_editorimage 	textures/desert_sd/sand_gravels_bright
+	diffusemap			textures/desert_sd/sand_gravels_bright
+	bumpmap        		displacemap( textures/desert_sd/sand_gravels_bright_norm, invertColor(textures/desert_sd/sand_gravels_bright_disp) )
+	specularmap			textures/desert_sd/sand_gravels_bright_spec
+	
+}
+
+textures/desert_sd/sand_disturb_desert
+{
+    qer_editorimage 	textures/desert_sd/sand_disturb_desert
+	diffusemap			textures/desert_sd/sand_disturb_desert
+	bumpmap        		displacemap( textures/desert_sd/sand_disturb_desert_norm, invertColor(textures/desert_sd/sand_disturb_desert_disp) )
+	specularmap			textures/desert_sd/sand_disturb_desert_spec
+	
+}
+
+textures/desert_sd/sand_patchy
+{
+    qer_editorimage 	textures/desert_sd/sand_patchy
+	diffusemap			textures/desert_sd/sand_patchy
+	bumpmap        		displacemap( textures/desert_sd/sand_patchy_norm, invertColor(textures/desert_sd/sand_patchy_disp) )
+	specularmap			textures/desert_sd/sand_patchy_spec
+	
+}
+
+textures/desert_sd/sand_wave_desert
+{
+    qer_editorimage 	textures/desert_sd/sand_wave_desert
+	diffusemap			textures/desert_sd/sand_wave_desert
+	bumpmap        		displacemap( textures/desert_sd/sand_wave_desert_norm, invertColor(textures/desert_sd/sand_wave_desert_disp) )
+	specularmap			textures/desert_sd/sand_wave_desert_spec
+	
+}
