@@ -1,4 +1,4 @@
-set VERSION=20111023
+set VERSION=20111106
 set MAPNAME=etx_railgun
 cd ../../bin/win32
 PATH=%PATH%;%CD%
@@ -24,4 +24,6 @@ zip xreal-map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%_lms.objdata
 zip xreal-map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%_lms.script
 zip xreal-map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%_tracemap.tga
 zip -r xreal-map-%MAPNAME%-%VERSION%.pk3 maps/%MAPNAME%/
+zip xreal-map-%MAPNAME%-%VERSION%.pk3 sound/scripts/%MAPNAME%.sounds
+zip xreal-map-%MAPNAME%-%VERSION%.pk3 sound/maps/%MAPNAME%.sps
 pause
