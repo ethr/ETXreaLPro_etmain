@@ -15,8 +15,8 @@ textures/seawall_wall/metal_trim1
 	
 	qer_editorimage textures/seawall_wall/metal_trim1
 	diffusemap		textures/seawall_wall/metal_trim1
-	bumpmap         displacemap( textures/seawall_wall/metal_trim1_norm invertColor(textures/seawall_wall/metal_trim1_disp) )
-	pecularmap		textures/seawall_wall/metal_trim1
+	bumpmap         displacemap( textures/seawall_wall/metal_trim1_norm, invertColor(textures/seawall_wall/metal_trim1_disp) )
+	specularmap		textures/seawall_wall/metal_trim1
 	
 }
 
