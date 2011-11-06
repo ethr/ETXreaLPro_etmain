@@ -11,6 +11,8 @@ textures/egypt_floor_sd/afloor_m02
 textures/egypt_floor_sd/block-16sq
 {
 	qer_editorimage 	textures/egypt_floor_sd/block-16sq
+	parallax
+	
 	diffusemap			textures/egypt_floor_sd/block-16sq
 	bumpmap        		displacemap( textures/egypt_floor_sd/block-16sq_norm, invertColor(textures/egypt_floor_sd/block-16sq_disp) )
 	specularmap			textures/egypt_floor_sd/block-16sq_spec
