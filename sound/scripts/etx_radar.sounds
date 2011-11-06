@@ -1,0 +1,294 @@
+// news reel
+
+news_radar
+{
+	sound sound/vo/radar/news_radar.wav
+	voice
+	streaming
+}
+
+
+// allied commander
+
+radar_allies_bunker_capture
+{
+	sound sound/vo/radar/allies/hq_bunkercap.wav
+	voice
+	streaming
+}
+
+radar_allies_bunker_captured
+{
+	sound sound/vo/radar/allies/hq_bunkercapd.wav
+	voice
+	streaming
+}
+
+radar_allies_bunker_reclaimed
+{
+	sound sound/vo/radar/allies/hq_bunkerrecl.wav
+	voice
+	streaming
+}
+
+radar_allies_entrances_destroy
+{
+	sound sound/vo/radar/allies/hq_entrancesdyn.wav
+	voice
+	streaming
+}
+
+radar_allies_entrance1_destroy
+{
+	sound sound/vo/radar/allies/hq_entrance1dyn.wav
+	voice
+	streaming
+}
+
+radar_allies_entrance1_destroyed
+{
+	sound sound/vo/radar/allies/hq_entrance1dest.wav
+	voice
+	streaming
+}
+
+radar_allies_entrance2_destroy
+{
+	sound sound/vo/radar/allies/hq_entrance2dyn.wav
+	voice
+	streaming
+}
+
+radar_allies_entrance2_destroyed
+{
+	sound sound/vo/radar/allies/hq_entrance2dest.wav
+	voice
+	streaming
+}
+
+radar_allies_radars_steal
+{
+	sound sound/vo/radar/allies/hq_radarssteal.wav
+	voice
+	streaming
+}
+
+radar_allies_radare_steal
+{
+	sound sound/vo/radar/allies/hq_radaresteal.wav
+	voice
+	streaming
+}
+
+radar_allies_radare_taken
+{
+	sound sound/vo/radar/allies/hq_radaretaken.wav
+	voice
+	streaming
+}
+
+radar_allies_radare_lost
+{
+	sound sound/vo/radar/allies/hq_radarelost.wav
+	voice
+	streaming
+}
+
+radar_allies_radare_returned
+{
+	sound sound/vo/radar/allies/hq_radareret.wav
+	voice
+	streaming
+}
+
+radar_allies_radare_secured
+{
+	sound sound/vo/radar/allies/hq_radaresec.wav
+	voice
+	streaming
+}
+
+radar_allies_radarw_steal
+{
+	sound sound/vo/radar/allies/hq_radarwsteal.wav
+	voice
+	streaming
+}
+
+radar_allies_radarw_taken
+{
+	sound sound/vo/radar/allies/hq_radarwtaken.wav
+	voice
+	streaming
+}
+
+radar_allies_radarw_lost
+{
+	sound sound/vo/radar/allies/hq_radarwlost.wav
+	voice
+	streaming
+}
+
+radar_allies_radarw_returned
+{
+	sound sound/vo/radar/allies/hq_radarwret.wav
+	voice
+	streaming
+}
+
+radar_allies_radarw_secured
+{
+	sound sound/vo/radar/allies/hq_radarwsec.wav
+	voice
+	streaming
+}
+
+
+// axis commander
+
+radar_axis_bunker_stop
+{
+	sound sound/vo/radar/axis/hq_bunkerstop.wav
+	voice
+	streaming
+}
+
+radar_axis_bunker_captured
+{
+	sound sound/vo/radar/axis/hq_bunkercapd.wav
+	voice
+	streaming
+}
+
+radar_axis_bunker_reclaimed
+{
+	sound sound/vo/radar/axis/hq_bunkerrecl.wav
+	voice
+	streaming
+}
+
+radar_axis_entrances_defend
+{
+	sound sound/vo/radar/axis/hq_entrancesdef.wav
+	voice
+	streaming
+}
+
+radar_axis_entrance1_stop
+{
+	sound sound/vo/radar/axis/hq_entrance1stop.wav
+	voice
+	streaming
+}
+
+radar_axis_entrance1_defend
+{
+	sound sound/vo/radar/axis/hq_entrance1def.wav
+	voice
+	streaming
+}
+
+radar_axis_entrance1_destroyed
+{
+	sound sound/vo/radar/axis/hq_entrance1dest.wav
+	voice
+	streaming
+}
+
+radar_axis_entrance2_stop
+{
+	sound sound/vo/radar/axis/hq_entrance2stop.wav
+	voice
+	streaming
+}
+
+radar_axis_entrance2_defend
+{
+	sound sound/vo/radar/axis/hq_entrance2def.wav
+	voice
+	streaming
+}
+
+radar_axis_entrance2_destroyed
+{
+	sound sound/vo/radar/axis/hq_entrance2dest.wav
+	voice
+	streaming
+}
+
+radar_axis_radars_defend
+{
+	sound sound/vo/radar/axis/hq_radarsdef.wav
+	voice
+	streaming
+}
+
+radar_axis_radare_defend
+{
+	sound sound/vo/radar/axis/hq_radaredef.wav
+	voice
+	streaming
+}
+
+radar_axis_radare_taken
+{
+	sound sound/vo/radar/axis/hq_radaretaken.wav
+	voice
+	streaming
+}
+
+radar_axis_radare_lost
+{
+	sound sound/vo/radar/axis/hq_radarelost.wav
+	voice
+	streaming
+}
+
+radar_axis_radare_returned
+{
+	sound sound/vo/radar/axis/hq_radareret.wav
+	voice
+	streaming
+}
+
+radar_axis_radare_secured
+{
+	sound sound/vo/radar/axis/hq_radaresec.wav
+	voice
+	streaming
+}
+
+radar_axis_radarw_defend
+{
+	sound sound/vo/radar/axis/hq_radarwdef.wav
+	voice
+	streaming
+}
+
+radar_axis_radarw_taken
+{
+	sound sound/vo/radar/axis/hq_radarwtaken.wav
+	voice
+	streaming
+}
+
+radar_axis_radarw_lost
+{
+	sound sound/vo/radar/axis/hq_radarwlost.wav
+	voice
+	streaming
+}
+
+radar_axis_radarw_returned
+{
+	sound sound/vo/radar/axis/hq_radarwret.wav
+	voice
+	streaming
+}
+
+radar_axis_radarw_secured
+{
+	sound sound/vo/radar/axis/hq_radarwsec.wav
+	voice
+	streaming
+}

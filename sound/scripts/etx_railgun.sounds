@@ -1,0 +1,259 @@
+// news reel
+
+news_railgun
+{
+	sound sound/vo/railgun/news_railgun.wav
+	voice
+	streaming
+}
+
+
+// allied commander
+
+railgun_allies_depot_capture
+{
+	sound sound/vo/railgun/allies/hq_depotcap.wav
+	voice
+	streaming
+}
+
+railgun_allies_depot_captured
+{
+	sound sound/vo/railgun/allies/hq_depotcapd.wav
+	voice
+	streaming
+}
+
+railgun_allies_depot_lost
+{
+	sound sound/vo/railgun/allies/hq_depotrecl.wav
+	voice
+	streaming
+}
+
+railgun_allies_controls_destroy
+{
+	sound sound/vo/railgun/allies/hq_gunctrldyn.wav
+	voice
+	streaming
+}
+
+railgun_allies_controls_destroyed
+{
+	sound sound/vo/railgun/allies/hq_gunctrldest.wav
+	voice
+	streaming
+}
+
+railgun_allies_controls_repaired
+{
+	sound sound/vo/railgun/allies/hq_gunctrlrep.wav
+	voice
+	streaming
+}
+
+railgun_allies_switch_raise
+{
+	sound sound/vo/railgun/allies/hq_switchraise.wav
+	voice
+	streaming
+}
+
+railgun_allies_switch_raised
+{
+	sound sound/vo/railgun/allies/hq_switchraised.wav
+	voice
+	streaming
+}
+
+railgun_allies_switch_lower
+{
+	sound sound/vo/railgun/allies/hq_switchlower.wav
+	voice
+	streaming
+}
+
+railgun_allies_switch_lowered
+{
+	sound sound/vo/railgun/allies/hq_switchlowered.wav
+	voice
+	streaming
+}
+
+railgun_allies_tug1_depot
+{
+	sound sound/vo/railgun/allies/hq_tug1depot.wav
+	voice
+	streaming
+}
+
+railgun_allies_tug1_loaded
+{
+	sound sound/vo/railgun/allies/hq_tug1loaded.wav
+	voice
+	streaming
+}
+
+railgun_allies_tug1_north
+{
+	sound sound/vo/railgun/allies/hq_tug1north.wav
+	voice
+	streaming
+}
+
+railgun_allies_tug2_loaded
+{
+	sound sound/vo/railgun/allies/hq_tug2loaded.wav
+	voice
+	streaming
+}
+
+railgun_allies_tug2_railgun
+{
+	sound sound/vo/railgun/allies/hq_tug2railgun.wav
+	voice
+	streaming
+}
+
+railgun_allies_railgun_fire
+{
+	sound sound/vo/railgun/allies/hq_gunfirestop.wav
+	voice
+	streaming
+}
+
+
+// axis commander
+
+railgun_axis_depot_capture
+{
+	sound sound/vo/railgun/axis/hq_depotcap.wav
+	voice
+	streaming
+}
+
+railgun_axis_depot_captured
+{
+	sound sound/vo/railgun/axis/hq_depotcapd.wav
+	voice
+	streaming
+}
+
+railgun_axis_depot_lost
+{
+	sound sound/vo/railgun/axis/hq_depotrecl.wav
+	voice
+	streaming
+}
+
+railgun_axis_controls_construct
+{
+	sound sound/vo/railgun/axis/hq_gunctrlcon.wav
+	voice
+	streaming
+}
+
+railgun_axis_controls_defend
+{
+	sound sound/vo/railgun/axis/hq_gunctrldef.wav
+	voice
+	streaming
+}
+
+railgun_axis_controls_destroyed
+{
+	sound sound/vo/railgun/axis/hq_gunctrldest.wav
+	voice
+	streaming
+}
+
+railgun_axis_switch_raise
+{
+	sound sound/vo/railgun/axis/hq_switchraise.wav
+	voice
+	streaming
+}
+
+railgun_axis_switch_raised
+{
+	sound sound/vo/railgun/axis/hq_switchraised.wav
+	voice
+	streaming
+}
+
+railgun_axis_switch_lower
+{
+	sound sound/vo/railgun/axis/hq_switchlower.wav
+	voice
+	streaming
+}
+
+railgun_axis_switch_lowered
+{
+	sound sound/vo/railgun/axis/hq_switchlowered.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug1_allies
+{
+	sound sound/vo/railgun/axis/hq_tug1allies.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug1_depot
+{
+	sound sound/vo/railgun/axis/hq_tug1depot.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug1_loaded
+{
+	sound sound/vo/railgun/axis/hq_tug1loaded.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug1_north
+{
+	sound sound/vo/railgun/axis/hq_tug1north.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug2_allies
+{
+	sound sound/vo/railgun/axis/hq_tug2allies.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug2_loaded
+{
+	sound sound/vo/railgun/axis/hq_tug2loaded.wav
+	voice
+	streaming
+}
+
+railgun_axis_tug2_railgun
+{
+	sound sound/vo/railgun/axis/hq_tug2railgun.wav
+	voice
+	streaming
+}
+
+railgun_axis_railgun_loaded
+{
+	sound sound/vo/railgun/axis/hq_gunloaded.wav
+	voice
+	streaming
+}
+
+railgun_axis_railgun_fire
+{
+	sound sound/vo/railgun/axis/hq_gunfire.wav
+	voice
+	streaming
+}

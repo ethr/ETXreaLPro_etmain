@@ -1,0 +1,245 @@
+// news reel
+
+news_oasis
+{
+	sound sound/vo/oasis/news_oasis.wav
+	voice
+	streaming
+}
+
+
+// allied commander
+
+oasis_allies_pumps_construct
+{
+	sound sound/vo/oasis/allies/hq_pumpscon.wav
+	voice
+	streaming
+}
+
+oasis_allies_pumps_repair
+{
+	sound sound/vo/oasis/allies/hq_pumpsrep.wav
+	voice
+	streaming
+}
+
+oasis_allies_pump_repair
+{
+	sound sound/vo/oasis/allies/hq_pumprep.wav
+	voice
+	streaming
+}
+
+oasis_allies_pump_repaired
+{
+	sound sound/vo/oasis/allies/hq_pumprepd.wav
+	voice
+	streaming
+}
+
+oasis_allies_pump_disabled
+{
+	sound sound/vo/oasis/allies/hq_pumpdis.wav
+	voice
+	streaming
+}
+
+oasis_allies_caves_drain
+{
+	sound sound/vo/oasis/allies/hq_cavesdrain.wav
+	voice
+	streaming
+}
+
+oasis_allies_caves_flood
+{
+	sound sound/vo/oasis/allies/hq_cavesflood.wav
+	voice
+	streaming
+}
+
+oasis_allies_city_capture
+{
+	sound sound/vo/oasis/allies/hq_citycap.wav
+	voice
+	streaming
+}
+
+oasis_allies_city_captured
+{
+	sound sound/vo/oasis/allies/hq_citycapd.wav
+	voice
+	streaming
+}
+
+oasis_allies_city_lost
+{
+	sound sound/vo/oasis/allies/hq_cityrecl.wav
+	voice
+	streaming
+}
+
+oasis_allies_wall_destroy
+{
+	sound sound/vo/oasis/allies/hq_walldyn.wav
+	voice
+	streaming
+}
+
+oasis_allies_wall_destroyed
+{
+	sound sound/vo/oasis/allies/hq_walldest.wav
+	voice
+	streaming
+}
+
+oasis_allies_paks_destroy
+{
+	sound sound/vo/oasis/allies/hq_paksdyn.wav
+	voice
+	streaming
+}
+
+oasis_allies_paknorth_destroy
+{
+	sound sound/vo/oasis/allies/hq_paknorthdyn.wav
+	voice
+	streaming
+}
+
+oasis_allies_paknorth_destroyed
+{
+	sound sound/vo/oasis/allies/hq_paknorthdest.wav
+	voice
+	streaming
+}
+
+oasis_allies_paksouth_destroy
+{
+	sound sound/vo/oasis/allies/hq_paksouthdyn.wav
+	voice
+	streaming
+}
+
+oasis_allies_paksouth_destroyed
+{
+	sound sound/vo/oasis/allies/hq_paksouthdest.wav
+	voice
+	streaming
+}
+
+// axis commander
+
+
+oasis_axis_pump_disable
+{
+	sound sound/vo/oasis/axis/hq_pumprep.wav
+	voice
+	streaming
+}
+
+oasis_axis_pump_disabled
+{
+	sound sound/vo/oasis/axis/hq_pumpdis.wav
+	voice
+	streaming
+}
+
+oasis_axis_pumps_stop
+{
+	sound sound/vo/oasis/axis/hq_pumpsstop.wav
+	voice
+	streaming
+}
+
+oasis_axis_pump_stop
+{
+	sound sound/vo/oasis/axis/hq_pumpstop.wav
+	voice
+	streaming
+}
+
+oasis_axis_caves_drain
+{
+	sound sound/vo/oasis/axis/hq_cavesdrain.wav
+	voice
+	streaming
+}
+
+oasis_axis_caves_flood
+{
+	sound sound/vo/oasis/axis/hq_cavesflood.wav
+	voice
+	streaming
+}
+
+oasis_axis_city_defend
+{
+	sound sound/vo/oasis/axis/hq_citydef.wav
+	voice
+	streaming
+}
+
+oasis_axis_city_captured
+{
+	sound sound/vo/oasis/axis/hq_cityrecl.wav
+	voice
+	streaming
+}
+
+oasis_axis_city_lost
+{
+	sound sound/vo/oasis/axis/hq_citylost.wav
+	voice
+	streaming
+}
+
+oasis_axis_wall_defend
+{
+	sound sound/vo/oasis/axis/hq_walldef.wav
+	voice
+	streaming
+}
+
+oasis_axis_wall_destroyed
+{
+	sound sound/vo/oasis/axis/hq_walldest.wav
+	voice
+	streaming
+}
+
+oasis_axis_paks_defend
+{
+	sound sound/vo/oasis/axis/hq_paksdef.wav
+	voice
+	streaming
+}
+
+oasis_axis_paknorth_defend
+{
+	sound sound/vo/oasis/axis/hq_paknorthdef.wav
+	voice
+	streaming
+}
+
+oasis_axis_paknorth_destroyed
+{
+	sound sound/vo/oasis/axis/hq_paknorthdest.wav
+	voice
+	streaming
+}
+
+oasis_axis_paksouth_defend
+{
+	sound sound/vo/oasis/axis/hq_paksouthdef.wav
+	voice
+	streaming
+}
+
+oasis_axis_paksouth_destroyed
+{
+	sound sound/vo/oasis/axis/hq_paksouthdest.wav
+	voice
+	streaming
+}
