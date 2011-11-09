@@ -2,14 +2,23 @@ textures/radar/dirt_m03icmp_brown
 {
 	qer_editorimage textures/temperate_sd/dirt_m03icmp_brown
 	surfaceparm trans
-	implicitMap textures/temperate_sd/dirt_m03icmp_brown
+	
+	
+	qer_editorimage 	textures/temperate_sd/dirt_m03icmp_brown
+	diffusemap			textures/temperate_sd/dirt_m03icmp_brown
+	bumpmap        		displacemap( textures/temperate_sd/dirt_m03icmp_brown_norm, invertColor(textures/temperate_sd/dirt_m03icmp_brown_disp) )
+	specularmap			textures/temperate_sd/dirt_m03icmp_brown_spec
 }
 
 textures/radar/dirt_m04cmp_brown
 {
 	qer_editorimage textures/temperate_sd/dirt_m04cmp_brown
 	surfaceparm trans
-	implicitMap textures/temperate_sd/dirt_m04cmp_brown
+	
+	qer_editorimage 	textures/temperate_sd/dirt_m04cmp_brown
+	diffusemap			textures/temperate_sd/dirt_m04cmp_brown
+	bumpmap        		displacemap( textures/temperate_sd/dirt_m04cmp_brown_norm, invertColor(textures/temperate_sd/dirt_m04cmp_brown_disp) )
+	specularmap			textures/temperate_sd/dirt_m04cmp_brown_spec
 }
 
 textures/radar/fog
@@ -62,10 +71,22 @@ textures/radar/lmterrain2_0
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 
+	/*
 	{
 		map textures/temperate_sd/master_grass_dirt3
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/master_grass_dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/master_grass_dirt3_norm 
+    specularmap textures/temperate_sd/master_grass_dirt3_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -77,10 +98,22 @@ textures/radar/lmterrain2_1
 {
 	q3map_baseshader textures/radar/lmterrain2_foliage_base
 
+	/*
 	{
 		map textures/temperate_sd/grass_path1
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_path1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_path1_norm 
+    specularmap textures/temperate_sd/grass_path1_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -92,10 +125,23 @@ textures/radar/lmterrain2_2
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 
+	/*
 	{
 		map textures/temperate_sd/grass_dense1
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_dense1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_dense1_norm 
+    specularmap textures/temperate_sd/grass_dense1_spec 
+	
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -107,10 +153,23 @@ textures/radar/lmterrain2_3
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 
+	/*
 	{
 		map textures/temperate_sd/rock_ugly_brown
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_ugly_brown
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/rock_ugly_brown_norm 
+    specularmap textures/temperate_sd/rock_ugly_brown_spec 
+	
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -122,10 +181,22 @@ textures/radar/lmterrain2_4
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 
+	/*
 	{
 		map textures/temperate_sd/dirt3
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/dirt3_norm 
+    specularmap textures/temperate_sd/dirt3_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -137,10 +208,23 @@ textures/radar/lmterrain2_5
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 
+	/*
 	{
 		map textures/temperate_sd/grass_ml03cmp
 		rgbgen identity
 	}
+	*/
+	
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_ml03cmp
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_ml03cmp_norm 
+    specularmap textures/temperate_sd/grass_ml03cmp_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -152,6 +236,7 @@ textures/radar/lmterrain2_0to1
 {
 	q3map_baseshader textures/radar/lmterrain2_foliage_fade
 
+	/*
 	{
 		map textures/temperate_sd/master_grass_dirt3
 		rgbgen identity
@@ -162,6 +247,27 @@ textures/radar/lmterrain2_0to1
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/master_grass_dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/master_grass_dirt3_norm 
+    specularmap textures/temperate_sd/master_grass_dirt3_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_path1
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_path1_norm 
+    specularmap textures/temperate_sd/grass_path1_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -173,6 +279,7 @@ textures/radar/lmterrain2_0to2
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 
+	/*
 	{
 		map textures/temperate_sd/master_grass_dirt3
 		rgbgen identity
@@ -183,6 +290,27 @@ textures/radar/lmterrain2_0to2
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/master_grass_dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/master_grass_dirt3_norm 
+    specularmap textures/temperate_sd/master_grass_dirt3_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_dense1
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_dense1_norm 
+    specularmap textures/temperate_sd/grass_dense1_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -194,6 +322,7 @@ textures/radar/lmterrain2_0to3
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/master_grass_dirt3
 		rgbgen identity
@@ -204,6 +333,28 @@ textures/radar/lmterrain2_0to3
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/master_grass_dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/master_grass_dirt3_norm 
+    specularmap textures/temperate_sd/master_grass_dirt3_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_ugly_brown
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/rock_ugly_brown_norm 
+    specularmap textures/temperate_sd/rock_ugly_brown_spec 
+	
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -215,6 +366,7 @@ textures/radar/lmterrain2_0to4
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/master_grass_dirt3
 		rgbgen identity
@@ -225,6 +377,27 @@ textures/radar/lmterrain2_0to4
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/master_grass_dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/master_grass_dirt3_norm 
+    specularmap textures/temperate_sd/master_grass_dirt3_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/dirt3
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/dirt3_norm 
+    specularmap textures/temperate_sd/dirt3_spec 
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -236,6 +409,7 @@ textures/radar/lmterrain2_0to5
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/master_grass_dirt3
 		rgbgen identity
@@ -246,6 +420,27 @@ textures/radar/lmterrain2_0to5
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/master_grass_dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/master_grass_dirt3_norm 
+    specularmap textures/temperate_sd/master_grass_dirt3_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_ml03cmp
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_ml03cmp_norm
+    specularmap textures/temperate_sd/grass_ml03cmp_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -257,6 +452,7 @@ textures/radar/lmterrain2_1to2
 {
 	q3map_baseshader textures/radar/lmterrain2_foliage_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_path1
 		rgbgen identity
@@ -267,6 +463,27 @@ textures/radar/lmterrain2_1to2
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_path1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_path1_norm 
+    specularmap textures/temperate_sd/grass_path1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_dense1
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_dense1_norm
+    specularmap textures/temperate_sd/grass_dense1_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -278,6 +495,7 @@ textures/radar/lmterrain2_1to3
 {
 	q3map_baseshader textures/radar/lmterrain2_foliage_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_path1
 		rgbgen identity
@@ -288,6 +506,27 @@ textures/radar/lmterrain2_1to3
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_path1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_path1_norm 
+    specularmap textures/temperate_sd/grass_path1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_ugly_brown
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/rock_ugly_brown_norm
+    specularmap textures/temperate_sd/rock_ugly_brown_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -299,6 +538,7 @@ textures/radar/lmterrain2_1to4
 {
 	q3map_baseshader textures/radar/lmterrain2_foliage_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_path1
 		rgbgen identity
@@ -309,6 +549,27 @@ textures/radar/lmterrain2_1to4
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_path1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_path1_norm 
+    specularmap textures/temperate_sd/grass_path1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/dirt3
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/dirt3_norm
+    specularmap textures/temperate_sd/dirt3_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -320,6 +581,7 @@ textures/radar/lmterrain2_1to5
 {
 	q3map_baseshader textures/radar/lmterrain2_foliage_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_path1
 		rgbgen identity
@@ -330,6 +592,27 @@ textures/radar/lmterrain2_1to5
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_path1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_path1_norm 
+    specularmap textures/temperate_sd/grass_path1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_ml03cmp
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_ml03cmp_norm
+    specularmap textures/temperate_sd/grass_ml03cmp_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -341,6 +624,7 @@ textures/radar/lmterrain2_2to3
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_dense1
 		rgbgen identity
@@ -351,6 +635,27 @@ textures/radar/lmterrain2_2to3
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_dense1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_dense1_norm 
+    specularmap textures/temperate_sd/grass_dense1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_ugly_brown
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/rock_ugly_brown_norm
+    specularmap textures/temperate_sd/rock_ugly_brown_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -362,6 +667,7 @@ textures/radar/lmterrain2_2to4
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_dense1
 		rgbgen identity
@@ -372,6 +678,27 @@ textures/radar/lmterrain2_2to4
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_dense1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_dense1_norm 
+    specularmap textures/temperate_sd/grass_dense1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/dirt3
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/dirt3_norm
+    specularmap textures/temperate_sd/dirt3_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -383,6 +710,7 @@ textures/radar/lmterrain2_2to5
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/grass_dense1
 		rgbgen identity
@@ -393,6 +721,27 @@ textures/radar/lmterrain2_2to5
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_dense1
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_dense1_norm 
+    specularmap textures/temperate_sd/grass_dense1_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_ml03cmp
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_ml03cmp_norm
+    specularmap textures/temperate_sd/grass_ml03cmp_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -404,6 +753,7 @@ textures/radar/lmterrain2_3to4
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/rock_ugly_brown
 		rgbgen identity
@@ -414,6 +764,28 @@ textures/radar/lmterrain2_3to4
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_ugly_brown
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/rock_ugly_brown_norm 
+    specularmap textures/temperate_sd/rock_ugly_brown_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/dirt3
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/dirt3_norm
+    specularmap textures/temperate_sd/dirt3_spec
+	
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -425,6 +797,7 @@ textures/radar/lmterrain2_3to5
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/rock_ugly_brown
 		rgbgen identity
@@ -435,6 +808,27 @@ textures/radar/lmterrain2_3to5
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/rock_ugly_brown
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/rock_ugly_brown_norm 
+    specularmap textures/temperate_sd/rock_ugly_brown_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_ml03cmp
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_ml03cmp_norm
+    specularmap textures/temperate_sd/grass_ml03cmp_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -446,6 +840,7 @@ textures/radar/lmterrain2_4to5
 {
 	q3map_baseshader textures/radar/lmterrain2_base
 	
+	/*
 	{
 		map textures/temperate_sd/dirt3
 		rgbgen identity
@@ -456,6 +851,27 @@ textures/radar/lmterrain2_4to5
 		blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
 		rgbgen identity
 	}
+	*/
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/dirt3
+		vertexColor
+	}
+	
+	bumpmap 	textures/temperate_sd/dirt3_norm 
+    specularmap textures/temperate_sd/dirt3_spec 
+	
+	{
+		stage diffusemap
+		map textures/temperate_sd/grass_ml03cmp
+		vertexColor
+		blend blend
+	}
+	
+	bumpmap 	textures/temperate_sd/grass_ml03cmp_norm
+    specularmap textures/temperate_sd/grass_ml03cmp_spec
+	
 	{
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
@@ -488,7 +904,12 @@ textures/radar/road
 	
 	qer_editorimage textures/temperate_sd/dirt_m03icmp_brown
 	surfaceparm trans
-	implicitMap textures/temperate_sd/dirt_m03icmp_brown
+	
+	qer_editorimage 	textures/temperate_sd/dirt_m03icmp_brown
+	diffusemap			textures/temperate_sd/dirt_m03icmp_brown
+	bumpmap        		displacemap( textures/temperate_sd/dirt_m03icmp_brown_norm, invertColor(textures/temperate_sd/dirt_m03icmp_brown_disp) )
+	specularmap			textures/temperate_sd/dirt_m03icmp_brown_spec
+	
 }
 
 
