@@ -3,7 +3,14 @@
 textures/egypt_floor_sd/afloor_m02
 {
 	qer_editorimage 	textures/egypt_floor_sd/afloor_m02
-	diffusemap			textures/egypt_floor_sd/afloor_m02
+	{
+		stage diffusemap
+		map textures/egypt_floor_sd/afloor_m02
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_floor_sd/afloor_m02_norm, invertColor(textures/egypt_floor_sd/afloor_m02_disp) )
 	specularmap			textures/egypt_floor_sd/afloor_m02_spec
 }
@@ -11,9 +18,14 @@ textures/egypt_floor_sd/afloor_m02
 textures/egypt_floor_sd/block-16sq
 {
 	qer_editorimage 	textures/egypt_floor_sd/block-16sq
+	{
+		stage diffusemap
+		map textures/egypt_floor_sd/block-16sq
+		depthScale 0.02
+	}
+	
 	parallax
 	
-	diffusemap			textures/egypt_floor_sd/block-16sq
 	bumpmap        		displacemap( textures/egypt_floor_sd/block-16sq_norm, invertColor(textures/egypt_floor_sd/block-16sq_disp) )
 	specularmap			textures/egypt_floor_sd/block-16sq_spec
 }
@@ -42,7 +54,14 @@ textures/egypt_floor_sd/floor_c06
 	surfaceparm woodsteps
 	
 	qer_editorimage 	textures/egypt_floor_sd/floor_c06
-	diffusemap			textures/egypt_floor_sd/floor_c06
+	{
+		stage diffusemap
+		map textures/egypt_floor_sd/floor_c06
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_floor_sd/floor_c06_norm, invertColor(textures/egypt_floor_sd/floor_c06_disp) )
 	specularmap			textures/egypt_floor_sd/floor_c06_spec
 }

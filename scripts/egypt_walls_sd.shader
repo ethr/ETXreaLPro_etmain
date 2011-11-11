@@ -37,7 +37,14 @@ textures/egypt_walls_sd/mat_wall1
 textures/egypt_walls_sd/roughbrick02
 {
     qer_editorimage 	textures/egypt_walls_sd/roughbrick02
-	diffusemap			textures/egypt_walls_sd/roughbrick02
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/roughbrick02
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/roughbrick02_norm, invertColor(textures/egypt_walls_sd/roughbrick02_disp) )
 	specularmap			textures/egypt_walls_sd/roughbrick02_spec
 	
@@ -46,7 +53,14 @@ textures/egypt_walls_sd/roughbrick02
 textures/egypt_walls_sd/roughbrick01
 {
     qer_editorimage 	textures/egypt_walls_sd/roughbrick01
-	diffusemap			textures/egypt_walls_sd/roughbrick01
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/roughbrick01
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/roughbrick01_norm, invertColor(textures/egypt_walls_sd/roughbrick01_disp) )
 	specularmap			textures/egypt_walls_sd/roughbrick01_spec
 	
@@ -92,16 +106,14 @@ textures/egypt_walls_sd/roughedge01
 textures/egypt_walls_sd/stripedbrick01
 {
     qer_editorimage 	textures/egypt_walls_sd/stripedbrick01
-	diffusemap			textures/egypt_walls_sd/stripedbrick01
-	bumpmap        		displacemap( textures/egypt_walls_sd/stripedbrick01_norm, invertColor(textures/egypt_walls_sd/stripedbrick01_disp) )
-	specularmap			textures/egypt_walls_sd/stripedbrick01_spec
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stripedbrick01
+		depthScale 0.02
+	}
 	
-}
-
-textures/egypt_walls_sd/stripedbrick01
-{
-    qer_editorimage 	textures/egypt_walls_sd/stripedbrick01
-	diffusemap			textures/egypt_walls_sd/stripedbrick01
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stripedbrick01_norm, invertColor(textures/egypt_walls_sd/stripedbrick01_disp) )
 	specularmap			textures/egypt_walls_sd/stripedbrick01_spec
 	
@@ -110,7 +122,14 @@ textures/egypt_walls_sd/stripedbrick01
 textures/egypt_walls_sd/stucco01
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco01
-	diffusemap			textures/egypt_walls_sd/stucco01
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco01
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco01_norm, invertColor(textures/egypt_walls_sd/stucco01_disp) )
 	specularmap			textures/egypt_walls_sd/stucco01_spec
 	
@@ -119,7 +138,14 @@ textures/egypt_walls_sd/stucco01
 textures/egypt_walls_sd/stucco01_phong
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco01
-	diffusemap			textures/egypt_walls_sd/stucco01
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco01
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco01_norm, invertColor(textures/egypt_walls_sd/stucco01_disp) )
 	specularmap			textures/egypt_walls_sd/stucco01_spec
 	
@@ -128,7 +154,14 @@ textures/egypt_walls_sd/stucco01_phong
 textures/egypt_walls_sd/stucco01_decor01
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco01_decor01
-	diffusemap			textures/egypt_walls_sd/stucco01_decor01
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco01_decor01
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco01_decor01_norm, invertColor(textures/egypt_walls_sd/stucco01_decor01_disp) )
 	specularmap			textures/egypt_walls_sd/stucco01_decor01_spec
 	
@@ -137,10 +170,16 @@ textures/egypt_walls_sd/stucco01_decor01
 textures/egypt_walls_sd/stucco01_decor01_phong
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco01_decor01
-	diffusemap			textures/egypt_walls_sd/stucco01_decor01
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco01_decor01
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco01_decor01_norm, invertColor(textures/egypt_walls_sd/stucco01_decor01_disp) )
 	specularmap			textures/egypt_walls_sd/stucco01_decor01_spec
-	
 }
 
 textures/egypt_walls_sd/stucco02
@@ -218,7 +257,15 @@ textures/egypt_walls_sd/stucco04
 textures/egypt_walls_sd/stucco07_trim03
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07_trim03
-	diffusemap			textures/egypt_walls_sd/stucco07_trim03
+
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07_trim03
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07_trim03_norm, invertColor(textures/egypt_walls_sd/stucco07_trim03_disp) )
 	specularmap			textures/egypt_walls_sd/stucco07_trim03_spec
 	
@@ -227,7 +274,32 @@ textures/egypt_walls_sd/stucco07_trim03
 textures/egypt_walls_sd/stucco07a
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07a
-	diffusemap			textures/egypt_walls_sd/stucco07a
+
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07a
+		depthScale 0.02
+	}
+	
+	parallax
+	
+	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07_norm, invertColor(textures/egypt_walls_sd/stucco07_disp) )
+	specularmap			textures/egypt_walls_sd/stucco07a_spec
+	
+}
+
+textures/egypt_walls_sd/stucco07a_nonsolid
+{
+    qer_editorimage 	textures/egypt_walls_sd/stucco07a
+
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07a
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07_norm, invertColor(textures/egypt_walls_sd/stucco07_disp) )
 	specularmap			textures/egypt_walls_sd/stucco07a_spec
 	
@@ -236,7 +308,15 @@ textures/egypt_walls_sd/stucco07a
 textures/egypt_walls_sd/stucco07b
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07b
-	diffusemap			textures/egypt_walls_sd/stucco07b
+
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07b
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07_norm, invertColor(textures/egypt_walls_sd/stucco07_disp) )
 	specularmap			textures/egypt_walls_sd/stucco07b_spec
 	
@@ -245,7 +325,15 @@ textures/egypt_walls_sd/stucco07b
 textures/egypt_walls_sd/stucco07c
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07c
-	diffusemap			textures/egypt_walls_sd/stucco07c
+
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07c
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07_norm, invertColor(textures/egypt_walls_sd/stucco07_disp) )
 	specularmap			textures/egypt_walls_sd/stucco07c_spec
 	
@@ -254,7 +342,15 @@ textures/egypt_walls_sd/stucco07c
 textures/egypt_walls_sd/stucco07d
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07d
-	diffusemap			textures/egypt_walls_sd/stucco07d
+
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07d
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07_norm, invertColor(textures/egypt_walls_sd/stucco07_disp) )
 	specularmap			textures/egypt_walls_sd/stucco07d_spec
 	
@@ -263,7 +359,16 @@ textures/egypt_walls_sd/stucco07d
 textures/egypt_walls_sd/stucco07f
 {
     qer_editorimage 	textures/egypt_walls_sd/stucco07f
-	diffusemap			textures/egypt_walls_sd/stucco07f
+	
+	{
+		stage diffusemap
+		map textures/egypt_walls_sd/stucco07f
+		depthScale 0.02
+	}
+	
+	parallax
+	
+	//diffusemap			textures/egypt_walls_sd/stucco07f
 	bumpmap        		displacemap( textures/egypt_walls_sd/stucco07f_norm, invertColor(textures/egypt_walls_sd/stucco07f_disp) )
 	specularmap			textures/egypt_walls_sd/stucco07f_spec
 	
