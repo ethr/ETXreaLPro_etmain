@@ -432,7 +432,14 @@ textures/goldrush/lmterrain_3
 textures/goldrush/pavement_quad
 {
 	qer_editorimage 	textures/desert_sd/pavement_quad_sandy
-	diffusemap			textures/desert_sd/pavement_quad_sandy
+	{
+		stage diffusemap
+		map textures/desert_sd/pavement_quad_sandy
+		depthScale 0.01
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/desert_sd/pavement_quad_sandy_norm, invertColor(textures/desert_sd/pavement_quad_sandy_disp) )
 	specularmap			textures/desert_sd/pavement_quad_sandy_spec
 }

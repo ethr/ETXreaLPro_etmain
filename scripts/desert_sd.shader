@@ -3,7 +3,14 @@
 textures/desert_sd/floor_inside_1
 {
     qer_editorimage 	textures/desert_sd/floor_inside_1
-	diffusemap			textures/desert_sd/floor_inside_1
+	{
+		stage diffusemap
+		map textures/desert_sd/floor_inside_1
+		depthScale 0.01
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/desert_sd/floor_inside_1_norm, invertColor(textures/desert_sd/floor_inside_1_disp) )
 	specularmap			textures/desert_sd/floor_inside_1_spec
 	
@@ -30,7 +37,14 @@ textures/desert_sd/grass_sand_flat
 textures/desert_sd/pavement_quad_sandy
 {
     qer_editorimage 	textures/desert_sd/pavement_quad_sandy
-	diffusemap			textures/desert_sd/pavement_quad_sandy
+	{
+		stage diffusemap
+		map textures/desert_sd/pavement_quad_sandy
+		depthScale 0.01
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/desert_sd/pavement_quad_sandy_norm, invertColor(textures/desert_sd/pavement_quad_sandy_disp) )
 	specularmap			textures/desert_sd/pavement_quad_sandy_spec
 	
