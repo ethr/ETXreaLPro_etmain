@@ -1,7 +1,13 @@
 textures/awf/awf_w_m10
 {
     qer_editorimage textures/awf/awf_w_m10
-	diffusemap		textures/awf/awf_w_m10
+	{
+		stage diffusemap
+		map textures/awf/awf_w_m10
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap(textures/awf/awf_w_m10_norm, invertColor(textures/awf_w_m10_disp) )
 	specularmap		textures/awf/awf_w_m11_spec
 	
@@ -10,7 +16,13 @@ textures/awf/awf_w_m10
 textures/awf/awf_w_m11
 {
     qer_editorimage textures/awf/awf_w_m11
-	diffusemap		textures/awf/awf_w_m11
+	{
+		stage diffusemap
+		map textures/awf/awf_w_m11
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap(textures/awf/awf_w_m10_norm, invertColor(textures/awf/awf_w_m10_disp) )
 	specularmap		textures/awf/awf_w_m11_spec
 	

@@ -7,7 +7,14 @@ textures/awf_props/tool_m01
 	implicitMap -
 	
 	qer_editorimage textures/awf_props/tool_m01
-	diffusemap		textures/awf_props/tool_m01
+	{
+		stage diffusemap
+		map textures/awf_props/tool_m01
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap         displacemap( textures/awf_props/tool_m01_norm, invertColor(textures/awf_props/tool_m01_disp) )
 	specularmap		textures/awf_props/tool_m01_spec
 }
@@ -29,7 +36,14 @@ textures/awf_props/tool_m06
 	implicitMap -
 	
 	qer_editorimage textures/awf_props/tool_m06
-	diffusemap		textures/awf_props/tool_m06
+	{
+		stage diffusemap
+		map textures/awf_props/tool_m06
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap         displacemap( textures/awf_props/tool_m06_norm, invertColor(textures/awf_props/tool_m06_disp) )
 	specularmap		textures/awf_props/tool_m06_spec
 }
