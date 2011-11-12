@@ -13,7 +13,13 @@ textures/props_sd/board_cl01m
 	implicitMap -
 	
 	qer_editorimage 	textures/props_sd/board_cl01m
-	diffusemap			textures/props_sd/board_cl01m
+	{
+		stage diffusemap
+		map textures/props_sd/board_cl01m
+		depthScale 0.01
+	}
+	
+	parallax
 	bumpmap        		displacemap( textures/props_sd/board_cl01m_norm, invertColor(textures/props_sd/board_cl01m_disp) )
 	specularmap			textures/props_sd/board_cl01m_spec
 }
@@ -24,7 +30,13 @@ textures/props_sd/board_cl02m
 	implicitMap -
 	
 	qer_editorimage 	textures/props_sd/board_cl02m
-	diffusemap			textures/props_sd/board_cl02m
+	{
+		stage diffusemap
+		map textures/props_sd/board_cl02m
+		depthScale 0.01
+	}
+	
+	parallax
 	bumpmap        		displacemap( textures/props_sd/board_cl02m_norm, invertColor(textures/props_sd/board_cl02m_disp) )
 	specularmap			textures/props_sd/board_cl02m_spec
 }
