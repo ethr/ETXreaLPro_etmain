@@ -1,5 +1,5 @@
 #include "ui/menudef.h"
-
+//harlekin pb button removed, other buttons rescaled
 // Defines //
 
 #define WINDOW_X		16
@@ -22,10 +22,10 @@ menuDef {
 	style		WINDOW_STYLE_FILLED
 	
 	onOpen {
-		conditionalScript cl_punkbuster 0
+/*		conditionalScript cl_punkbuster 0
 			( "hide bttn_pbenable ; show bttn_pbdisable" )
 			( "show bttn_pbenable ; hide bttn_pbdisable" )
-			
+*/			
 		// sort by servername ?
 		conditionalScript serversort_0 2
 			( "setitemcolor grpColumns backcolor 0 0 0 0 ; setitemcolor grpTabs backcolor .1 .1 .1 .3 ; setitemcolor grpTabs forecolor .6 .6 .6 1 ; setitemcolor serverColumn backcolor .35 .35 .35 .2 ; setitemcolor serverColumnTab backcolor .35 .35 .35 .2 ; setitemcolor serverColumnTab forecolor .9 .9 .9 1" )
@@ -162,7 +162,7 @@ menuDef {
 		visible		1
 		decoration
 	}
-	TRICHECKBOXACTIONMULTI( 8+.5*((FILTERS_WIDTH)-6)+2+2+12, 104, .5*((FILTERS_WIDTH)-6)-14, 10, .2, 8, "ui_browserShowPunkBuster", cvarFloatList { "Filter Disabled" 0 "Only show..." 1 "Don't show..." 2 }, uiScript RefreshFilter ; setcvar ui_filterdescription "Filter affecting PunkBuster Servers", "Includes or excludes Punk Buster servers from the server list" )
+	TRICHECKBOXACTIONMULTI( 8+.5*((FILTERS_WIDTH)-6)+2+2+12, 104, .5*((FILTERS_WIDTH)-6)-14, 10, .2, 8, "ui_browserShowPunkBuster", cvarFloatList { "Don't show..." 2 "Filter Disabled" 0 "Only show..." 1 }, uiScript RefreshFilter ; setcvar ui_filterdescription "Filter affecting PunkBuster Servers", "Includes or excludes Punk Buster servers from the server list" )
 
 	itemDef {
 		name		"filtericonAntilag"
@@ -659,17 +659,17 @@ menuDef {
 	BUTTON( 6+6+(.33*((SUBWINDOW_WIDTH)-24))+6, 102+316-24, .34*((SUBWINDOW_WIDTH)-24), 18, "CONNECT TO IP", .3, 14, clearFocus ; open playonline_connecttoip )
 	BUTTON( 6+6+(.33*((SUBWINDOW_WIDTH)-24))+6+(.34*((SUBWINDOW_WIDTH)-24))+6, 102+316-24, .33*((SUBWINDOW_WIDTH)-24), 18, "^1SERVER INFO", .3, 14, clearFocus ; open playonline_serverinfo )
 */
-/*	BUTTON( 12, 102+316-20, .33*((SUBWINDOW_WIDTH)-24), 14, "REFRESH LIST", .24, 11, uiScript RefreshServers )
+	BUTTON( 12, 102+316-20, .33*((SUBWINDOW_WIDTH)-24), 14, "REFRESH LIST", .24, 11, uiScript RefreshServers )
 	BUTTON( 6+6+(.33*((SUBWINDOW_WIDTH)-24))+6, 102+316-20, .34*((SUBWINDOW_WIDTH)-24), 14, "CONNECT TO IP", .24, 11, clearFocus ; open playonline_connecttoip )
-	BUTTON( 6+6+(.33*((SUBWINDOW_WIDTH)-24))+6+(.34*((SUBWINDOW_WIDTH)-24))+6, 102+316-20, .33*((SUBWINDOW_WIDTH)-24), 14, "^1SERVER INFO", .24, 11, clearFocus ; open playonline_serverinfo )*/
-	
+	BUTTON( 6+6+(.33*((SUBWINDOW_WIDTH)-24))+6+(.34*((SUBWINDOW_WIDTH)-24))+6, 102+316-20, .33*((SUBWINDOW_WIDTH)-24), 14, "SERVER INFO", .24, 11, clearFocus ; open playonline_serverinfo )
+/*	
 	BUTTON( 12, 102+316-20, .25*((SUBWINDOW_WIDTH)-30), 14, "REFRESH LIST", .24, 11, uiScript RefreshServers )
 	BUTTON( 6+6+(.25*((SUBWINDOW_WIDTH)-30))+6, 102+316-20, .25*((SUBWINDOW_WIDTH)-30), 14, "CONNECT TO IP", .24, 11, clearFocus ; open playonline_connecttoip )
 	BUTTON( 6+6+(.25*((SUBWINDOW_WIDTH)-30))+6+(.25*((SUBWINDOW_WIDTH)-30))+6, 102+316-20, .25*((SUBWINDOW_WIDTH)-30), 14, "SERVER INFO", .24, 11, clearFocus ; open playonline_serverinfo )
 	
 	NAMEDBUTTON( "bttn_pbenable", 6+6+(.25*((SUBWINDOW_WIDTH)-30))+6+(.25*((SUBWINDOW_WIDTH)-30))+6+(.25*((SUBWINDOW_WIDTH)-30))+6, 102+316-20, .25*((SUBWINDOW_WIDTH)-30), 14, "ENABLE PUNKBUSTER", .24, 11, clearFocus ; open playonline_enablepb )
 	NAMEDBUTTON( "bttn_pbdisable", 6+6+(.25*((SUBWINDOW_WIDTH)-30))+6+(.25*((SUBWINDOW_WIDTH)-30))+6+(.25*((SUBWINDOW_WIDTH)-30))+6, 102+316-20, .25*((SUBWINDOW_WIDTH)-30), 14, "DISABLE PUNKBUSTER", .24, 11, clearFocus ; open playonline_disablepb )
-
+*/
 // Buttons //
 	
 	BUTTON( 6, WINDOW_HEIGHT-24, .5*(WINDOW_WIDTH-18), 18, "BACK", .3, 14, close playonline ; open main )

@@ -66,17 +66,20 @@ menuDef {
 	
 // Chat //
 
-	SUBWINDOW( 6, 228, (SUBWINDOW_WIDTH), 40, "CHAT" )
+	SUBWINDOW( 6, 228, (SUBWINDOW_WIDTH), 76, "CHAT/SOUND" )
 	MULTI( 8, 244, (SUBWINDOW_WIDTH)-4, 10, "Quick Chat Mode:", .2, 8, "cg_quickMessageAlt", cvarFloatList { "Alpha" 0 "Numeric" 1 }, "Use alpha or numeric keys to send radio messages" )
 	MULTI( 8, 256, (SUBWINDOW_WIDTH)-4, 10, "Chat Icon Time:", .2, 8, "cg_voicespritetime", cvarFloatList { "Short" 3000 "Normal" 6000 "Long" 12000 "Really Long" 24000 }, "Specify how long the chat icon appears above other players' heads" )
+	YESNO( 8, 268, (SUBWINDOW_WIDTH)-4, 10, "Team chat only:", .2, 8, "cg_teamChatsOnly", "Play only team chat in-game" )
+	YESNO( 8, 280, (SUBWINDOW_WIDTH)-4, 10, "No voice chat:", .2, 8, "cg_noVoiceChats", "DonŽt play voice chat in-game" )
+	YESNO( 8, 292, (SUBWINDOW_WIDTH)-4, 10, "No voice text:", .2, 8, "cg_noVoiceText", "DonŽt show voice text in-game" )
 
 // Downloads //
-
+/*
 	SUBWINDOW( 6, 274, (SUBWINDOW_WIDTH), 52, "DOWNLOADS" )
 	YESNO( 8, 290, (SUBWINDOW_WIDTH)-4, 10, "Check for Updates on Start-Up:", .2, 8, "cl_autoupdate", "" )
 	YESNO( 8, 302, (SUBWINDOW_WIDTH)-4, 10, "Get Missing Files from Server:", .2, 8, "cl_allowDownload", "" )
 	YESNO( 8, 314, (SUBWINDOW_WIDTH)-4, 10, "Use HTTP/FTP Downloads:", .2, 8, "cl_wwwDownload", "" )
-	
+*/	
 // Miscellaneous //
 
 	SUBWINDOW( 6, 332, (SUBWINDOW_WIDTH), 88, "MISCELLANEOUS" )

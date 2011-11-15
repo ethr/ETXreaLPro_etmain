@@ -13,8 +13,8 @@
 	loadMenu { "ui/playonline.menu" }
 	loadMenu { "ui/playonline_connecttoip.menu" }
 	loadMenu { "ui/playonline_serverinfo.menu" }
-	loadMenu { "ui/playonline_disablepb.menu" }
-	loadMenu { "ui/playonline_enablepb.menu" }
+//	loadMenu { "ui/playonline_disablepb.menu" }
+//	loadMenu { "ui/playonline_enablepb.menu" }
 	loadMenu { "ui/hostgame.menu" }
 	loadMenu { "ui/hostgame_advanced.menu" }
 	loadMenu { "ui/hostgame_advanced_default.menu" }
@@ -28,7 +28,7 @@
 	loadMenu { "ui/options_controls.menu" }
 	loadMenu { "ui/options_controls_default.menu" }
 	loadMenu { "ui/options_system.menu" }
-	loadMenu { "ui/options_system_gamma.menu" }
+//	loadMenu { "ui/options_system_gamma.menu" }
 	loadMenu { "ui/options_graphics.menu" }
 	loadMenu { "ui/options_graphics_gamma.menu" }
 	loadMenu { "ui/credits_splashdamage.menu" }
@@ -41,12 +41,15 @@
 
 	// popups
 	loadMenu { "ui/popup_errormessage.menu" }
-	loadMenu { "ui/popup_errormessage_pb.menu" }	
+//	loadMenu { "ui/popup_errormessage_pb.menu" }	
 	loadMenu { "ui/popup_hostgameerrormessage.menu" }
 	loadMenu { "ui/popup_autoupdate.menu" }
 	loadMenu { "ui/popup_password.menu" }
 	loadMenu { "ui/popup_serverredirect.menu"}
 
+  // www confirm - harlekin
+	loadMenu { "ui/www_confirm.menu" }
+  
 	// video confirmation
 	loadMenu { "ui/vid_restart.menu" }
 	loadMenu { "ui/vid_confirm.menu" }

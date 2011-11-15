@@ -70,9 +70,9 @@ menuDef {
 		setEditFocus "efleftProfile Name:" ;
 //		DEFAULT_SETTINGS
 
-		conditionalScript cl_punkbuster 0
-			( "hide bttn_pbenable" )
-			( "show bttn_pbenable" )
+//		conditionalScript cl_punkbuster 0
+//			( "hide bttn_pbenable" )
+//			( "show bttn_pbenable" )
 
 		/*conditionalscript com_recommendedSet 0
 			( "clearfocus" )
@@ -105,7 +105,7 @@ menuDef {
 // Subwindows //
 
 #define SUBWINDOW_WIDTH		350
-#define SUBWINDOW_HEIGHT	362
+#define SUBWINDOW_HEIGHT	266//362
 #define SUBWINDOW_X			.5*(WINDOW_WIDTH-SUBWINDOW_WIDTH)
 #define SUBWINDOW_Y			.5*(WINDOW_HEIGHT-SUBWINDOW_HEIGHT)
 
@@ -125,19 +125,20 @@ menuDef {
 	EDITFIELDLEFT( SUBWINDOW_X+4+32, SUBWINDOW_Y+88, (SUBWINDOW_WIDTH)-8-64, 10, "Player Alias:", .2, 8, "ui_profile", 36, 23, "Enter the alias here that you would like displayed to others on servers" )
 
 	MULTIACTION( SUBWINDOW_X+4, SUBWINDOW_Y+112, (SUBWINDOW_WIDTH)-8, 10, "Video Quality:", .2, 8, "ui_glCustom", cvarFloatList { "Fastest" 3 "Fast" 2 "Normal" 1 "High" 0 }, uiScript update "ui_glCustom", "Select your initial video settings, these can be changed later via the options menu" )
-	MULTIACTION( SUBWINDOW_X+4, SUBWINDOW_Y+124, (SUBWINDOW_WIDTH)-8, 10, "Resolution:", .2, 8, "ui_r_mode", cvarFloatList { "640*480" 3 "800*600" 4 "960*720" 5 "1024*768" 6 "1152*864" 7 "1280*1024" 8 "1600*1200" 9 "2048*1536" 10 "856*480 Wide Screen" 11 }, uiScript glCustom, "Choose your preferred video resolution - if you're unsure what this means, leave it as the default" )
-	SLIDER( SUBWINDOW_X+4, SUBWINDOW_Y+136, (SUBWINDOW_WIDTH)-8, 10, "Brightness:", .2, 8, "ui_r_gamma" 1 0.5 2, "Set the brightness of the game" )
-	CVARFLOATLABEL( SUBWINDOW_X+4, SUBWINDOW_Y+136, (SUBWINDOW_WIDTH)-8, 10, "ui_r_gamma", .2, ITEM_ALIGN_RIGHT, $evalfloat((SUBWINDOW_WIDTH)-8), 8 )
+	YESNOACTION( SUBWINDOW_X+4, SUBWINDOW_Y+124, (SUBWINDOW_WIDTH)-8, 10, "Fullscreen:", .2, 8, "ui_r_fullscreen", uiScript glCustom, "" )
+  MULTIACTION( SUBWINDOW_X+4, SUBWINDOW_Y+136, (SUBWINDOW_WIDTH)-8, 10, "Resolution:", .2, 8, "ui_r_mode", cvarFloatList { "320*240" 0 "400*300" 1 "512*384" 2 "640*480" 3 "800*600" 4 "960*720" 5 "1024*768" 6 "1152*864" 7 "1280*720" 8 "1280*768" 9 "1280*800" 10 "1280*1024" 11 "1360*768" 12 "1440*900" 13 "1680*1050" 14 "1600*1200" 15 "1920*1080" 16 "1920*1200" 17 "2048*1536" 18 "2560*1600" 19}, uiScript glCustom, "Choose your preferred video resolution - if you're unsure what this means, leave it as the default" )
+	SLIDER( SUBWINDOW_X+4, SUBWINDOW_Y+148, (SUBWINDOW_WIDTH)-8, 10, "Brightness:", .2, 8, "ui_r_gamma" 1 0.5 2, "Set the brightness of the game" )
+	CVARFLOATLABEL( SUBWINDOW_X+4, SUBWINDOW_Y+148, (SUBWINDOW_WIDTH)-8, 10, "ui_r_gamma", .2, ITEM_ALIGN_RIGHT, $evalfloat((SUBWINDOW_WIDTH)-8), 8 )
 
-	MULTIACTION( SUBWINDOW_X+4, SUBWINDOW_Y+160, (SUBWINDOW_WIDTH)-8, 10, "Connection:", .2, 8, "ui_rate", cvarFloatList { "Modem" 4000 "ISDN" 5000 "LAN/CABLE/xDSL" 25000 } cvarListUndefined "Unselected", uiScript update "ui_setRate", "Select your connection type, if unsure select Modem" )
+//	MULTIACTION( SUBWINDOW_X+4, SUBWINDOW_Y+172, (SUBWINDOW_WIDTH)-8, 10, "Connection:", .2, 8, "ui_rate", cvarFloatList { "LAN/CABLE/xDSL" 25000 "Modem" 4000 "ISDN" 5000 } cvarListUndefined "Unselected", uiScript update "ui_setRate", "Select your connection type, if unsure select LAN/CABLE/xDSL" )
 
-	SLIDER( SUBWINDOW_X+4, SUBWINDOW_Y+184, (SUBWINDOW_WIDTH)-8, 10, "Mouse Sensitivity:", .2, 8, "ui_sensitivity" 5 1 30, "Use this slider to set your mouse sensitivity" )
-	CVARFLOATLABEL( SUBWINDOW_X+4, SUBWINDOW_Y+184, (SUBWINDOW_WIDTH)-8, 10, "ui_sensitivity", .2, ITEM_ALIGN_RIGHT, $evalfloat((SUBWINDOW_WIDTH)-8), 8 )
-	YESNO( SUBWINDOW_X+4, SUBWINDOW_Y+196, (SUBWINDOW_WIDTH)-8, 10, "Invert Mouse:", .2, 8, "ui_profile_mousePitch", "Choose invert mouse if you prefer flight-simulator style mouse pitch controls" )
+	SLIDER( SUBWINDOW_X+4, SUBWINDOW_Y+172, (SUBWINDOW_WIDTH)-8, 10, "Mouse Sensitivity:", .2, 8, "ui_sensitivity" 5 1 30, "Use this slider to set your mouse sensitivity" )
+	CVARFLOATLABEL( SUBWINDOW_X+4, SUBWINDOW_Y+172, (SUBWINDOW_WIDTH)-8, 10, "ui_sensitivity", .2, ITEM_ALIGN_RIGHT, $evalfloat((SUBWINDOW_WIDTH)-8), 8 )
+	YESNO( SUBWINDOW_X+4, SUBWINDOW_Y+184, (SUBWINDOW_WIDTH)-8, 10, "Invert Mouse:", .2, 8, "ui_profile_mousePitch", "Choose invert mouse if you prefer flight-simulator style mouse pitch controls" )
 
-	MULTI( SUBWINDOW_X+4, SUBWINDOW_Y+220, (SUBWINDOW_WIDTH)-8, 10, "Handedness:", .2, 8, "ui_handedness", cvarFloatList { "Right" 0 "Left" 1 }, "Left or Right Handed? This sets your default controls\nwhich you can modify later via the options menu" )
+	MULTI( SUBWINDOW_X+4, SUBWINDOW_Y+208, (SUBWINDOW_WIDTH)-8, 10, "Handedness:", .2, 8, "ui_handedness", cvarFloatList { "Right" 0 "Left" 1 }, "Left or Right Handed? This sets your default controls\nwhich you can modify later via the options menu" )
 	
-	BUTTON( (SUBWINDOW_X+4)+.5*((SUBWINDOW_WIDTH)-164), SUBWINDOW_Y+234, 164, 14, "DEFAULT SETTINGS", .24, 11, DEFAULT_SETTINGS ;
+	BUTTON( (SUBWINDOW_X+4)+.5*((SUBWINDOW_WIDTH)-164), SUBWINDOW_Y+222, 164, 14, "DEFAULT SETTINGS", .24, 11, DEFAULT_SETTINGS ;
 																												conditionalscript com_recommendedSet 0
 																													( "clearfocus" )
 																													( "abort" )
@@ -146,21 +147,22 @@ menuDef {
 																													( "setcvar ui_glCustom 1 ; uiScript update ui_glCustom" )
 																													( "copycvar com_recommended ui_glCustom ; uiScript update ui_glCustom" ) "-1" )
 	
-	LABEL( SUBWINDOW_X+4, SUBWINDOW_Y+264, (SUBWINDOW_WIDTH)-8-4, 10, "PunkBuster is a powerful cheat protection technology that prevents dishonest players from gaining an unfair advantage. Many games servers will not allow you to join unless PunkBuster is enabled.", .2, ITEM_ALIGN_LEFT, 0, 8 )
-	NAMEDBUTTON( "bttn_pbenable", (SUBWINDOW_X+4)+.5*((SUBWINDOW_WIDTH)-164), SUBWINDOW_Y+312, 164, 14, "ENABLE PUNKBUSTER", .24, 11, clearFocus ; open playonline_enablepb )
+//	LABEL( SUBWINDOW_X+4, SUBWINDOW_Y+264, (SUBWINDOW_WIDTH)-8-4, 10, "PunkBuster is a powerful cheat protection technology that prevents dishonest players from gaining an unfair advantage. Many games servers will not allow you to join unless PunkBuster is enabled.", .2, ITEM_ALIGN_LEFT, 0, 8 )
+//	NAMEDBUTTON( "bttn_pbenable", (SUBWINDOW_X+4)+.5*((SUBWINDOW_WIDTH)-164), SUBWINDOW_Y+312, 164, 14, "ENABLE PUNKBUSTER", .24, 11, clearFocus ; open playonline_enablepb )
 
 	BUTTON( SUBWINDOW_X+6, SUBWINDOW_Y+SUBWINDOW_HEIGHT-24, .5*(SUBWINDOW_WIDTH-18), 18, "QUIT", .3, 14, close profile_create_initial ; close main ; open credits_quit )
 	BUTTON( SUBWINDOW_X+6+.5*(SUBWINDOW_WIDTH-18)+6, SUBWINDOW_Y+SUBWINDOW_HEIGHT-24, .5*(SUBWINDOW_WIDTH-18), 18, "CREATE", .3, 14, conditionalscript UIProfileValidName 2
 																																		( "clearFocus" )
 																																		( "setcvar ui_profile_create_error \\\"Can't create profile. Please enter a valid player alias.\\\" ; open profile_create_error ; abort" )
-																																	 conditionalscript ui_rate 0
-																																		( "clearFocus" )
-																																		( "setcvar ui_profile_create_error \\\"Can't create profile. Please select your connection type. If you are unsure what to select, choose Modem.\\\" ; open profile_create_error ; abort" )
+																																	// conditionalscript ui_rate 0
+																																	//	( "clearFocus" )
+																																	//	( "setcvar ui_profile_create_error \\\"Can't create profile. Please select your connection type. If you are unsure what to select, choose Modem.\\\" ; open profile_create_error ; abort" )
 																																	 conditionalscript UIProfileAlreadyExists 2
 																																		( "setcvar ui_profile_create_error \\\"Can't create profile. A profile with the same name already exists.\\\" ; open profile_create_error ; abort" )
 																																		( "clearFocus" )
 																																		
 																																	close profile_create_initial ;
+																																	exec "seta rate 25000" ;
 																																	uiscript createProfile ;
 																																	uiScript vidSave ;
 																																	uiscript setDefaultProfile ;

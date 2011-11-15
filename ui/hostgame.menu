@@ -1,5 +1,5 @@
 #include "ui/menudef.h"
-
+//harlekin removed pb button
 // Defines //
 
 #define WINDOW_X		16
@@ -73,7 +73,7 @@ menuDef {
 	}
 	LABEL( 8+24+2, 142, .5*((SUBWINDOW_WIDTH)-6)-24-2-4, 10, "Friendly Fire", .2, ITEM_ALIGN_LEFT, 0, 8 )
 	CHECKBOXNOTEXT( "labelFriendly Fire", 8+12+2, 142, .5*((SUBWINDOW_WIDTH)-6)-14-4, 10, "g_friendlyFire", "Specifies if teammates can hurt each other" )
-	
+/*	
 	itemDef {
 		name		"filtericonPunkBuster"
 		rect		$evalfloat(8+2) 154 10 10
@@ -85,7 +85,7 @@ menuDef {
 	}
 	LABEL( 8+24+2, 154, .5*((SUBWINDOW_WIDTH)-6)-24-2-4, 10, "PunkBuster", .2, ITEM_ALIGN_LEFT, 0, 8 )
 	CHECKBOXNOTEXTACTION( "labelPunkBuster", 8+12+2, 154, .5*((SUBWINDOW_WIDTH)-6)-14-4, 10, "sv_punkbuster" noToggle, uiScript togglePbSVStatus, "Enable Punkbuster anti-cheating technology" )
-	
+*/	
 	itemDef {
 		name		"filtericonAntilag"
 		rect		$evalfloat(8+2) 166 10 10
