@@ -1,7 +1,6 @@
 //======================================================================
 // snow_sd.shader
-// Last edit: 09 august 2011 Eonfge
-//
+// Last edit: 2011-11 Eonfge
 //======================================================================
 textures/snow_sd/alphatree_snow
 {
@@ -144,7 +143,14 @@ textures/snow_sd/bunkerwall_lrg02
 	q3map_shadeangle 80
 	implicitMap -
 	
-	diffusemap		textures/snow_sd/bunkerwall_lrg02
+	qer_editorimage textures/snow_sd/bunkerwall_lrg02
+	{
+		stage diffusemap
+		map textures/snow_sd/bunkerwall_lrg02
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/bunkerwall_lrg02_norm, invertColor(textures/snow_sd/bunkerwall_lrg02_disp) )
 	specularmap		textures/snow_sd/bunkerwall_lrg02_spec
 }
@@ -153,7 +159,13 @@ textures/snow_sd/coal_snow
 {
 	qer_editorimage textures/snow_sd/coal_snow
 	
-	diffusemap		textures/snow_sd/coal_snow
+	{
+		stage diffusemap
+		map textures/snow_sd/coal_snow
+		depthScale 0.005
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/coal_snow_norm, invertColor(textures/snow_sd/coal_snow_disp) )
 	specularmap		textures/snow_sd/coal_snow_spec
 }
@@ -188,7 +200,13 @@ textures/snow_sd/miltary_m04_snow
 {
 	qer_editorimage textures/snow_sd/miltary_m04_snow
 	
-	diffusemap		textures/snow_sd/miltary_m04_snow
+	{
+		stage diffusemap
+		map textures/snow_sd/miltary_m04_snow
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/miltary_m04_snow_norm, invertColor(textures/snow_sd/miltary_m04_snow_disp) )
 	specularmap		textures/snow_sd/miltary_m04_snow_spec
 }
@@ -334,7 +352,13 @@ textures/snow_sd/mroof_snow
 	surfaceparm roofsteps
 	implicitMap -
 	
-	diffusemap		textures/snow_sd/mroof_snow
+	{
+		stage diffusemap
+		map textures/snow_sd/mroof_snow
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/mroof_snow_norm, invertColor(textures/snow_sd/mroof_snow_disp) )
 	specularmap		textures/snow_sd/mroof_snow_spec
 }
@@ -410,7 +434,13 @@ textures/snow_sd/sub1_snow
 	
 	qer_editorimage textures/snow_sd/sub1_snow
 	
-	diffusemap		textures/snow_sd/sub1_snow
+	{
+		stage diffusemap
+		map textures/snow_sd/sub1_snow
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/sub1_snow_norm, invertColor(textures/snow_sd/sub1_snow_disp) )
 	specularmap		textures/snow_sd/sub1_snow_spec
 }
@@ -444,7 +474,13 @@ textures/snow_sd/wood_m05a_snow
 	
 	qer_editorimage textures/snow_sd/wood_m05a_snow
 	
-	diffusemap		textures/snow_sd/wood_m05a_snow
+	{
+		stage diffusemap
+		map textures/snow_sd/wood_m05a_snow
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/wood_m05a_snow_norm, invertColor(textures/snow_sd/wood_m05a_snow_disp) )
 	specularmap		textures/snow_sd/wood_m05a_snow_spec
 }
@@ -461,7 +497,13 @@ textures/snow_sd/fuse_box_snow
 	surfaceparm metalsteps
 	implicitMap -
 	
-	diffusemap		textures/snow_sd/fuse_box_snow
+	{
+		stage diffusemap
+		map textures/snow_sd/fuse_box_snow
+		depthScale 0.02
+	}
+	
+	parallax
 	bumpmap         displacemap( textures/snow_sd/fuse_box_snow_norm, invertColor(textures/snow_sd/fuse_box_snow_disp) )
 	specularmap		textures/snow_sd/fuse_box_snow_spec
 }
