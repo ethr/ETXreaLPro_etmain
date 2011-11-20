@@ -155,7 +155,7 @@ textures/wood/wood_m12
 	{
 		stage diffusemap
 		map textures/wood/wood_m12
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -171,7 +171,7 @@ textures/wood/wood_m15 //zelfde special maps als wood_m12
 	{
 		stage diffusemap
 		map textures/wood/wood_m15
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -179,7 +179,7 @@ textures/wood/wood_m15 //zelfde special maps als wood_m12
 	specularmap			textures/wood/wood_m12_spec
 }
 
-textures/wood/wood_m12_usat
+textures/wood/wood_m12_usat //missing
 {
 	surfaceparm woodsteps
 	implicitMap -
@@ -193,7 +193,7 @@ textures/wood/wood_m12a //whatever the difference migth be with _m12
 	{
 		stage diffusemap
 		map textures/wood/wood_m12
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -209,7 +209,7 @@ textures/wood/wood_m13 //same specialmaps as _m13_usat
 	{
 		stage diffusemap
 		map textures/wood/wood_m13
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -225,7 +225,7 @@ textures/wood/wood_m13_usat
 	{
 		stage diffusemap
 		map textures/wood/wood_m13_usat
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -241,7 +241,7 @@ textures/wood/wood_m16
 	{
 		stage diffusemap
 		map textures/wood/wood_m16
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -257,7 +257,7 @@ textures/wood/wood_m16cm //the SAME as _m16, one wonders what they were thinking
 	{
 		stage diffusemap
 		map textures/wood/wood_m16
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
@@ -273,7 +273,7 @@ textures/wood/wood_m18
 	{
 		stage diffusemap
 		map textures/wood/wood_m18
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
