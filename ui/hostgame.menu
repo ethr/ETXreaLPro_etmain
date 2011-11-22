@@ -127,16 +127,20 @@ menuDef {
 	
 	itemDef {
 		name		"filtericonTeamBalance"
-		rect		$evalfloat(8+.5*((SUBWINDOW_WIDTH)-6)+2+2-4) 166 10 10
+//		rect		$evalfloat(8+.5*((SUBWINDOW_WIDTH)-6)+2+2-4) 166 10 10
+		rect		$evalfloat(8+2) 154 10 10
 		style		WINDOW_STYLE_SHADER
 		background	"ui/assets/filter_balance"
 		forecolor	1 1 1 1
 		visible		1
 		decoration
 	}
-	LABEL( 8+.5*((SUBWINDOW_WIDTH)-6)+2+2+24-4, 166, .5*((SUBWINDOW_WIDTH)-6)-26+4, 10, "Balanced Teams", .2, ITEM_ALIGN_LEFT, 0, 8 )
+	LABEL( 8+24+2, 154, .5*((SUBWINDOW_WIDTH)-6)-24-2-4, 10, "Balanced Teams", .2, ITEM_ALIGN_LEFT, 0, 8 )
+	CHECKBOXNOTEXTACTION( "labelBalanced Teams", 8+12+2, 154, .5*((SUBWINDOW_WIDTH)-6)-14-4, 10, "g_teamforcebalance", copycvar g_teamforcebalance g_lms_teamforcebalance, "Enforces balanced teams by forcing players to join the team with the lowest player count"  )
+/*	LABEL( 8+.5*((SUBWINDOW_WIDTH)-6)+2+2+24-4, 166, .5*((SUBWINDOW_WIDTH)-6)-26+4, 10, "Balanced Teams", .2, ITEM_ALIGN_LEFT, 0, 8 )
 	CHECKBOXNOTEXTACTION( "labelBalanced Teams", 8+.5*((SUBWINDOW_WIDTH)-6)+2+2+12-4, 166, .5*((SUBWINDOW_WIDTH)-6)-14+4, 10, "g_teamforcebalance", copycvar g_teamforcebalance g_lms_teamforcebalance, "Enforces balanced teams by forcing players to join the team with the lowest player count"  )
-	
+*/
+
 // Map Selection //
 
 	SUBWINDOW( 6, 184, (SUBWINDOW_WIDTH), 132, "NAME" )

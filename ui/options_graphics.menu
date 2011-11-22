@@ -21,13 +21,13 @@ menuDef {
 	
 	onOpen
 	{
-		uiScript graphicsCvarsGet ;
+		//uiScript graphicsCvarsGet ; //^3WARNING: unknown UI script graphicsCvarsGet
 		uiScript vidSave ;
 		uiScript glCustom	// really should find something better here
 	}
 	
 	onESC {
-		uiScript graphicsCvarsReset ;
+		//uiScript graphicsCvarsReset ; //^3WARNING: unknown UI script graphicsCvarsReset
 		uiScript vidReset ;
 		close options_graphics ;
 		open options
