@@ -76,6 +76,7 @@ textures/fueldump/terrain1_0
 {
         qer_editorimage textures/stone/mxsnow2
 	q3map_baseshader textures/fueldump/terrain_base
+	/*
 	{
 		map textures/stone/mxsnow2
 		rgbgen identity
@@ -85,6 +86,16 @@ textures/fueldump/terrain1_0
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow2
+				vertexColor
+    }
+      bumpmap		textures/stone/mxsnow2_norm
+      specularmap	textures/stone/mxsnow2_spec      
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -98,6 +109,8 @@ textures/fueldump/terrain1_1
 {
         qer_editorimage textures/snow_sd/mxrock4b_snow
 	q3map_baseshader textures/fueldump/terrain_base
+	
+	/*
 	{
 		map textures/snow_sd/mxrock4b_snow
 		rgbgen identity
@@ -106,7 +119,16 @@ textures/fueldump/terrain1_1
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
-	}
+	}*/
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/mxrock4b_snow
+				vertexColor
+    }
+      bumpmap		textures/snow_sd/mxrock4b_snow_norm
+      specularmap	textures/snow_sd/mxrock4b_snow_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -120,6 +142,8 @@ textures/fueldump/terrain1_2
 {
         qer_editorimage textures/stone/mxsnow3
 	q3map_baseshader textures/fueldump/terrain_base
+	
+	/*
 	{
 		map textures/stone/mxsnow3
 		rgbgen identity
@@ -129,6 +153,16 @@ textures/fueldump/terrain1_2
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow3
+				vertexColor
+    }
+      bumpmap		textures/stone/mxsnow3_norm
+      specularmap	textures/stone/mxsnow3_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -140,8 +174,10 @@ textures/fueldump/terrain1_2
 
 textures/fueldump/terrain1_3
 {
-        qer_editorimage textures/stone/mxrock3h_snow
+    qer_editorimage textures/stone/mxrock3h_snow
 	q3map_baseshader textures/fueldump/terrain_base
+	
+	/*
 	{
 		map textures/stone/mxrock3h_snow
 		rgbgen identity
@@ -151,6 +187,16 @@ textures/fueldump/terrain1_3
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxrock3h_snow
+				vertexColor
+    }
+      bumpmap		textures/stone/mxrock3h_snow_norm
+      specularmap	textures/stone/mxrock3h_snow_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -164,6 +210,7 @@ textures/fueldump/terrain1_0to1
 {
         qer_editorimage textures/stone/mxsnow2
 	q3map_baseshader textures/fueldump/terrain_base
+	/*
 	{
 		map textures/stone/mxsnow2
 		rgbgen identity
@@ -178,7 +225,26 @@ textures/fueldump/terrain1_0to1
 		lightmap $lightmap
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
-	}
+	}*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow2
+				vertexColor
+    }
+      bumpmap		textures/stone/mxsnow2_norm
+      specularmap	textures/stone/mxsnow2_spec
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/mxrock4b_snow
+				vertexColor
+				blend blend
+    }
+      bumpmap		textures/snow_sd/mxrock4b_norm
+      specularmap	textures/snow_sd/mxrock4b_spec
+	
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -192,6 +258,7 @@ textures/fueldump/terrain1_0to2
 {
         qer_editorimage textures/stone/mxsnow2
 	q3map_baseshader textures/fueldump/terrain_base
+	/*
 	{
 		map textures/stone/mxsnow2
 		rgbgen identity
@@ -207,6 +274,25 @@ textures/fueldump/terrain1_0to2
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow2
+				vertexColor
+    }
+		bumpmap		textures/stone/mxsnow2_norm
+		specularmap	textures/stone/mxsnow2_spec
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow3
+				vertexColor
+				blend blend
+    }
+		bumpmap		textures/stone/mxsnow3_norm
+		specularmap	textures/stone/mxsnow3_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -220,6 +306,7 @@ textures/fueldump/terrain1_0to3
 {
         qer_editorimage textures/stone/mxsnow2
 	q3map_baseshader textures/fueldump/terrain_base
+	/*
 	{
 		map textures/stone/mxsnow2
 		rgbgen identity
@@ -235,6 +322,25 @@ textures/fueldump/terrain1_0to3
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow2
+				vertexColor
+    }
+		bumpmap		textures/stone/mxsnow2_norm
+		specularmap	textures/stone/mxsnow2_spec
+	
+	{
+				stage diffusemap
+				map textures/stone/mxrock3h_snow
+				vertexColor
+				blend blend
+    }
+		bumpmap		textures/stone/mxrock3h_snow_norm
+		specularmap	textures/stone/mxrock3h_snow_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -248,6 +354,8 @@ textures/fueldump/terrain1_1to2
 {
         qer_editorimage textures/snow_sd/mxrock4b_snow
 	q3map_baseshader textures/fueldump/terrain_base
+	
+	/*
 	{
 		map textures/snow_sd/mxrock4b_snow
 		rgbgen identity
@@ -263,6 +371,25 @@ textures/fueldump/terrain1_1to2
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/mxrock4b_snow
+				vertexColor
+    }
+		bumpmap		textures/snow_sd/mxrock4b_snow_norm
+		specularmap	textures/snow_sd/mxrock4b_snow_spec
+	
+	{
+				stage diffusemap
+				map textures/stone/mxsnow3
+				vertexColor
+				blend blend
+    }
+		bumpmap		textures/stone/mxsnow3_norm
+		specularmap	textures/stone/mxsnow3_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -276,6 +403,8 @@ textures/fueldump/terrain1_1to3
 {
         qer_editorimage textures/snow_sd/mxrock4b_snow
 	q3map_baseshader textures/fueldump/terrain_base
+	
+	/*
 	{
 		map textures/snow_sd/mxrock4b_snow
 		rgbgen identity
@@ -291,6 +420,25 @@ textures/fueldump/terrain1_1to3
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/mxrock4b_snow
+				vertexColor
+    }
+		bumpmap		textures/snow_sd/mxrock4b_snow_norm
+		specularmap	textures/snow_sd/mxrock4b_snow_spec
+	
+	{
+				stage diffusemap
+				map textures/stone/mxrock3h_snow
+				vertexColor
+				blend blend
+    }
+		bumpmap		textures/stone/mxrock3h_snow_norm
+		specularmap	textures/stone/mxrock3h_snow_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -304,6 +452,8 @@ textures/fueldump/terrain1_2to3
 {
         qer_editorimage textures/stone/mxsnow3
 	q3map_baseshader textures/fueldump/terrain_base
+	
+	/*
 	{
 		map textures/stone/mxsnow3
 		rgbgen identity
@@ -319,6 +469,25 @@ textures/fueldump/terrain1_2to3
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/mxrock4b_snow
+				vertexColor
+    }
+		bumpmap		textures/snow_sd/mxrock4b_snow_norm
+		specularmap	textures/snow_sd/mxrock4b_snow_spec
+	
+	{
+				stage diffusemap
+				map textures/stone/mxrock3h_snow
+				vertexColor
+				blend blend
+    }
+		bumpmap		textures/stone/mxrock3h_snow_norm
+		specularmap	textures/stone/mxrock3h_snow_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -336,6 +505,7 @@ textures/fueldump/cave_dark
 	q3map_nonplanar
 	q3map_shadeangle 60
 	qer_editorimage textures/stone/mxrock3_a
+	/*
 	{
 		map $lightmap
 		rgbGen identity
@@ -344,6 +514,17 @@ textures/fueldump/cave_dark
 		map textures/stone/mxrock3_a
 		blendFunc filter
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxrock3_a
+				vertexColor
+    }
+		bumpmap		textures/stone/mxrock3_a_norm
+		specularmap	textures/stone/mxrock3_a_spec
+	
+	
 }
 
 textures/fueldump/cave_floor
@@ -352,6 +533,8 @@ textures/fueldump/cave_floor
 	q3map_nonplanar
 	q3map_shadeangle 60
 	qer_editorimage textures/stone/mxrock1aa
+	
+	/*
 	{
 		map $lightmap
 		rgbGen identity
@@ -360,6 +543,16 @@ textures/fueldump/cave_floor
 		map textures/stone/mxrock1aa
 		blendFunc filter
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/stone/mxrock1aa
+				vertexColor
+    }
+		bumpmap		textures/stone/mxrock1aa_norm
+		specularmap	textures/stone/mxrock1aa_spec
+	
 }
 
 textures/fueldump/snow_floor
@@ -368,6 +561,7 @@ textures/fueldump/snow_floor
 	q3map_nonplanar
 	q3map_shadeangle 179
 	qer_editorimage textures/snow/s_dirt_m03i_2_phong
+	/*
 	{
 		map $lightmap
 		rgbGen identity
@@ -376,10 +570,21 @@ textures/fueldump/snow_floor
 		map textures/snow/s_dirt_m03i_2
 		blendFunc filter
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/snow/s_dirt_m03i_2
+				vertexColor
+    }
+		bumpmap		textures/snow/s_dirt_m03i_2_norm
+		specularmap	textures/snow/s_dirt_m03i_2_spec
+	
 }
 
 textures/terrain/dirt_m03i
 {
+	/*
 	{
 		map textures/terrain/dirt_m03i
 		rgbgen identity
@@ -389,6 +594,17 @@ textures/terrain/dirt_m03i
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/terrain/dirt_m03i
+				vertexColor
+    }
+		bumpmap		textures/terrain/dirt_m03i_norm
+		specularmap	textures/terrain/dirt_m03i_spec
+	
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -406,6 +622,8 @@ textures/snow_sd/snow_road01
 	q3map_nonplanar
 	q3map_shadeangle 179
 	surfaceparm snowsteps
+	
+	/*
 	{
 		map textures/snow_sd/snow_road01
 		rgbgen identity
@@ -415,6 +633,16 @@ textures/snow_sd/snow_road01
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/snow_road01
+				vertexColor
+    }
+		bumpmap		textures/snow_sd/snow_road01_norm
+		specularmap	textures/snow_sd/snow_road01_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -429,6 +657,7 @@ textures/snow_sd/snow_path01
 	q3map_nonplanar
 	q3map_shadeangle 179
 	surfaceparm snowsteps
+	/*
 	{
 		map textures/snow_sd/snow_path01
 		rgbgen identity
@@ -438,6 +667,16 @@ textures/snow_sd/snow_path01
 		blendFunc GL_DST_COLOR GL_ZERO
 		rgbgen identity
 	}
+	*/
+	
+	{
+				stage diffusemap
+				map textures/snow_sd/snow_path01
+				vertexColor
+    }
+		bumpmap		textures/snow_sd/snow_path01_norm
+		specularmap	textures/snow_sd/snow_path01_spec
+	
 	{
 		map textures/detail_sd/snowdetail
 		blendFunc GL_DST_COLOR GL_SRC_COLOR
@@ -629,7 +868,12 @@ textures/fueldump/riverbed
 	qer_editorimage textures/stone/mxdebri0_riverbed
 
 	{
+		stage diffusemap
 		map textures/stone/mxdebri0_riverbed
-		rgbGen vertex
+		//rgbGen vertex
 	}	
+	
+	//bumpmap         displacemap( textures/stone/mxdebri0_riverbed_norm, invertColor(textures/stone/mxdebri0_riverbed_disp) )
+	bumpmap			textures/stone/mxdebri0_riverbed_norm
+	specularmap		textures/stone/mxdebri0_riverbed_spec
 }
