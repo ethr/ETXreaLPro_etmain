@@ -103,6 +103,7 @@ village
 wood
 xlab_door
 xlab_props
+xlab_floor
 xlab_wall
 
 #aditional shaders for remade content
