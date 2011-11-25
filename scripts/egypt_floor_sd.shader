@@ -36,7 +36,7 @@ textures/egypt_floor_sd/carpet_c02
 	
 	qer_editorimage 	textures/egypt_floor_sd/carpet_c02
 	diffusemap			textures/egypt_floor_sd/carpet_c02
-	bumpmap        		displacemap( textures/egypt_floor_sd/carpet_c02_norm, invertColor(textures/egypt_floor_sd/carpet_c02_disp) )
+	bumpmap        		textures/egypt_floor_sd/carpet_c02_norm
 	specularmap			textures/egypt_floor_sd/carpet_c02_spec
 }
 
@@ -69,7 +69,14 @@ textures/egypt_floor_sd/floor_c06
 textures/egypt_floor_sd/marblefloor_c04
 {
 	qer_editorimage 	textures/egypt_floor_sd/marblefloor_c04
-	diffusemap			textures/egypt_floor_sd/marblefloor_c04
+	{
+		stage diffusemap
+		map textures/egypt_floor_sd/marblefloor_c04
+		depthScale 0.02
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_floor_sd/marblefloor_c04_norm, invertColor(textures/egypt_floor_sd/marblefloor_c04_disp) )
 	specularmap			textures/egypt_floor_sd/marblefloor_c04_spec
 }
@@ -84,7 +91,7 @@ textures/egypt_floor_sd/sandy_dirt_01
 
 	qer_editorimage 	textures/egypt_floor_sd/sandy_dirt_01
 	diffusemap			textures/egypt_floor_sd/sandy_dirt_01
-	bumpmap        		displacemap( textures/egypt_floor_sd/sandy_dirt_01_norm, invertColor(textures/egypt_floor_sd/sandy_dirt_01_disp) )
+	bumpmap        		textures/egypt_floor_sd/sandy_dirt_01_norm
 	specularmap			textures/egypt_floor_sd/sandy_dirt_01_spec
 }
 
@@ -93,7 +100,7 @@ textures/egypt_floor_sd/siwa_rubble_1
 
 	qer_editorimage 	textures/egypt_floor_sd/siwa_rubble_1
 	diffusemap			textures/egypt_floor_sd/siwa_rubble_1
-	bumpmap        		displacemap( textures/egypt_floor_sd/siwa_rubble_1_norm, invertColor(textures/egypt_floor_sd/siwa_rubble_1_disp) )
+	bumpmap        		textures/egypt_floor_sd/siwa_rubble_1_norm
 	specularmap			textures/egypt_floor_sd/siwa_rubble_1_spec
 }
 
@@ -107,7 +114,7 @@ textures/egypt_floor_sd/sandygrass_b
 
 	qer_editorimage 	textures/egypt_floor_sd/sandygrass_b
 	diffusemap			textures/egypt_floor_sd/sandygrass_b
-	bumpmap        		displacemap( textures/egypt_floor_sd/sandygrass_b_norm, invertColor(textures/egypt_floor_sd/sandygrass_b_disp) )
+	bumpmap        		textures/egypt_floor_sd/sandygrass_b_norm
 	specularmap			textures/egypt_floor_sd/sandygrass_b_spec
 }
 
@@ -121,7 +128,7 @@ textures/egypt_floor_sd/dirt_cracked_01
 
 	qer_editorimage 	textures/egypt_floor_sd/dirt_cracked_01
 	diffusemap			textures/egypt_floor_sd/dirt_cracked_01
-	bumpmap        		displacemap( textures/egypt_floor_sd/dirt_cracked_01_norm, invertColor(textures/egypt_floor_sd/dirt_cracked_01_disp) )
+	bumpmap        		textures/egypt_floor_sd/dirt_cracked_01_norm
 	specularmap			textures/egypt_floor_sd/dirt_cracked_01_spec
 }
 
@@ -175,7 +182,14 @@ textures/egypt_floor_sd/wood_c13
 	surfaceparm woodsteps
 	
 	qer_editorimage 	textures/egypt_floor_sd/wood_c13
-	diffusemap			textures/egypt_floor_sd/wood_c13
+	{
+		stage diffusemap
+		map textures/egypt_floor_sd/wood_c13
+		depthScale 0.01
+	}
+	
+	parallax
+	
 	bumpmap        		displacemap( textures/egypt_floor_sd/wood_c13_norm, invertColor(textures/egypt_floor_sd/wood_c13_disp) )
 	specularmap			textures/egypt_floor_sd/wood_c13_spec
 }
@@ -190,7 +204,7 @@ textures/mp_goldrush/sandygrass_b_phong
 
 	qer_editorimage 	textures/egypt_floor_sd/sandygrass_b
 	diffusemap			textures/egypt_floor_sd/sandygrass_b
-	bumpmap        		displacemap( textures/egypt_floor_sd/sandygrass_b_norm, invertColor(textures/egypt_floor_sd/sandygrass_b_disp) )
+	bumpmap        		textures/egypt_floor_sd/sandygrass_b_norm
 	specularmap			textures/egypt_floor_sd/sandygrass_b_spec
 }
 
