@@ -26,7 +26,7 @@ textures/awf_props/tool_m02
 	
 	qer_editorimage textures/awf_props/tool_m02
 	diffusemap		textures/awf_props/tool_m02
-	bumpmap         displacemap( textures/awf_props/tool_m02_norm, invertColor(textures/awf_props/tool_m02_disp) )
+	bumpmap         textures/awf_props/tool_m02_norm
 	specularmap		textures/awf_props/tool_m02_spec
 }
 
@@ -61,6 +61,6 @@ textures/awf_props/tool_m07
 	
 	qer_editorimage textures/awf_props/tool_m07
 	diffusemap		textures/awf_props/tool_m07
-	bumpmap         displacemap( textures/awf_props/tool_m07_norm, invertColor(textures/awf_props/tool_m07_disp) )
+	bumpmap         textures/awf_props/tool_m07_norm
 	specularmap		textures/awf_props/tool_m07_spec
 }

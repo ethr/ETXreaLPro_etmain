@@ -9,7 +9,7 @@ textures/assault/atool_m02
 	
 	qer_editorimage textures/assault/atool_m02
 	diffusemap		textures/assault/atool_m02
-	bumpmap         displacemap( textures/assault/atool_m02_norm, invertColor(textures/assault/atool_m02_disp) )
+	bumpmap         textures/assault/atool_m02_norm
 	specularmap		textures/assault/atool_m02_spec
 }
 
@@ -26,7 +26,7 @@ textures/assault/atruss_m06a
 	
 	qer_editorimage textures/assault/atruss_m06a
 	diffusemap		textures/assault/atruss_m06a
-	bumpmap         displacemap( textures/assault/atruss_m06a_norm, invertColor(textures/assault/atruss_m06a_disp) )
+	bumpmap         textures/assault/atruss_m06a_norm
 	specularmap		textures/assault/atruss_m06a_spec
 }
 
@@ -35,7 +35,7 @@ textures/assault/awall_m01
 
 	qer_editorimage textures/assault/awall_m01
 	diffusemap		textures/assault/awall_m01
-	bumpmap         displacemap( textures/assault/awall_m01_norm, invertColor(textures/assault/awall_m01_disp) )
+	bumpmap         textures/assault/awall_m01_norm
 	specularmap		textures/assault/awall_m01_spec
 
 }
@@ -95,7 +95,7 @@ textures/assault/metal_c06
 	
 	qer_editorimage textures/assault/metal_c06
 	diffusemap		textures/assault/metal_c06
-	bumpmap         displacemap( textures/assault/awall_m01_norm, invertColor(textures/assault/metal_c06_disp) )
+	bumpmap         textures/assault/awall_m01_norm
 	specularmap		textures/assault/metal_c06_spec
 }
 
@@ -106,7 +106,7 @@ textures/assault/metal_c07a
 	
 	qer_editorimage textures/assault/metal_c07a
 	diffusemap		textures/assault/metal_c07a
-	bumpmap         displacemap( textures/assault/metal_c07a_norm, invertColor(textures/assault/metal_c07a_disp) )
+	bumpmap         textures/assault/metal_c07a_norm
 	specularmap		textures/assault/metal_c07a_spec
 	
 }
@@ -119,7 +119,7 @@ textures/assault/metal_c07ans
 	implicitMap textures/assault/metal_c07a
 	
 	diffusemap		textures/assault/metal_c07a
-	bumpmap         displacemap( textures/assault/metal_c07a_norm, invertColor(textures/assault/metal_c07a_disp) )
+	bumpmap         textures/assault/metal_c07a_norm
 	specularmap		textures/assault/metal_c07a_spec
 }
 

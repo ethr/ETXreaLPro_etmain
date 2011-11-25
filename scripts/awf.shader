@@ -32,7 +32,7 @@ textures/awf/floor_m4
 {
     qer_editorimage textures/awf/floor_m4
 	diffusemap		textures/awf/floor_m4
-	bumpmap         displacemap(textures/awf/floor_m4_norm, invertColor(textures/awf/floor_m4_disp) )
+	bumpmap         textures/awf/floor_m4_norm
 	specularmap		textures/awf/awf_w_m11_spec
 	
 }
