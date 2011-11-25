@@ -72,7 +72,7 @@ textures/egypt_floor_sd/marblefloor_c04
 	{
 		stage diffusemap
 		map textures/egypt_floor_sd/marblefloor_c04
-		depthScale 0.02
+		depthScale 0.01
 	}
 	
 	parallax
