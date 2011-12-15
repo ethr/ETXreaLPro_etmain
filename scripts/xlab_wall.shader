@@ -203,4 +203,36 @@ textures/xlab_wall/xtrim_c07
 	specularmap		textures/xlab_wall/xtrim_c07_spec
 }
 
+textures/xlab_wall/xwall_c09
+{
+	surfaceparm metalsteps
+	
+	qer_editorimage	textures/xlab_wall/xwall_c09
+	
+	{
+		stage diffusemap
+		map textures/xlab_wall/xwall_c09
+		depthScale 0.02
+	}
+	parallax
+	bumpmap         displacemap( textures/xlab_wall/xwall_c09_norm, invertColor(textures/xlab_wall/xwall_c09_disp) )
+	specularmap		textures/xlab_wall/xwall_c09_spec
+}
+
+textures/xlab_wall/xwall_c10
+{
+	surfaceparm metalsteps
+	
+	qer_editorimage	textures/xlab_wall/xwall_c10
+	
+	{
+		stage diffusemap
+		map textures/xlab_wall/xwall_c10
+		depthScale 0.02
+	}
+	parallax
+	bumpmap         displacemap( textures/xlab_wall/xwall_c10_norm, invertColor(textures/xlab_wall/xwall_c10_disp) )
+	specularmap		textures/xlab_wall/xwall_c10_spec
+}
+
 // textures/xlab_wall/xwall_c07
